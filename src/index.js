@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
+import 'normalize.css';
 import 'antd/dist/antd.less';
 import './index.css';
 
