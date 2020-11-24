@@ -50,6 +50,7 @@ function App() {
           exact
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
+
         <SecureRoute path="/example-list" component={ExampleListPage} />
 
         <SecureRoute path="/profile-list" component={ProfileListPage} />
