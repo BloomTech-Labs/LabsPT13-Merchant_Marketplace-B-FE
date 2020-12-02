@@ -4,13 +4,15 @@ import styled from 'styled-components';
 const Card = styled.div`
   height: 300px;
   width: 260px;
-  border-radius: 5px;
+  border-radius: 4px;
   overflow: hidden;
   cursor: pointer;
+  transition-duration: 0.3s;
 
   &:hover {
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: scale(1.03);
   }
 
   img {
@@ -20,7 +22,7 @@ const Card = styled.div`
   }
 
   .details {
-    padding: 5px 5px 5px 0;
+    padding: 5px;
 
     p {
       color: gray;
