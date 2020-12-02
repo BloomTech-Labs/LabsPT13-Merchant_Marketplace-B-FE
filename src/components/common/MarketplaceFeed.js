@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import ProductCard from '../common/ProductCard';
 
 const Wrapper = styled.div`
-  border: 1px solid red;
+  border-top: 1px solid #c7c7c7;
   text-align: center;
+  padding: 15px 0 0 0;
 
   .products {
     display: flex;
@@ -35,7 +36,6 @@ export default function MarketplaceFeed({ getProducts, LoadingComponent }) {
 
   return (
     <Wrapper>
-      <h1>Marketplace Feed</h1>
       {isFetching ? (
         <LoadingComponent />
       ) : (
