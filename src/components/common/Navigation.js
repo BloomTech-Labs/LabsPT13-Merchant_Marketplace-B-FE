@@ -49,7 +49,7 @@ const Wrapper = styled.div`
     }
   }
 
-  .drop-down {
+  .dropdown-wrapper {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -62,6 +62,37 @@ const Wrapper = styled.div`
 
       span {
         margin-left: 5px;
+      }
+
+      &:hover {
+        .dropdown-menu {
+          display: block;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      display: none;
+      padding: 0;
+      background-color: #9db99d;
+      list-style-type: none;
+      right: 15px;
+      top: 120px;
+      width: 100px;
+
+      li a {
+        display: inline-block;
+        width: 100%;
+        text-align: end;
+        padding: 10px;
+        color: #363636;
+        font-size: 16px;
+
+        &:hover {
+          color: #fff;
+          transition-duration: 0.3s;
+        }
       }
     }
   }
@@ -84,11 +115,24 @@ export default function navigation({ userInfo }) {
         </Link>
       </main>
 
-      <div className="drop-down">
+      <div className="dropdown-wrapper">
         <section>
           <FaUserCircle size="2.5em" color="#607d8b" />
+
+          <ul className="dropdown-menu">
+            <li>
+              <a href="">One</a>
+            </li>
+            <li>
+              <a href="">Two</a>
+            </li>
+            <li>
+              <a href="">Three</a>
+            </li>
+          </ul>
+
           <span>Hi, {userInfo.name.split(' ')[0]}</span>
-          <BiChevronDown size="2em" i />
+          <BiChevronDown size="2em" id="dropdown-icon" />
         </section>
       </div>
     </Wrapper>
