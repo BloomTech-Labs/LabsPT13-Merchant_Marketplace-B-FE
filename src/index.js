@@ -19,6 +19,7 @@ import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+import { CartPage } from './components/pages/Cart';
 
 ReactDOM.render(
   <Router>
@@ -51,6 +52,7 @@ function App() {
           exact
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
+        <SecureRoute path="/cart" exact component={() => <CartPage />} />
 
         <SecureRoute path="/example-list" component={ExampleListPage} />
 

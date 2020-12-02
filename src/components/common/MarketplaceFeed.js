@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import ProductCard from '../common/ProductCard';
+import ProductCard from './ProductCard';
 
 const Wrapper = styled.div`
   padding: 15px 0 0 0;

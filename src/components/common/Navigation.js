@@ -24,7 +24,7 @@ const Wrapper = styled.div`
       input {
         font-size: 15px;
         width: 400px;
-        padding: 10px;
+        padding: 8px;
         border: none;
         color: black;
       }
