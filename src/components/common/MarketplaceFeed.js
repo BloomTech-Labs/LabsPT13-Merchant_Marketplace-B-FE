@@ -3,17 +3,17 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   border: 1px solid red;
+  text-align: center;
 `;
 
-export default function MarketplaceFeed({ getProducts }) {
-  const [items, setItems] = useState([]);
+export default function MarketplaceFeed({ getProducts, LoadingComponent }) {
+  const [products, setProducts] = useState([]);
   const [isFetching, setFetching] = useState(true);
 
   useEffect(() => {
     getProducts()
       .then(res => {
-        console.log(res);
-        setItems(res);
+        setProducts(res);
       })
       .catch(error => {
         console.error(error);
@@ -28,7 +28,11 @@ export default function MarketplaceFeed({ getProducts }) {
   return (
     <Wrapper className="marketplace">
       <h1>Marketplace Feed</h1>
-      {isFetching ? <h2>Fetching Product...</h2> : console.log(items)}
+      {isFetching ? (
+        <LoadingComponent />
+      ) : (
+        <div className="products">Products</div>
+      )}
     </Wrapper>
   );
 }

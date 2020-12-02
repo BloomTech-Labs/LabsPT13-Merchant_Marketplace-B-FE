@@ -7,6 +7,7 @@ import MarketplaceFeed from '../../common/MarketplaceFeed';
 const Wrapper = styled.div`
   .main-content {
     margin-top: 150px;
+    padding: 15px;
   }
 `;
 
@@ -40,7 +41,10 @@ function RenderHomePage(props) {
           </p>
         </div>
 
-        <MarketplaceFeed getProducts={getProducts} />
+        <MarketplaceFeed
+          getProducts={getProducts}
+          LoadingComponent={() => <div>Loading Products...</div>}
+        />
       </div>
     </Wrapper>
   );
