@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Navigation, Button } from '../../common';
+import MarketplaceFeed from '../../common/MarketplaceFeed';
 
 const Wrapper = styled.div`
   .main-content {
@@ -16,6 +17,8 @@ function RenderHomePage(props) {
       <Navigation userInfo={userInfo} />
 
       <div className="main-content">
+        <MarketplaceFeed />
+
         <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
         <div>
           <p>
