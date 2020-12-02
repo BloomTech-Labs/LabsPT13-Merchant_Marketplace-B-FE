@@ -22,15 +22,15 @@ const Wrapper = styled.div`
 
       input {
         font-size: 15px;
-        width: 350px;
-        padding: 6px 10px;
+        width: 400px;
+        padding: 10px;
         border: none;
         color: black;
       }
       svg {
         position: absolute;
         right: 5px;
-        top: 7px;
+        top: 10px;
       }
     }
 
