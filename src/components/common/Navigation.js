@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #e7f0ec;
+  background-color: #bdcdcf;
 
   main {
     display: flex;

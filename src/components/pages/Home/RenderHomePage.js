@@ -5,9 +5,10 @@ import { Navigation, Button } from '../../common';
 import MarketplaceFeed from '../../common/MarketplaceFeed';
 
 const Wrapper = styled.div`
+  background-color: #ecf0ee;
+
   .main-content {
-    margin-top: 150px;
-    padding: 15px;
+    padding: 150px 15px 15px;
   }
 `;
 

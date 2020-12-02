@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import ProductCard from '../common/ProductCard';
 
 const Wrapper = styled.div`
-  border-top: 1px solid #c7c7c7;
-  text-align: center;
   padding: 15px 0 0 0;
 
   .products {
@@ -41,11 +39,11 @@ export default function MarketplaceFeed({ getProducts, LoadingComponent }) {
       ) : (
         <div className="products">
           {products.map(p => (
-            <ProductCard />
+            <ProductCard key={p.id} product={p} />
           ))}
 
           {products.map(p => (
-            <ProductCard />
+            <ProductCard key={p.id} product={p} />
           ))}
         </div>
       )}
