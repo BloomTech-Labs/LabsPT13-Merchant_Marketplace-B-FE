@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import ProductCard from '../common/ProductCard';
+
 const Wrapper = styled.div`
   border: 1px solid red;
   text-align: center;
+
+  .products {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 `;
 
 export default function MarketplaceFeed({ getProducts, LoadingComponent }) {
@@ -26,12 +34,20 @@ export default function MarketplaceFeed({ getProducts, LoadingComponent }) {
   }, [getProducts]);
 
   return (
-    <Wrapper className="marketplace">
+    <Wrapper>
       <h1>Marketplace Feed</h1>
       {isFetching ? (
         <LoadingComponent />
       ) : (
-        <div className="products">Products</div>
+        <div className="products">
+          {products.map(p => (
+            <ProductCard />
+          ))}
+
+          {products.map(p => (
+            <ProductCard />
+          ))}
+        </div>
       )}
     </Wrapper>
   );
