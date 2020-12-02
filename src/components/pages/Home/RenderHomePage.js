@@ -11,14 +11,12 @@ const Wrapper = styled.div`
 `;
 
 function RenderHomePage(props) {
-  const { userInfo, authService } = props;
+  const { userInfo, authService, getProducts } = props;
   return (
     <Wrapper>
       <Navigation userInfo={userInfo} />
 
       <div className="main-content">
-        <MarketplaceFeed />
-
         <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
         <div>
           <p>
@@ -41,6 +39,8 @@ function RenderHomePage(props) {
             />
           </p>
         </div>
+
+        <MarketplaceFeed getProducts={getProducts} />
       </div>
     </Wrapper>
   );
