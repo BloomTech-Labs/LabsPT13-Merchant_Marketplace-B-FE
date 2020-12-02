@@ -37,6 +37,7 @@ const Wrapper = styled.div`
     .cart {
       display: flex;
       align-items: center;
+      cursor: pointer;
 
       span {
         margin-left: 5px;
@@ -46,13 +47,14 @@ const Wrapper = styled.div`
     }
   }
 
-  .navigation {
+  .drop-down {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 15px 8px 15px 0;
 
     section {
+      cursor: pointer;
       display: flex;
       align-items: center;
 
@@ -80,11 +82,11 @@ export default function navigation({ userInfo }) {
         </div>
       </main>
 
-      <div className="navigation">
+      <div className="drop-down">
         <section>
           <FaUserCircle size="2.5em" color="#607d8b" />
           <span>Hi, {userInfo.name.split(' ')[0]}</span>
-          <BiChevronDown size="2em" />
+          <BiChevronDown size="2em" i />
         </section>
       </div>
     </Wrapper>
