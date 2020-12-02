@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaUserCircle } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
@@ -34,10 +35,11 @@ const Wrapper = styled.div`
       }
     }
 
-    .cart {
+    .cart-icon {
       display: flex;
       align-items: center;
       cursor: pointer;
+      color: #363636;
 
       span {
         margin-left: 5px;
@@ -76,10 +78,10 @@ export default function navigation({ userInfo }) {
           <BiSearchAlt size="1.6em" />
         </div>
 
-        <div className="cart">
+        <Link to="/cart" className="cart-icon">
           <AiOutlineShoppingCart size="2.5em" color="#4a626e" />
           <span>Cart</span>
-        </div>
+        </Link>
       </main>
 
       <div className="drop-down">
