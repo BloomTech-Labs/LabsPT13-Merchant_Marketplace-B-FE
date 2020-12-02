@@ -19,18 +19,19 @@ export default function MarketplaceFeed({ getProducts, LoadingComponent }) {
   const [isFetching, setFetching] = useState(true);
 
   useEffect(() => {
-    getProducts()
-      .then(res => {
-        setProducts(res);
-      })
-      .catch(error => {
-        console.error(error);
-        // Be sure to add functionality that displays errors to your UI here.
-        // We want our users to know whether something has gone wrong with our request.
-      })
-      .finally(() => {
-        setFetching(false);
-      });
+    getProducts &&
+      getProducts()
+        .then(res => {
+          setProducts(res);
+        })
+        .catch(error => {
+          console.error(error);
+          // Be sure to add functionality that displays errors to your UI here.
+          // We want our users to know whether something has gone wrong with our request.
+        })
+        .finally(() => {
+          setFetching(false);
+        });
   }, [getProducts]);
 
   return (
