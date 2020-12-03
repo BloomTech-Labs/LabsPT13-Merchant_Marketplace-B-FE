@@ -1,10 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
 
-export default function RenderCart() {
+const RenderCart = () => {
   return (
     <div>
       <h1>Cart Page</h1>
     </div>
   );
-}
+};
+
+export default RenderCart;

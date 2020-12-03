@@ -11,12 +11,46 @@ const Wrapper = styled.div`
   width: 100%;
   background-color: #bdcdcf;
 
-  main {
+  .top {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
+    flex-direction: row-reverse;
+    padding: 7px 15px;
+    border-bottom: 1px solid #939394;
 
+    .top-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 50%;
+
+      .cart-icon {
+        cursor: pointer;
+        color: #363636;
+        margin-left: 25px;
+
+        span {
+          font-weight: 500;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .top-left {
+      display: flex;
+      width: 50%;
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+
+        svg {
+          margin-right: 25px;
+        }
+      }
+    }
+  }
+
+  .middle {
     .search-bar-wrapper {
       position: relative;
       top: 30px;
@@ -34,106 +68,38 @@ const Wrapper = styled.div`
         top: 10px;
       }
     }
-
-    .cart-icon {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      color: #363636;
-
-      span {
-        margin-left: 5px;
-        font-weight: 500;
-        font-size: 16px;
-      }
-    }
-  }
-
-  .dropdown-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 15px 8px 15px 0;
-
-    section {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-
-      span {
-        margin-left: 5px;
-      }
-
-      &:hover {
-        .dropdown-menu {
-          display: block;
-        }
-      }
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      display: none;
-      padding: 0;
-      background-color: #9db99d;
-      list-style-type: none;
-      right: 15px;
-      top: 120px;
-      width: 100px;
-
-      li a {
-        display: inline-block;
-        width: 100%;
-        text-align: end;
-        padding: 10px;
-        color: #363636;
-        font-size: 16px;
-
-        &:hover {
-          color: #fff;
-          transition-duration: 0.3s;
-        }
-      }
-    }
   }
 `;
 
 export default function navigation({ userInfo }) {
   return (
     <Wrapper>
-      <main>
-        <span>LOGO</span>
+      <div className="top">
+        <div className="top-right">
+          <section>
+            <span>My Market</span>
+            <BiChevronDown size="2em" id="dropdown-icon" />
+          </section>
 
+          <Link to="/cart" className="cart-icon">
+            <AiOutlineShoppingCart size="2.2em" color="#4a626e" />
+          </Link>
+        </div>
+
+        <div className="top-left">
+          <div className="user-profile">
+            <FaUserCircle size="2.2em" color="#607d8b" />
+            <span>Hi, {userInfo.name.split(' ')[0]}</span>
+            <BiChevronDown size="2em" id="dropdown-icon" />
+          </div>
+        </div>
+      </div>
+
+      <div className="middle">
         <div className="search-bar-wrapper">
           <input type="text" placeholder="Search MarketPlace" />
           <BiSearchAlt size="1.6em" />
         </div>
-
-        <Link to="/cart" className="cart-icon">
-          <AiOutlineShoppingCart size="2.5em" color="#4a626e" />
-          <span>Cart</span>
-        </Link>
-      </main>
-
-      <div className="dropdown-wrapper">
-        <section>
-          <FaUserCircle size="2.5em" color="#607d8b" />
-
-          <ul className="dropdown-menu">
-            <li>
-              <a href="">One</a>
-            </li>
-            <li>
-              <a href="">Two</a>
-            </li>
-            <li>
-              <a href="">Three</a>
-            </li>
-          </ul>
-
-          <span>Hi, {userInfo.name.split(' ')[0]}</span>
-          <BiChevronDown size="2em" id="dropdown-icon" />
-        </section>
       </div>
     </Wrapper>
   );
