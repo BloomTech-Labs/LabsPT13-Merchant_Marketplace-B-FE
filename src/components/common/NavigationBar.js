@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
 
 const Wrapper = styled.div`
@@ -12,7 +12,8 @@ const Wrapper = styled.div`
 
   .top {
     display: flex;
-    padding: 7px 15px;
+    align-items: center;
+    padding: 8px 15px;
     flex-direction: row-reverse;
     border-bottom: 1px solid #a1a1a1;
 
@@ -26,6 +27,12 @@ const Wrapper = styled.div`
         cursor: pointer;
         color: #363636;
         margin-left: 25px;
+        font-size: 28px;
+        transition-duration: 0.3s;
+
+        &:hover {
+          color: #008cff;
+        }
 
         span {
           font-weight: 500;
@@ -39,12 +46,6 @@ const Wrapper = styled.div`
       width: 50%;
 
       .user-profile {
-        display: flex;
-        align-items: center;
-
-        svg {
-          /* margin-right: 25px; */
-        }
       }
     }
   }
@@ -86,25 +87,25 @@ export default function Navigation({ userInfo, handleLogout }) {
     <Wrapper>
       <div className="top">
         <div className="top-right">
-          {/* <DropdownMenu
-            name="My Market"
+          <DropdownMenu
+            title="My Market"
             items={['Purchase History', 'Saved Items', 'Messages']}
-          /> */}
+          />
 
-          <Link to="/cart" className="cart-icon">
-            <AiOutlineShoppingCart size="2.2em" color="#4a626e" />
+          <Link to="/cart">
+            <ShoppingCartOutlined className="cart-icon" />
           </Link>
         </div>
 
         <div className="top-left">
           <div className="user-profile">
-            {/* <DropdownMenu
-              name={'Hi, ' + userInfo.name.split(' ')[0]}
+            <DropdownMenu
+              title={'Hi, ' + userInfo.name.split(' ')[0]}
               items={[
                 'Account Settings',
                 <span onClick={handleLogout}>Sign Out</span>,
               ]}
-            /> */}
+            />
           </div>
         </div>
       </div>

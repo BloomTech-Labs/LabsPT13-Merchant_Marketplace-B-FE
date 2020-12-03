@@ -1,40 +1,24 @@
-import React, { useState } from 'react';
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from 'reactstrap';
-import styled from 'styled-components';
+import React from 'react';
+import { Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import 'antd/dist/antd.css';
 
-const Wrapper = styled.div`
-  .dropdown {
-    .btn {
-      background: transparent;
-      border: none;
-      color: #111;
-      outline: none;
-      display: flex;
-      align-items: center;
-    }
-  }
-`;
-
-export default function DropdownNav({ name, items }) {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const toggle = () => setDropdownOpen(prevState => !prevState);
+const DropdownMenu = ({ title, items }) => {
+  const menu = (
+    <Menu>
+      {items.map((item, i) => (
+        <Menu.Item key={i}>{item}</Menu.Item>
+      ))}
+    </Menu>
+  );
 
   return (
-    <Wrapper>
-      <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-        <DropdownToggle caret>{name}</DropdownToggle>
-
-        <DropdownMenu>
-          {items.map((item, i) => (
-            <DropdownItem key={i}>{item}</DropdownItem>
-          ))}
-        </DropdownMenu>
-      </Dropdown>
-    </Wrapper>
+    <Dropdown overlay={menu}>
+      <span style={{ cursor: 'pointer' }}>
+        {title} <DownOutlined />
+      </span>
+    </Dropdown>
   );
-}
+};
+
+export default DropdownMenu;
