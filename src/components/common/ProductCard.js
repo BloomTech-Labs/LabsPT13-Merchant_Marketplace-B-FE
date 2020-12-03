@@ -18,7 +18,8 @@ const Card = styled.div`
   img {
     width: 100%;
     height: 220px;
-    border-radius: 3px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
     object-fit: cover;
   }
 
