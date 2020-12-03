@@ -79,7 +79,8 @@ export default function Navigation({ userInfo }) {
         <div className="top-right">
           <DropdownMenu
             name="My Market"
-            Icon={() => <BiChevronDown size="2em" id="dropdown-icon" />}
+            Icon={<BiChevronDown size="2em" id="dropdown-icon" />}
+            items={['One', 'Two', 'Three']}
           />
 
           <Link to="/cart" className="cart-icon">

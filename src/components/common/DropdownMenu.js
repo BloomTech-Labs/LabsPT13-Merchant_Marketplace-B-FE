@@ -5,9 +5,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
-import { BiChevronDown } from 'react-icons/bi';
 import styled from 'styled-components';
-import { icons } from 'react-icons/lib';
 
 const Wrapper = styled.div`
   .dropdown {
@@ -23,7 +21,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function DropdownNav({ name, Icon }) {
+export default function DropdownNav({ name, Icon, items }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
@@ -32,16 +30,13 @@ export default function DropdownNav({ name, Icon }) {
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle>
           {name}
-
-          {Icon()}
+          {Icon}
         </DropdownToggle>
 
         <DropdownMenu>
-          <DropdownItem>Some Action</DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem>Foo Action</DropdownItem>
-          <DropdownItem>Bar Action</DropdownItem>
-          <DropdownItem>Quo Action</DropdownItem>
+          {items.map((item, i) => (
+            <DropdownItem key={i}>{item}</DropdownItem>
+          ))}
         </DropdownMenu>
       </Dropdown>
     </Wrapper>
