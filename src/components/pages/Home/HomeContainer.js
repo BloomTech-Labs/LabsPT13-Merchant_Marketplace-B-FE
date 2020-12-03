@@ -9,7 +9,6 @@ function HomeContainer({ LoadingComponent }) {
   const [memoAuthService] = useMemo(() => [authService], []);
   const [userInfo, setUserInfo] = useState(null);
   const [products, setProducts] = useState([]);
-  const [fetchingProducts, setFetchingProducts] = useState(true);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -37,8 +36,6 @@ function HomeContainer({ LoadingComponent }) {
         console.error(error);
         // Be sure to add functionality that displays errors to your UI here.
         // We want our users to know whether something has gone wrong with our request.
-      } finally {
-        setFetchingProducts(false);
       }
     };
 
@@ -52,8 +49,8 @@ function HomeContainer({ LoadingComponent }) {
           <LoadingComponent message="Fetching user profile..." />
         ) : (
           <UserInfoContext.Provider value={userInfo}>
-            <ProductsContext.Provider value={{ products, fetchingProducts }}>
-              <RenderHomePage authService={authService} />
+            <ProductsContext.Provider value={products}>
+              <RenderHomePage />
             </ProductsContext.Provider>
           </UserInfoContext.Provider>
         ))}

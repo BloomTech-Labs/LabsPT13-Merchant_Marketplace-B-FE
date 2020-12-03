@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavigationBar } from '../../common';
 import MarketplaceFeed from '../../common/MarketplaceFeed';
-import { ProductsContext, UserInfoContext } from '../../../state/contexts';
+import { ProductsContext } from '../../../state/contexts';
 
 const Wrapper = styled.div`
   background-color: #ecf0ee;
@@ -12,36 +12,27 @@ const Wrapper = styled.div`
   }
 `;
 
-function RenderHomePage(props) {
-  const { authService } = props;
-
+function RenderHomePage() {
   return (
-    <UserInfoContext.Consumer>
-      {userInfo => (
-        <ProductsContext.Consumer>
-          {({ products, fetchingProducts }) => (
-            <Wrapper>
-              <NavigationBar
-                userInfo={userInfo}
-                handleLogout={() => authService.logout()}
-              />
+    <ProductsContext.Consumer>
+      {products => (
+        <Wrapper>
+          <NavigationBar />
 
-              <div className="main-content">
-                {fetchingProducts ? (
-                  <span>Fetching market products...</span>
-                ) : (
-                  <ProductsContext.Provider value={products}>
-                    <MarketplaceFeed
-                      LoadingComponent={() => <div>Loading Products...</div>}
-                    />
-                  </ProductsContext.Provider>
-                )}
-              </div>
-            </Wrapper>
-          )}
-        </ProductsContext.Consumer>
+          <div className="main-content">
+            {products.length ? (
+              <ProductsContext.Provider value={products}>
+                <MarketplaceFeed
+                  LoadingComponent={() => <div>Loading Products...</div>}
+                />
+              </ProductsContext.Provider>
+            ) : (
+              <span>Fetching market products...</span>
+            )}
+          </div>
+        </Wrapper>
       )}
-    </UserInfoContext.Consumer>
+    </ProductsContext.Consumer>
   );
 }
 export default RenderHomePage;

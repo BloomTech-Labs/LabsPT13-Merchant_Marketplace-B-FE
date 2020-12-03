@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useOktaAuth } from '@okta/okta-react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
 import FormInput from './FormInput';
 import { SearchOutlined } from '@ant-design/icons';
+import { UserInfoContext } from '../../state/contexts';
 
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
   background-color: #cdd7d8;
+  overflow: hidden;
 
   .top {
     display: flex;
@@ -75,8 +78,10 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function Navigation({ userInfo, handleLogout }) {
+export default function Navigation() {
   const [input, setInput] = useState('');
+  const { authService } = useOktaAuth();
+  const userInfo = useContext(UserInfoContext);
 
   return (
     <Wrapper>
@@ -87,7 +92,7 @@ export default function Navigation({ userInfo, handleLogout }) {
             items={['Purchase History', 'Saved Items', 'Messages']}
           />
 
-          <Link to="/cart">
+          <Link to={{ pathname: '/cart', userInfo }}>
             <ShoppingCartOutlined className="cart-icon" />
           </Link>
         </div>
@@ -98,7 +103,7 @@ export default function Navigation({ userInfo, handleLogout }) {
               title={'Hi, ' + userInfo.name.split(' ')[0]}
               items={[
                 'Account Settings',
-                <span onClick={handleLogout}>Sign Out</span>,
+                <span onClick={() => authService.logout()}>Sign Out</span>,
               ]}
             />
           </div>
@@ -121,10 +126,10 @@ export default function Navigation({ userInfo, handleLogout }) {
       </div>
 
       <div className="bottom">
-        <a href="google.com">Home</a>
-        <a href="google.com">Wishlist</a>
-        <a href="google.com">Products</a>
-        <a href="google.com">Categories</a>
+        <Link to="/">Home</Link>
+        <span>Wishlist</span>
+        <span>Products</span>
+        <span>Categories</span>
       </div>
     </Wrapper>
   );
