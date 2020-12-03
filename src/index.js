@@ -11,7 +11,6 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'normalize.css';
 import 'antd/dist/antd.less';
 import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { NotFoundPage } from './components/pages/NotFound';
 import { HomePage } from './components/pages/Home';
