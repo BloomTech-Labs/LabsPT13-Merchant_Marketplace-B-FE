@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Card = styled.div`
@@ -43,14 +44,16 @@ const Card = styled.div`
 `;
 export default function ProductCard({ product }) {
   return (
-    <Card>
-      <img src={product.img} alt="market product" />
+    <Link to="/product">
+      <Card>
+        <img src={product.img} alt="market product" />
 
-      <div className="details">
-        <h3>${product.price}</h3>
-        <h4>{product.title}</h4>
-        <p>Location</p>
-      </div>
-    </Card>
+        <div className="details">
+          <h3>${product.price}</h3>
+          <h4>{product.title}</h4>
+          <p>Location</p>
+        </div>
+      </Card>
+    </Link>
   );
 }
