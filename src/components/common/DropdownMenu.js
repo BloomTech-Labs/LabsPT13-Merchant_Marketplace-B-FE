@@ -3,7 +3,7 @@ import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
-const DropdownMenu = ({ title, items }) => {
+export default function DropdownMenu({ title, items }) {
   const menu = (
     <Menu>
       {items.map((item, i) => (
@@ -19,6 +19,4 @@ const DropdownMenu = ({ title, items }) => {
       </span>
     </Dropdown>
   );
-};
-
-export default DropdownMenu;
+}

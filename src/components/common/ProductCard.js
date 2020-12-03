@@ -35,9 +35,9 @@ const Card = styled.div`
     h3,
     h4 {
       font-size: 16px;
-      margin: 3px 0;
+      margin: 0;
     }
-    h4 {
+    h3 {
       font-weight: bold;
     }
   }
@@ -49,8 +49,8 @@ export default function ProductCard({ product }) {
         <img src={product.img} alt="market product" />
 
         <div className="details">
-          <h3>${product.price}</h3>
-          <h4>{product.title}</h4>
+          <h4>${product.price}</h4>
+          <h3>{product.title}</h3>
           <p>Location</p>
         </div>
       </Card>

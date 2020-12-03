@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
+import FormInput from './FormInput';
+import { SearchOutlined } from '@ant-design/icons';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -52,20 +54,11 @@ const Wrapper = styled.div`
 
   .middle {
     padding: 15px 20px 0 20px;
+    text-align: center;
 
     .search-bar-wrapper {
-      text-align: center;
       border-bottom: 1px solid #a1a1a1;
       padding-bottom: 15px;
-
-      input {
-        position: relative;
-        max-width: 500px;
-        width: 100%;
-        border: none;
-        padding: 7px;
-        font-size: 18px;
-      }
     }
   }
 
@@ -83,6 +76,8 @@ const Wrapper = styled.div`
 `;
 
 export default function Navigation({ userInfo, handleLogout }) {
+  const [input, setInput] = useState('');
+
   return (
     <Wrapper>
       <div className="top">
@@ -112,15 +107,24 @@ export default function Navigation({ userInfo, handleLogout }) {
 
       <div className="middle">
         <div className="search-bar-wrapper">
-          <input type="text" placeholder="🔍  Search MarketPlace" />
+          <FormInput
+            name="search-bar"
+            type="text"
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            placeholder="Search MarketPlace"
+            labelId=""
+            Icon={<SearchOutlined />}
+            styles={{ maxWidth: '500px' }}
+          />
         </div>
       </div>
 
       <div className="bottom">
-        <a href="#">Home</a>
-        <a href="#">Wishlist</a>
-        <a href="#">Products</a>
-        <a href="#">Categories</a>
+        <a href="google.com">Home</a>
+        <a href="google.com">Wishlist</a>
+        <a href="google.com">Products</a>
+        <a href="google.com">Categories</a>
       </div>
     </Wrapper>
   );
