@@ -30,10 +30,11 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-function App() {
+function App(props) {
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
   // React Router has a nifty useHistory hook we can use at this level to ensure we have security around our routes.
   const history = useHistory();
+  console.log(props);
 
   const authHandler = () => {
     // We pass this to our <Security /> component that wraps our routes.
@@ -47,15 +48,17 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
+
         <SecureRoute
           path="/"
           exact
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
-        <SecureRoute path="/cart" exact component={() => <CartPage />} />
-        <SecureRoute path="/product" exact component={() => <ProductPage />} />
 
-        <Route component={NotFoundPage} />
+        <SecureRoute path="/cart" exact component={() => <CartPage />} />
+        <SecureRoute path="/item/:id" exact component={() => <ProductPage />} />
+
+        <Route path="404" component={NotFoundPage} />
       </Switch>
     </Security>
   );

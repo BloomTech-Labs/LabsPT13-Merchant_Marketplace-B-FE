@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import { Navigation } from '../../common';
+import { NavigationBar } from '../../common';
 import MarketplaceFeed from '../../common/MarketplaceFeed';
 
 const Wrapper = styled.div`
@@ -14,9 +14,10 @@ const Wrapper = styled.div`
 
 function RenderHomePage(props) {
   const { userInfo, authService, getProducts } = props;
+
   return (
     <Wrapper>
-      <Navigation
+      <NavigationBar
         userInfo={userInfo}
         handleLogout={() => authService.logout()}
       />
