@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaUserCircle } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BiSearchAlt, BiChevronDown } from 'react-icons/bi';
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -31,6 +37,18 @@ const Wrapper = styled.div`
         span {
           font-weight: 500;
           font-size: 16px;
+        }
+      }
+
+      .dropdown {
+        .btn {
+          background: transparent;
+          border: none;
+          color: #111;
+          outline: none;
+          padding: 0 0 0 5px;
+          display: flex;
+          align-items: center;
         }
       }
     }
@@ -71,15 +89,28 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function navigation({ userInfo }) {
+export default function Navigation({ userInfo }) {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggle = () => setDropdownOpen(prevState => !prevState);
+
   return (
     <Wrapper>
       <div className="top">
         <div className="top-right">
-          <section>
-            <span>My Market</span>
-            <BiChevronDown size="2em" id="dropdown-icon" />
-          </section>
+          <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle>
+              My Market
+              <BiChevronDown size="2em" id="dropdown-icon" />
+            </DropdownToggle>
+
+            <DropdownMenu>
+              <DropdownItem>Some Action</DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>Foo Action</DropdownItem>
+              <DropdownItem>Bar Action</DropdownItem>
+              <DropdownItem>Quo Action</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
 
           <Link to="/cart" className="cart-icon">
             <AiOutlineShoppingCart size="2.2em" color="#4a626e" />
