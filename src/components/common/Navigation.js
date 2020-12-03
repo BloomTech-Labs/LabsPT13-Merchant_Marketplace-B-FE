@@ -3,20 +3,19 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaUserCircle } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { BiSearchAlt, BiChevronDown } from 'react-icons/bi';
 import DropdownMenu from './DropdownMenu';
 
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #bdcdcf;
+  background-color: #cdd7d8;
 
   .top {
     display: flex;
-    flex-direction: row-reverse;
     padding: 7px 15px;
-    border-bottom: 1px solid #939394;
+    flex-direction: row-reverse;
+    border-bottom: 1px solid #a1a1a1;
 
     .top-right {
       display: flex;
@@ -52,32 +51,39 @@ const Wrapper = styled.div`
   }
 
   .middle {
+    padding: 15px 20px 0 20px;
+
     .search-bar-wrapper {
-      position: relative;
-      top: 30px;
+      text-align: center;
+      border-bottom: 1px solid #a1a1a1;
+      padding-bottom: 15px;
 
       input {
-        font-size: 15px;
-        width: 400px;
-        padding: 8px;
+        position: relative;
+        max-width: 500px;
+        width: 100%;
         border: none;
-        color: black;
-      }
-      svg {
-        position: absolute;
-        right: 5px;
-        top: 10px;
+        padding: 7px;
+        font-size: 18px;
       }
     }
   }
+
+  .bottom {
+    height: 60px;
+    /* border: 1px solid red; */
+  }
 `;
 
-export default function Navigation({ userInfo }) {
+export default function Navigation({ userInfo, handleLogout }) {
   return (
     <Wrapper>
       <div className="top">
         <div className="top-right">
-          <DropdownMenu name="My Market" items={['One', 'Two', 'Three']} />
+          <DropdownMenu
+            name="My Market"
+            items={['Purchase History', 'Saved Items', 'Messages']}
+          />
 
           <Link to="/cart" className="cart-icon">
             <AiOutlineShoppingCart size="2.2em" color="#4a626e" />
@@ -89,7 +95,10 @@ export default function Navigation({ userInfo }) {
             <FaUserCircle size="2.2em" color="#607d8b" />
             <DropdownMenu
               name={'Hi, ' + userInfo.name.split(' ')[0]}
-              items={['One', 'Two']}
+              items={[
+                'Account Settings',
+                <span onClick={handleLogout}>Sign Out</span>,
+              ]}
             />
           </div>
         </div>
@@ -97,10 +106,11 @@ export default function Navigation({ userInfo }) {
 
       <div className="middle">
         <div className="search-bar-wrapper">
-          <input type="text" placeholder="Search MarketPlace" />
-          <BiSearchAlt size="1.6em" />
+          <input type="text" placeholder="🔍  Search MarketPlace" />
         </div>
       </div>
+
+      <div className="bottom"></div>
     </Wrapper>
   );
 }

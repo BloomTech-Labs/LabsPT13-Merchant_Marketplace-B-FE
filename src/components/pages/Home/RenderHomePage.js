@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
-import { Navigation, Button } from '../../common';
+import { Navigation } from '../../common';
 import MarketplaceFeed from '../../common/MarketplaceFeed';
 
 const Wrapper = styled.div`
   background-color: #ecf0ee;
 
   .main-content {
-    padding: 150px 15px 15px;
+    padding: 200px 15px 15px;
   }
 `;
 
@@ -16,32 +16,12 @@ function RenderHomePage(props) {
   const { userInfo, authService, getProducts } = props;
   return (
     <Wrapper>
-      <Navigation userInfo={userInfo} />
+      <Navigation
+        userInfo={userInfo}
+        handleLogout={() => authService.logout()}
+      />
 
       <div className="main-content">
-        <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
-        <div>
-          <p>
-            This is an example of a common example of how we'd like for you to
-            approach components.
-          </p>
-          <p>
-            <Link to="/profile-list">Profiles Example</Link>
-          </p>
-          <p>
-            <Link to="/example-list">Example List of Items</Link>
-          </p>
-          <p>
-            <Link to="/datavis">Data Visualizations Example</Link>
-          </p>
-          <p>
-            <Button
-              handleClick={() => authService.logout()}
-              buttonText="Logout"
-            />
-          </p>
-        </div>
-
         <MarketplaceFeed
           getProducts={getProducts}
           LoadingComponent={() => <div>Loading Products...</div>}
