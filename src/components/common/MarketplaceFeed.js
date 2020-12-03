@@ -21,19 +21,13 @@ export default function MarketplaceFeed() {
   return (
     <Wrapper>
       <div className="products">
-        {products.length ? (
-          <>
-            {products.map(p => (
-              <ProductCard key={p.id} product={p} />
-            ))}
+        {products.map(p => (
+          <ProductCard key={p.id} product={p} />
+        ))}
 
-            {products.map(p => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </>
-        ) : (
-          <h2 style={{ marginTop: '150px' }}>Products loading...</h2>
-        )}
+        {products.map(p => (
+          <ProductCard key={p.id} product={p} />
+        ))}
       </div>
     </Wrapper>
   );
