@@ -14,24 +14,20 @@ const Wrapper = styled.div`
       border: none;
       color: #111;
       outline: none;
-      padding: 0 0 0 5px;
       display: flex;
       align-items: center;
     }
   }
 `;
 
-export default function DropdownNav({ name, Icon, items }) {
+export default function DropdownNav({ name, items }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
   return (
     <Wrapper>
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-        <DropdownToggle>
-          {name}
-          {Icon}
-        </DropdownToggle>
+        <DropdownToggle caret>{name}</DropdownToggle>
 
         <DropdownMenu>
           {items.map((item, i) => (

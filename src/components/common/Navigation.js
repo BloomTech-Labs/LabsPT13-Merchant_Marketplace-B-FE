@@ -77,11 +77,7 @@ export default function Navigation({ userInfo }) {
     <Wrapper>
       <div className="top">
         <div className="top-right">
-          <DropdownMenu
-            name="My Market"
-            Icon={<BiChevronDown size="2em" id="dropdown-icon" />}
-            items={['One', 'Two', 'Three']}
-          />
+          <DropdownMenu name="My Market" items={['One', 'Two', 'Three']} />
 
           <Link to="/cart" className="cart-icon">
             <AiOutlineShoppingCart size="2.2em" color="#4a626e" />
@@ -91,8 +87,10 @@ export default function Navigation({ userInfo }) {
         <div className="top-left">
           <div className="user-profile">
             <FaUserCircle size="2.2em" color="#607d8b" />
-            <span>Hi, {userInfo.name.split(' ')[0]}</span>
-            <BiChevronDown size="2em" id="dropdown-icon" />
+            <DropdownMenu
+              name={'Hi, ' + userInfo.name.split(' ')[0]}
+              items={['One', 'Two']}
+            />
           </div>
         </div>
       </div>
