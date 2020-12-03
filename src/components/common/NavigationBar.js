@@ -86,10 +86,10 @@ export default function Navigation({ userInfo, handleLogout }) {
     <Wrapper>
       <div className="top">
         <div className="top-right">
-          <DropdownMenu
+          {/* <DropdownMenu
             name="My Market"
             items={['Purchase History', 'Saved Items', 'Messages']}
-          />
+          /> */}
 
           <Link to="/cart" className="cart-icon">
             <AiOutlineShoppingCart size="2.2em" color="#4a626e" />
@@ -98,13 +98,13 @@ export default function Navigation({ userInfo, handleLogout }) {
 
         <div className="top-left">
           <div className="user-profile">
-            <DropdownMenu
+            {/* <DropdownMenu
               name={'Hi, ' + userInfo.name.split(' ')[0]}
               items={[
                 'Account Settings',
                 <span onClick={handleLogout}>Sign Out</span>,
               ]}
-            />
+            /> */}
           </div>
         </div>
       </div>
