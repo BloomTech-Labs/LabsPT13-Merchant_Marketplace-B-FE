@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 
 const ProductsContext = createContext();
+const UserInfoContext = createContext();
 
-export { ProductsContext };
+export { UserInfoContext, ProductsContext };

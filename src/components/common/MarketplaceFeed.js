@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import ProductCard from './ProductCard';
+import { ProductsContext } from '../../state/contexts';
 
 const Wrapper = styled.div`
   padding: 15px 0 0 0;
@@ -14,41 +15,20 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function MarketplaceFeed({ getProducts, LoadingComponent }) {
-  const [products, setProducts] = useState([]);
-  const [isFetching, setFetching] = useState(true);
-
-  useEffect(() => {
-    getProducts &&
-      getProducts()
-        .then(res => {
-          setProducts(res);
-        })
-        .catch(error => {
-          console.error(error);
-          // Be sure to add functionality that displays errors to your UI here.
-          // We want our users to know whether something has gone wrong with our request.
-        })
-        .finally(() => {
-          setFetching(false);
-        });
-  }, [getProducts]);
+export default function MarketplaceFeed() {
+  const products = useContext(ProductsContext);
 
   return (
     <Wrapper>
-      {isFetching ? (
-        <LoadingComponent />
-      ) : (
-        <div className="products">
-          {products.map(p => (
-            <ProductCard key={p.id} product={p} />
-          ))}
+      <div className="products">
+        {products.map(p => (
+          <ProductCard key={p.id} product={p} />
+        ))}
 
-          {products.map(p => (
-            <ProductCard key={p.id} product={p} />
-          ))}
-        </div>
-      )}
+        {products.map(p => (
+          <ProductCard key={p.id} product={p} />
+        ))}
+      </div>
     </Wrapper>
   );
 }
