@@ -19,7 +19,7 @@ function RenderHomePage(props) {
     <UserInfoContext.Consumer>
       {userInfo => (
         <ProductsContext.Consumer>
-          {products => (
+          {({ products, fetchingProducts }) => (
             <Wrapper>
               <NavigationBar
                 userInfo={userInfo}
@@ -27,11 +27,15 @@ function RenderHomePage(props) {
               />
 
               <div className="main-content">
-                <ProductsContext.Provider value={products}>
-                  <MarketplaceFeed
-                    LoadingComponent={() => <div>Loading Products...</div>}
-                  />
-                </ProductsContext.Provider>
+                {fetchingProducts ? (
+                  <span>Fetching market products...</span>
+                ) : (
+                  <ProductsContext.Provider value={products}>
+                    <MarketplaceFeed
+                      LoadingComponent={() => <div>Loading Products...</div>}
+                    />
+                  </ProductsContext.Provider>
+                )}
               </div>
             </Wrapper>
           )}
