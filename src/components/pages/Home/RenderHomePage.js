@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   background-color: #ecf0ee;
 
   .main-content {
-    padding: 200px 15px 15px;
+    padding: 180px 15px 15px;
   }
 `;
 

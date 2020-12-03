@@ -69,8 +69,15 @@ const Wrapper = styled.div`
   }
 
   .bottom {
-    height: 60px;
-    /* border: 1px solid red; */
+    height: 50px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-evenly;
+
+    a {
+      color: #111;
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -108,7 +115,12 @@ export default function Navigation({ userInfo, handleLogout }) {
         </div>
       </div>
 
-      <div className="bottom"></div>
+      <div className="bottom">
+        <a href="#">Home</a>
+        <a href="#">Wishlist</a>
+        <a href="#">Products</a>
+        <a href="#">Categories</a>
+      </div>
     </Wrapper>
   );
 }
