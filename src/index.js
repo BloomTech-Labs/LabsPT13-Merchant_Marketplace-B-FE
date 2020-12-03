@@ -14,9 +14,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { NotFoundPage } from './components/pages/NotFound';
-import { ExampleListPage } from './components/pages/ExampleList';
 import { HomePage } from './components/pages/Home';
-import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
@@ -55,9 +53,6 @@ function App() {
         />
         <SecureRoute path="/cart" exact component={() => <CartPage />} />
 
-        <SecureRoute path="/example-list" component={ExampleListPage} />
-
-        <SecureRoute path="/profile-list" component={ProfileListPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
