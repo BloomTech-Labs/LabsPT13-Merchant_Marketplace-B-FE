@@ -17,12 +17,14 @@ const Card = styled.div`
 
   img {
     width: 100%;
-    height: 200px;
+    height: 220px;
     border-radius: 3px;
+    object-fit: cover;
   }
 
   .details {
     padding: 5px;
+    background-color: #fff;
 
     p {
       color: gray;

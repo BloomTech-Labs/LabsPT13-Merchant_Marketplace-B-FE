@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaUserCircle } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import DropdownMenu from './DropdownMenu';
 
@@ -44,7 +43,7 @@ const Wrapper = styled.div`
         align-items: center;
 
         svg {
-          margin-right: 25px;
+          /* margin-right: 25px; */
         }
       }
     }
@@ -92,7 +91,6 @@ export default function Navigation({ userInfo, handleLogout }) {
 
         <div className="top-left">
           <div className="user-profile">
-            <FaUserCircle size="2.2em" color="#607d8b" />
             <DropdownMenu
               name={'Hi, ' + userInfo.name.split(' ')[0]}
               items={[
