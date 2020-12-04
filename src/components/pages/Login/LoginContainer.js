@@ -17,11 +17,14 @@ const LoginContainer = () => {
       },
       features: { registration: false },
       // turning this feature on allows your widget to use Okta for user registration
-      logo: 'path-to-your-logo',
+      logo:
+        'https://www.multivu.com/players/English/8426751-facebook-marketplace-for-the-holiday-tips/image/FacebookMarketplace_1543953635750-HR.jpg',
+      logoText: 'Market',
       // add your custom logo to your signing/register widget here.
       i18n: {
         en: {
-          'primaryauth.title': 'Welcome to Labs Basic SPA Please sign in',
+          'primaryauth.title':
+            'Welcome to DEV MARKET: A market place for developers',
           // change title for your app
         },
       },
