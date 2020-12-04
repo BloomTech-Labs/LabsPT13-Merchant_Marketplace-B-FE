@@ -1,9 +1,9 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const RenderProduct = () => {
-  const { product } = useLocation();
-  console.log(product);
+  const params = useParams();
+  // fetch API for product info via product id in params
 
   return (
     <div>

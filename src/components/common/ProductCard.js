@@ -44,7 +44,7 @@ const Card = styled.div`
 `;
 export default function ProductCard({ product }) {
   return (
-    <Link to={{ pathname: `/item/${product.id}`, product }}>
+    <Link to={`/item/${product.id}`}>
       <Card>
         <img src={product.img} alt="market product" />
 
