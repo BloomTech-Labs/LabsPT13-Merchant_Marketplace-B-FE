@@ -1,16 +1,6 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  useHistory,
-  Switch,
-} from 'react-router-dom';
-
+import { Route, useHistory, Switch } from 'react-router-dom';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
-import 'normalize.css';
-import 'antd/dist/antd.less';
-import './index.css';
-
 import { NotFoundPage } from './components/pages/NotFound';
 import { HomePage } from './components/pages/Home';
 import { LoginPage } from './components/pages/Login';
@@ -42,7 +32,6 @@ export default function App() {
           exact
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
-
         <SecureRoute path="/cart" exact component={() => <CartPage />} />
         <SecureRoute path="/item/:id" exact component={() => <ProductPage />} />
 
