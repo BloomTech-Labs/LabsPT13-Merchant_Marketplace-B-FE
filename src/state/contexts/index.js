@@ -1,6 +1,2 @@
-import { createContext } from 'react';
-
-const UserInfoContext = createContext(null);
-const ProductsContext = createContext([]);
-
-export { UserInfoContext, ProductsContext };
+export { default as UserInfoContext } from './userInfoContext';
+export { default as ProductsContext } from './productsContext';
