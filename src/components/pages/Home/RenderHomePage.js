@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   background-color: #ecf0ee;
 
   .main-content {
-    padding: 180px 15px 15px;
+    padding: 15px;
   }
 `;
 
@@ -17,9 +17,7 @@ function RenderHomePage() {
       <NavigationBar />
 
       <div className="main-content">
-        <MarketplaceFeed
-          LoadingComponent={() => <div>Loading Products...</div>}
-        />
+        <MarketplaceFeed />
       </div>
     </Wrapper>
   );

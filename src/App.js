@@ -32,6 +32,7 @@ export default function App() {
           exact
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
+
         <SecureRoute path="/cart" exact component={() => <CartPage />} />
         <SecureRoute path="/item/:id" exact component={() => <ProductPage />} />
 
