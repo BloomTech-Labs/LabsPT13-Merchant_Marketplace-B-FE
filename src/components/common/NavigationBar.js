@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
 import FormInput from './FormInput';
-import { SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
 
 const Wrapper = styled.div`
   height: 160px;
@@ -34,17 +34,11 @@ const Wrapper = styled.div`
         .cart-icon {
           cursor: pointer;
           color: #363636;
-          margin-left: 25px;
           font-size: 28px;
-          transition-duration: 0.3s;
+          transition-duration: 0.2s;
 
           &:hover {
-            color: #008cff;
-          }
-
-          span {
-            font-weight: 500;
-            font-size: 16px;
+            color: #0688f1;
           }
         }
       }
@@ -61,10 +55,22 @@ const Wrapper = styled.div`
     .middle {
       padding: 15px 20px 0 20px;
       text-align: center;
+      display: flex;
 
       .search-bar-wrapper {
         border-bottom: 1px solid #a1a1a1;
+        width: 100%;
         padding-bottom: 15px;
+      }
+
+      .add-icon {
+        font-size: 24px;
+        transition-duration: 0.2s;
+        cursor: pointer;
+
+        &:hover {
+          color: #0688f1;
+        }
       }
     }
 
@@ -98,7 +104,7 @@ export default function Navigation() {
               items={['Purchase History', 'Saved Items', 'Messages']}
             />
 
-            <Link to={{ pathname: '/cart', userInfo }}>
+            <Link to="/cart" style={{ marginLeft: '25px' }}>
               <ShoppingCartOutlined className="cart-icon" />
             </Link>
           </div>
@@ -129,6 +135,8 @@ export default function Navigation() {
               styles={{ maxWidth: '500px' }}
             />
           </div>
+
+          <PlusCircleOutlined className="add-icon" />
         </div>
 
         <div className="bottom">
