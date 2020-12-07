@@ -15,12 +15,13 @@ const Wrapper = styled.div`
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #cdd7d8;
+    background-color: #dae4df;
     overflow: hidden;
 
     .top {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       padding: 8px 15px;
       flex-direction: row-reverse;
       border-bottom: 1px solid #a1a1a1;
@@ -43,20 +44,37 @@ const Wrapper = styled.div`
 
     .middle {
       padding: 15px 20px 0 20px;
-      text-align: center;
       display: flex;
+      justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      text-align: center;
 
       .search-bar-wrapper {
         width: 100%;
+      }
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 15px 20px;
+      margin-top: 15px;
+      border-top: 1px solid #a1a1a1;
+
+      a {
+        color: #111;
+        text-decoration: underline;
       }
 
       .create-listing {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
         cursor: pointer;
-        width: 175px;
         transition-duration: 0.2s;
 
         &:hover {
@@ -66,20 +84,6 @@ const Wrapper = styled.div`
             color: #0688f1;
           }
         }
-      }
-    }
-
-    .bottom {
-      display: flex;
-      justify-content: space-evenly;
-      height: 50px;
-      padding: 15px 20px;
-      margin-top: 15px;
-      border-top: 1px solid #a1a1a1;
-
-      a {
-        color: #111;
-        text-decoration: underline;
       }
     }
   }
@@ -135,11 +139,6 @@ export default function Navigation() {
               styles={{ maxWidth: '500px' }}
             />
           </div>
-
-          <section className="create-listing">
-            <span>Create New Listing</span>
-            <Icon Icon={<PlusCircleOutlined />} styles={{ fontSize: '24px' }} />
-          </section>
         </div>
 
         <div className="bottom">
@@ -147,6 +146,11 @@ export default function Navigation() {
           <span>Wishlist</span>
           <span>Products</span>
           <span>Categories</span>
+
+          <section className="create-listing">
+            <span style={{ marginRight: '8px' }}>Create New Listing</span>
+            <Icon Icon={<PlusCircleOutlined />} styles={{ fontSize: '24px' }} />
+          </section>
         </div>
       </div>
     </Wrapper>

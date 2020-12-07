@@ -4,8 +4,8 @@ import { NavigationBar } from '../../common';
 
 const RenderProduct = () => {
   const params = useParams();
-  console.log(params);
   // fetch API for product info via product id in params
+  console.log(params);
 
   return (
     <div>
