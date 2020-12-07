@@ -6,10 +6,10 @@ import { ShoppingCartOutlined } from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
 import FormInput from './FormInput';
 import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import Icon from './Icon';
 
 const Wrapper = styled.div`
-  height: 160px;
-  width: 100vh;
+  height: 179px;
 
   .navbar {
     position: fixed;
@@ -30,17 +30,6 @@ const Wrapper = styled.div`
         align-items: center;
         justify-content: flex-end;
         width: 50%;
-
-        .cart-icon {
-          cursor: pointer;
-          color: #363636;
-          font-size: 28px;
-          transition-duration: 0.2s;
-
-          &:hover {
-            color: #0688f1;
-          }
-        }
       }
 
       .top-left {
@@ -56,29 +45,34 @@ const Wrapper = styled.div`
       padding: 15px 20px 0 20px;
       text-align: center;
       display: flex;
+      align-items: center;
 
       .search-bar-wrapper {
-        border-bottom: 1px solid #a1a1a1;
         width: 100%;
-        padding-bottom: 15px;
       }
 
-      .add-icon {
-        font-size: 24px;
-        transition-duration: 0.2s;
+      .add-item {
+        display: flex;
+        align-items: center;
         cursor: pointer;
 
         &:hover {
           color: #0688f1;
+
+          svg {
+            color: #0688f1;
+          }
         }
       }
     }
 
     .bottom {
-      height: 50px;
-      padding: 15px 20px;
       display: flex;
       justify-content: space-evenly;
+      height: 50px;
+      padding: 15px 20px;
+      margin-top: 15px;
+      border-top: 1px solid #a1a1a1;
 
       a {
         color: #111;
@@ -105,7 +99,10 @@ export default function Navigation() {
             />
 
             <Link to="/cart" style={{ marginLeft: '25px' }}>
-              <ShoppingCartOutlined className="cart-icon" />
+              <Icon
+                Icon={<ShoppingCartOutlined />}
+                styles={{ fontSize: '28px' }}
+              />
             </Link>
           </div>
 
@@ -136,7 +133,10 @@ export default function Navigation() {
             />
           </div>
 
-          <PlusCircleOutlined className="add-icon" />
+          <section className="add-item">
+            <span style={{ width: '70px' }}>Add item</span>
+            <Icon Icon={<PlusCircleOutlined />} styles={{ fontSize: '24px' }} />
+          </section>
         </div>
 
         <div className="bottom">
