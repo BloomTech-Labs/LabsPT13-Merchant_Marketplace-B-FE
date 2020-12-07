@@ -3,7 +3,6 @@ import { useOktaAuth } from '@okta/okta-react';
 import { useLocation, useParams } from 'react-router-dom';
 import { getProductById } from '../../../api';
 import RenderProduct from './RenderProduct';
-import { NavigationBar } from '../../common';
 
 export default function ProductContainer() {
   const { authState } = useOktaAuth();
@@ -25,12 +24,10 @@ export default function ProductContainer() {
 
     // only fetch if product info is not passed via Link
     if (!productInfo) fetchProduct();
-  }, []);
+  }, [id, productInfo]);
 
   return (
     <>
-      <NavigationBar />
-
       {productInfo ? (
         <RenderProduct product={productInfo} />
       ) : (
