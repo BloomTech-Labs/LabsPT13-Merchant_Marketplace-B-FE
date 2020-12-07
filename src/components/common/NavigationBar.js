@@ -51,10 +51,13 @@ const Wrapper = styled.div`
         width: 100%;
       }
 
-      .add-item {
+      .create-listing {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         cursor: pointer;
+        width: 175px;
+        transition-duration: 0.2s;
 
         &:hover {
           color: #0688f1;
@@ -133,8 +136,8 @@ export default function Navigation() {
             />
           </div>
 
-          <section className="add-item">
-            <span style={{ width: '70px' }}>Add item</span>
+          <section className="create-listing">
+            <span>Create New Listing</span>
             <Icon Icon={<PlusCircleOutlined />} styles={{ fontSize: '24px' }} />
           </section>
         </div>
