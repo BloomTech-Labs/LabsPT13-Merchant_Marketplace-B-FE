@@ -64,4 +64,25 @@ const getMarketProducts = async authState => {
   }
 };
 
-export { sleep, getExampleData, getProfileData, getDSData, getMarketProducts };
+const getProductById = async (id, authState) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthGet(`http://localhost:8000/products/${id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    });
+  }
+};
+
+export {
+  sleep,
+  getExampleData,
+  getProfileData,
+  getDSData,
+  getMarketProducts,
+  getProductById,
+};

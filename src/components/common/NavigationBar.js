@@ -60,7 +60,7 @@ const Wrapper = styled.div`
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      padding: 15px 20px;
+      padding: 10px 20px;
       margin-top: 15px;
       border-top: 1px solid #a1a1a1;
 
