@@ -1,52 +1,198 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ImageGallery from 'react-image-gallery';
+import { Divider } from 'antd';
+import { MessageFilled } from '@ant-design/icons';
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f7f7f7;
-
-  .details {
-    height: 110vh;
-    width: 360px;
-    align-self: flex-end;
-  }
+  background-color: #e5ebe9;
+  min-height: 100vh;
 
   .main {
+    display: flex;
     position: fixed;
+    align-items: center;
     align-self: flex-start;
     width: calc(100% - 360px);
     height: 100%;
-    display: flex;
 
     .carousel-wrapper {
       width: 100%;
-      align-self: center;
 
       svg {
         height: 100px;
         width: 45px;
+      }
+
+      img {
+        object-fit: cover;
+      }
+    }
+  }
+
+  .details-wrapper {
+    width: 360px;
+    align-self: flex-end;
+    background-color: #fff;
+    height: 150vh;
+
+    .navbar {
+      height: 50px;
+      width: 100%;
+    }
+
+    .nav-wrapper {
+      height: 50px;
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        border-bottom: 1px solid #d6d5d5;
+        background-color: #e1f8f8;
+      }
+    }
+
+    .details {
+      padding: 10px 15px;
+
+      .navbar {
+        background-color: #e1f8f8;
+        margin: 8px 0 15px 0;
+      }
+
+      h2 {
+        font-size: 24px;
+        font-weight: 700;
+        margin: 0;
+        line-height: 30px;
+      }
+      h3 {
+        margin: 3px 0;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      h4 {
+        font-size: 15px;
+      }
+
+      #details {
+        font-size: 20px;
+        margin: 0;
+      }
+
+      section {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      a {
+        color: inherit;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      p {
+        margin: 15px 0 20px 0;
+      }
+
+      #tag {
+        display: inline-block;
+        margin: 2px 5px 2px 0;
+        border: 1px solid gray;
+        padding: 3px 7px;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #445261;
+          color: #fff;
+        }
+      }
+
+      .map-wrapper {
+        margin: 15px 0;
+
+        .map {
+          border-radius: 10px;
+          height: 150px;
+          background-image: url('https://www.mercurynews.com/wp-content/uploads/2020/04/slowstreets417.jpg');
+          background-size: cover;
+          cursor: pointer;
+        }
+
+        h4 {
+          margin: 3px 0 0 0;
+        }
+      }
+
+      .seller-info {
+        height: 70px;
+        border: 1px solid;
+      }
+
+      .message-seller {
+        margin-top: 20px;
+
+        .message-input {
+          display: flex;
+          flex-direction: column;
+          margin-top: 5px;
+          font-size: 16px;
+
+          input {
+            border: 1px solid gray;
+            padding: 4px 10px;
+            outline: none;
+            border-radius: 7px;
+
+            &::selection {
+              background-color: #2d88ff;
+            }
+          }
+
+          button {
+            margin-top: 15px;
+            padding: 7px 0;
+            border: none;
+            background-color: #2d88ff;
+            color: #fff;
+            border-radius: 7px;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+
+            &:hover {
+              background-color: #529cfd;
+            }
+          }
+        }
       }
     }
   }
 `;
 
 const RenderProduct = ({ product }) => {
-  const images = [
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/',
-    },
-    {
-      original: 'https://picsum.photos/id/1015/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1015/250/150/',
-    },
-    {
-      original: 'https://picsum.photos/id/1019/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1019/250/150/',
-    },
-  ];
+  const images = new Array(3).fill({
+    original: product.img,
+    thumbnail: product.img,
+  });
+  const [message, setMessage] = useState('Is this available?');
+
+  const handleChange = e => setMessage(e.target.value);
+  const handleFocus = e => e.target.select();
+
+  const sendMessage = () => {
+    console.log({ message });
+    // disable send button and send message
+
+    setMessage('Is this available');
+  };
 
   return (
     <Wrapper>
@@ -58,8 +204,75 @@ const RenderProduct = ({ product }) => {
         />
       </div>
 
-      <div className="details">
-        <h1>Details</h1>
+      <div className="details-wrapper">
+        <div className="nav-wrapper">
+          <div className="navbar"></div>
+        </div>
+
+        <div className="details">
+          <h2>4K ultra hd 55 LED Insigna Roku TV</h2>
+          <h3>${product.price}</h3>
+          <a href="google.com">{product.category}</a>
+          <div>
+            Listed 2 hours ago in <a href="google.com">Alameda, CA</a>
+          </div>
+
+          <div className="navbar"></div>
+
+          <h4 id="details">Details</h4>
+          <Divider style={{ margin: '4px 0 15px 0' }} />
+
+          <section>
+            <h4>Condition</h4>
+            <span>{product.condition}</span>
+          </section>
+
+          <section>
+            <h4>Brand</h4>
+            <span>{product.brand}</span>
+          </section>
+
+          <p>{product.description}</p>
+
+          <h4>Tags</h4>
+          {product.tags.split(',').map((t, i) => (
+            <span id="tag" key={i}>
+              {t}
+            </span>
+          ))}
+
+          <div className="map-wrapper">
+            <div className="map"></div>
+
+            <h4>Alameda, CA</h4>
+            <span>Location is approximate</span>
+            <Divider style={{ margin: '8px 0 0 0' }} />
+          </div>
+
+          <h3>Seller Information</h3>
+          <div className="seller-info"></div>
+
+          <div className="message-seller">
+            <MessageFilled
+              style={{
+                color: '#2d88ff',
+                marginRight: '10px',
+                fontSize: '22px',
+              }}
+            />
+            <span>Send seller a message</span>
+
+            <div className="message-input">
+              <input
+                type="text"
+                value={message}
+                onChange={handleChange}
+                onFocus={handleFocus}
+              />
+              <button onClick={sendMessage}>Send</button>
+            </div>
+          </div>
+        </div>
       </div>
     </Wrapper>
   );
