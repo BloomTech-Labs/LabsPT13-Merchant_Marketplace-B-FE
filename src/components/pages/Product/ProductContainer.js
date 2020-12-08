@@ -24,7 +24,7 @@ export default function ProductContainer() {
 
     // only fetch if product info is not passed via Link
     if (!productInfo) fetchProduct();
-  }, [id, productInfo]);
+  }, [id, productInfo, authState]);
 
   return (
     <>
