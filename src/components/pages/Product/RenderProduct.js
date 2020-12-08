@@ -28,7 +28,7 @@ const RenderProduct = ({ product }) => {
       </div>
 
       <div className="main">
-        <h1>Product Page</h1>
+        <div className="carousel-wrapper"></div>
       </div>
     </Wrapper>
   );
