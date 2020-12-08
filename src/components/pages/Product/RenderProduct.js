@@ -8,7 +8,6 @@ import { MessageFilled, ArrowLeftOutlined } from '@ant-design/icons';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #e5ebe9;
   min-height: 100vh;
 
   .anticon-arrow-left {
@@ -55,8 +54,7 @@ const Wrapper = styled.div`
   .details-wrapper {
     width: 360px;
     align-self: flex-end;
-    background-color: #fff;
-    height: 150vh;
+    border-left: 1px solid #bbbbbb;
 
     .navbar {
       height: 50px;
@@ -70,7 +68,7 @@ const Wrapper = styled.div`
         position: fixed;
         top: 0;
         border-bottom: 1px solid #d6d5d5;
-        background-color: #e1f8f8;
+        background-color: #c4dbe0;
       }
     }
 
@@ -78,7 +76,7 @@ const Wrapper = styled.div`
       padding: 10px 15px;
 
       .navbar {
-        background-color: #e1f8f8;
+        background-color: #c4dbe0;
         margin: 8px 0 15px 0;
       }
 
@@ -154,10 +152,19 @@ const Wrapper = styled.div`
       .seller-info {
         height: 70px;
         border: 1px solid;
+        margin-bottom: 30px;
       }
+    }
+
+    .message-seller-wrapper {
+      height: 150px;
 
       .message-seller {
-        margin-top: 20px;
+        background-color: #c4dbe0;
+        position: fixed;
+        bottom: 0;
+        width: 360px;
+        padding: 15px;
 
         .message-input {
           display: flex;
@@ -275,7 +282,9 @@ const RenderProduct = ({ product }) => {
 
           <h3>Seller Information</h3>
           <div className="seller-info"></div>
+        </div>
 
+        <div className="message-seller-wrapper">
           <div className="message-seller">
             <MessageFilled
               style={{
