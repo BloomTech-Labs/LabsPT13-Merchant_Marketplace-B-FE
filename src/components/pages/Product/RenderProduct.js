@@ -1,14 +1,34 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ImageGallery from 'react-image-gallery';
 import { Divider } from 'antd';
-import { MessageFilled } from '@ant-design/icons';
+import { MessageFilled, ArrowLeftOutlined } from '@ant-design/icons';
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #e5ebe9;
   min-height: 100vh;
+
+  .anticon-arrow-left {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    font-size: 30px;
+    z-index: 99;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgba(30, 39, 51, 0.6);
+    border-radius: 50%;
+    transition-duration: 0.3s;
+
+    &:hover {
+      color: #337ab7;
+      background: #fff;
+    }
+  }
 
   .main {
     display: flex;
@@ -196,6 +216,10 @@ const RenderProduct = ({ product }) => {
 
   return (
     <Wrapper>
+      <Link to="/">
+        <ArrowLeftOutlined />
+      </Link>
+
       <div className="main">
         <ImageGallery
           items={images}
