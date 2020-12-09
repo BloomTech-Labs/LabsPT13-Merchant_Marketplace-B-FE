@@ -19,7 +19,7 @@ const Wrapper = styled.div`
     color: #fff;
     cursor: pointer;
     padding: 10px;
-    background-color: rgba(30, 39, 51, 0.6);
+    background-color: rgba(57, 75, 134, 0.7);
     border-radius: 50%;
     transition-duration: 0.3s;
 
@@ -72,7 +72,7 @@ const Wrapper = styled.div`
   .details-wrapper {
     width: 360px;
     align-self: flex-end;
-    border-left: 1px solid #bbbbbb;
+    border-left: 1px solid #394b86;
 
     .navbar {
       height: 50px;
@@ -85,8 +85,7 @@ const Wrapper = styled.div`
       .navbar {
         position: fixed;
         top: 0;
-        border-bottom: 1px solid #d6d5d5;
-        background-color: #c4dbe0;
+        background-color: #394b86;
       }
     }
 
@@ -94,7 +93,7 @@ const Wrapper = styled.div`
       padding: 10px 15px;
 
       .navbar {
-        background-color: #c4dbe0;
+        background-color: #394b86;
         margin: 8px 0 15px 0;
       }
 
@@ -146,7 +145,7 @@ const Wrapper = styled.div`
         cursor: pointer;
 
         &:hover {
-          background-color: #445261;
+          background-color: #394b86;
           color: #fff;
         }
       }
@@ -169,7 +168,7 @@ const Wrapper = styled.div`
 
       .seller-info {
         height: 70px;
-        border: 1px solid;
+        border: 1px solid #394b86;
         margin-bottom: 30px;
       }
     }
@@ -178,11 +177,15 @@ const Wrapper = styled.div`
       height: 150px;
 
       .message-seller {
-        background-color: #c4dbe0;
         position: fixed;
         bottom: 0;
         width: 360px;
         padding: 15px;
+        background-color: #394b86;
+
+        span {
+          color: #fff;
+        }
 
         .message-input {
           display: flex;
@@ -213,7 +216,7 @@ const Wrapper = styled.div`
             outline: none;
 
             &:hover {
-              background-color: #529cfd;
+              background-color: #4391f7;
             }
           }
         }
