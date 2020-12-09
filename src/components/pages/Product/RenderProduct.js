@@ -7,6 +7,7 @@ import {
   ArrowLeftOutlined,
   ShoppingCartOutlined,
   HeartOutlined,
+  HeartFilled,
 } from '@ant-design/icons';
 import ImagesGallery from '../../common/ImageGallery';
 
@@ -170,9 +171,10 @@ const Wrapper = styled.div`
           height: 50px;
           width: 50px;
           border-radius: 50%;
+          object-fit: cover;
 
           &:hover {
-            opacity: 0.9;
+            opacity: 0.85;
           }
         }
 
@@ -249,12 +251,20 @@ const RenderProduct = ({ product }) => {
   });
 
   const [message, setMessage] = useState('Is this available?');
+  const [saved, setSaved] = useState(false);
   const sellerInfo = JSON.parse(window.localStorage.getItem('user'));
-
-  console.log({ sellerInfo });
 
   const handleChange = e => setMessage(e.target.value);
   const handleFocus = e => e.target.select();
+  const handleSave = () => {
+    setSaved(!saved);
+
+    if (!saved) {
+      console.log('ADD ITEM TO WISHLIST');
+    } else {
+      console.log('REMOVE ITEM FROM WISHLIST');
+    }
+  };
 
   const sendMessage = () => {
     console.log({ message });
@@ -280,7 +290,9 @@ const RenderProduct = ({ product }) => {
             </div>
 
             <Tooltip placement="bottom" title="Save" color="#29577c">
-              <HeartOutlined />
+              <div onClick={handleSave}>
+                {saved ? <HeartFilled /> : <HeartOutlined />}
+              </div>
             </Tooltip>
 
             <Tooltip placement="bottom" title="Add to cart" color="#29577c">
@@ -328,7 +340,7 @@ const RenderProduct = ({ product }) => {
 
           <h3>Seller Information</h3>
           <div className="seller-info">
-            <a>
+            <a href="google.com" alt="user avatar">
               <img
                 src="https://www.mercurynews.com/wp-content/uploads/2020/04/slowstreets417.jpg"
                 alt="seller avatar"
@@ -336,7 +348,9 @@ const RenderProduct = ({ product }) => {
             </a>
 
             <section className="info">
-              <a>{sellerInfo.name}</a>
+              <a href="google.com" alt="user name">
+                {sellerInfo.name}
+              </a>
               <span style={{ color: 'gray' }}>Joined MMP in 2020</span>
             </section>
           </div>
