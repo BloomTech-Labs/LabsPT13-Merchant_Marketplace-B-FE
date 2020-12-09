@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 import { ProductsContext } from '../../state/contexts';
 
 const Wrapper = styled.div`
-  padding: 30px 0 0 0;
+  padding: 30px 0;
 
   .products {
     display: flex;
