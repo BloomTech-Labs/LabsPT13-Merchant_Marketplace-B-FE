@@ -116,7 +116,7 @@ export default function Navigation() {
           <div className="top-left">
             <div className="user-profile">
               <DropdownMenu
-                title={'Hi, ' + userInfo.name.split(' ')[0]}
+                title={`Hi, ${userInfo.given_name}`}
                 items={[
                   'Account Settings',
                   <span onClick={() => authService.logout()}>Sign Out</span>,

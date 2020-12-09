@@ -160,14 +160,38 @@ const Wrapper = styled.div`
       }
 
       .seller-info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         height: 70px;
-        border: 1px solid #394b86;
         margin-bottom: 30px;
+
+        img {
+          height: 50px;
+          width: 50px;
+          border-radius: 50%;
+
+          &:hover {
+            opacity: 0.9;
+          }
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          margin-left: 10px;
+
+          a {
+            font-size: 16px;
+            margin: 0;
+            font-weight: 600;
+          }
+        }
       }
     }
 
     .message-seller-wrapper {
-      height: 150px;
+      height: 140px;
 
       .message-seller {
         position: fixed;
@@ -225,6 +249,9 @@ const RenderProduct = ({ product }) => {
   });
 
   const [message, setMessage] = useState('Is this available?');
+  const sellerInfo = JSON.parse(window.localStorage.getItem('user'));
+
+  console.log({ sellerInfo });
 
   const handleChange = e => setMessage(e.target.value);
   const handleFocus = e => e.target.select();
@@ -300,7 +327,19 @@ const RenderProduct = ({ product }) => {
           </div>
 
           <h3>Seller Information</h3>
-          <div className="seller-info"></div>
+          <div className="seller-info">
+            <a>
+              <img
+                src="https://www.mercurynews.com/wp-content/uploads/2020/04/slowstreets417.jpg"
+                alt="seller avatar"
+              />
+            </a>
+
+            <section className="info">
+              <a>{sellerInfo.name}</a>
+              <span style={{ color: 'gray' }}>Joined MMP in 2020</span>
+            </section>
+          </div>
         </div>
 
         <div className="message-seller-wrapper">
