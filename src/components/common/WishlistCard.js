@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { HeartOutlined } from '@ant-design/icons';
 
 const Card = styled.div`
   height: 300px;
@@ -42,24 +43,26 @@ const Card = styled.div`
     }
   }
 `;
-export default function ProductCard({ product }) {
+export default function WishlistCard({ product }) {
   function addToWishlist() {
     console.log('added to wishlist');
   }
   return (
-    <Link to={`/item/${product.id}`}>
-      <Card>
-        <img src={product.img} alt="market product" />
+    // <Link to={`/item/${product.id}`}>
+    <Card>
+      {/* <img src={product.img} alt="market product" /> */}
 
-        <div className="details">
-          <h4>${product.price}</h4>
-          <h3>{product.title}</h3>
-          <p>Location</p>
-          <button onClick={addToWishlist}>
-            <i class="fas fa-heart"> </i>
-          </button>
-        </div>
-      </Card>
-    </Link>
+      <div className="details">
+        <div>img</div>
+        <h4>$:Price</h4>
+        <h3>title</h3>
+        <p>Location</p>
+        <button>Remove</button>
+        <button onClick={addToWishlist}>
+          <HeartOutlined />
+        </button>
+      </div>
+    </Card>
+    // </Link>
   );
 }
