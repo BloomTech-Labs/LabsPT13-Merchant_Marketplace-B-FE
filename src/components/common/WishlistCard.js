@@ -57,6 +57,7 @@ export default function WishlistCard({ product }) {
         <h4>$:Price</h4>
         <h3>title</h3>
         <p>Location</p>
+        <button>Add to cart</button>
         <button>Remove</button>
         <button onClick={addToWishlist}>
           <HeartOutlined />
