@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Divider } from 'antd';
-import { MessageFilled, ArrowLeftOutlined } from '@ant-design/icons';
+import { Divider, Tooltip } from 'antd';
+import {
+  MessageFilled,
+  ArrowLeftOutlined,
+  ShoppingCartOutlined,
+  HeartOutlined,
+} from '@ant-design/icons';
 import ImagesGallery from '../../common/ImageGallery';
 
 const Wrapper = styled.div`
@@ -19,7 +24,7 @@ const Wrapper = styled.div`
     color: #fff;
     cursor: pointer;
     padding: 10px;
-    background-color: rgba(57, 75, 134, 0.7);
+    background-color: rgba(37, 51, 97, 0.7);
     border-radius: 50%;
     transition-duration: 0.3s;
 
@@ -36,7 +41,7 @@ const Wrapper = styled.div`
 
     .navbar {
       height: 50px;
-      width: 100%;
+      background-color: #394b86;
     }
 
     .nav-wrapper {
@@ -45,7 +50,36 @@ const Wrapper = styled.div`
       .navbar {
         position: fixed;
         top: 0;
-        background-color: #394b86;
+        width: 360px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        svg {
+          font-size: 28px;
+          color: #fff;
+          cursor: pointer;
+        }
+
+        .button {
+          padding: 3px 13px 3px 8px;
+          background-color: #e2e2e2;
+          border-radius: 3px;
+          cursor: pointer;
+
+          svg {
+            color: #2d88ff;
+          }
+
+          span {
+            vertical-align: middle;
+            margin-left: 5px;
+          }
+
+          &:hover {
+            background-color: #f8f8f8;
+          }
+        }
       }
     }
 
@@ -53,7 +87,6 @@ const Wrapper = styled.div`
       padding: 10px 15px;
 
       .navbar {
-        background-color: #394b86;
         margin: 8px 0 15px 0;
       }
 
@@ -190,6 +223,7 @@ const RenderProduct = ({ product }) => {
     original: product.img,
     thumbnail: product.img,
   });
+
   const [message, setMessage] = useState('Is this available?');
 
   const handleChange = e => setMessage(e.target.value);
@@ -212,7 +246,20 @@ const RenderProduct = ({ product }) => {
 
       <div className="details-wrapper">
         <div className="nav-wrapper">
-          <div className="navbar"></div>
+          <div className="navbar">
+            <div className="button">
+              <MessageFilled />
+              <span>Message</span>
+            </div>
+
+            <Tooltip placement="bottom" title="Save" color="#29577c">
+              <HeartOutlined />
+            </Tooltip>
+
+            <Tooltip placement="bottom" title="Add to cart" color="#29577c">
+              <ShoppingCartOutlined />
+            </Tooltip>
+          </div>
         </div>
 
         <div className="details">
@@ -224,7 +271,9 @@ const RenderProduct = ({ product }) => {
           </div>
           <div className="navbar"></div>
           <h4 id="details">Details</h4>
+
           <Divider style={{ margin: '4px 0 15px 0' }} />
+
           <section>
             <h4>Condition</h4>
             <span>{product.condition}</span>
@@ -264,6 +313,7 @@ const RenderProduct = ({ product }) => {
                 fontSize: '22px',
               }}
             />
+
             <span>Send seller a message</span>
 
             <div className="message-input">
