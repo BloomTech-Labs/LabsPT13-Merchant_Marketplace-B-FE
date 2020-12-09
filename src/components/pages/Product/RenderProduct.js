@@ -40,12 +40,12 @@ const Wrapper = styled.div`
     border-left: 1px solid #394b86;
 
     .navbar {
-      height: 50px;
+      height: 70px;
       background-color: #394b86;
     }
 
     .nav-wrapper {
-      height: 50px;
+      height: 80px;
 
       .navbar {
         position: fixed;
@@ -106,9 +106,9 @@ const Wrapper = styled.div`
         font-size: 15px;
       }
 
-      #details {
+      h5 {
         font-size: 20px;
-        margin: 0;
+        margin: 30px 0 0 0;
       }
 
       section {
@@ -134,7 +134,7 @@ const Wrapper = styled.div`
         margin: 2px 5px 2px 0;
         border: 1px solid gray;
         padding: 3px 7px;
-        border-radius: 10px;
+        border-radius: 5px;
         cursor: pointer;
 
         &:hover {
@@ -269,9 +269,8 @@ const RenderProduct = ({ product }) => {
           <div>
             Listed 2 hours ago in <a href="google.com">Alameda, CA</a>
           </div>
-          <div className="navbar"></div>
-          <h4 id="details">Details</h4>
 
+          <h5>Details</h5>
           <Divider style={{ margin: '4px 0 15px 0' }} />
 
           <section>
