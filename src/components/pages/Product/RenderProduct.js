@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import ImageGallery from 'react-image-gallery';
 import { Divider } from 'antd';
 import { MessageFilled, ArrowLeftOutlined } from '@ant-design/icons';
+import ImagesGallery from '../../common/ImageGallery';
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,46 +26,6 @@ const Wrapper = styled.div`
     &:hover {
       color: #337ab7;
       background: #fff;
-    }
-  }
-
-  .carousel-wrapper {
-    position: fixed;
-    width: calc(100% - 360px);
-    height: 100%;
-
-    .carousel {
-      width: 100%;
-
-      svg {
-        height: 100px;
-        width: 40px;
-      }
-
-      .image-gallery-image {
-        object-fit: cover;
-        height: 85vh;
-        border-bottom: 1px solid #bbbbbb;
-      }
-
-      .image-gallery-thumbnails-container {
-        height: 15vh;
-        cursor: auto;
-
-        .image-gallery-thumbnail {
-          border-radius: 10px;
-          cursor: pointer;
-
-          img {
-            border-radius: 5px;
-          }
-        }
-
-        .active {
-          border-color: #2d88ff;
-          border-radius: 10px;
-        }
-      }
     }
   }
 
@@ -248,13 +208,7 @@ const RenderProduct = ({ product }) => {
         <ArrowLeftOutlined />
       </Link>
 
-      <div className="carousel-wrapper">
-        <ImageGallery
-          items={images}
-          showPlayButton={false}
-          additionalClass="carousel"
-        />
-      </div>
+      <ImagesGallery images={images} />
 
       <div className="details-wrapper">
         <div className="nav-wrapper">
