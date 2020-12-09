@@ -29,24 +29,42 @@ const Wrapper = styled.div`
     }
   }
 
-  .main {
-    display: flex;
+  .carousel-wrapper {
     position: fixed;
-    align-items: center;
-    align-self: flex-start;
     width: calc(100% - 360px);
     height: 100%;
 
-    .carousel-wrapper {
+    .carousel {
       width: 100%;
 
       svg {
         height: 100px;
-        width: 45px;
+        width: 40px;
       }
 
-      img {
+      .image-gallery-image {
         object-fit: cover;
+        height: 85vh;
+        border-bottom: 1px solid #bbbbbb;
+      }
+
+      .image-gallery-thumbnails-container {
+        height: 15vh;
+        cursor: auto;
+
+        .image-gallery-thumbnail {
+          border-radius: 10px;
+          cursor: pointer;
+
+          img {
+            border-radius: 5px;
+          }
+        }
+
+        .active {
+          border-color: #2d88ff;
+          border-radius: 10px;
+        }
       }
     }
   }
@@ -173,7 +191,7 @@ const Wrapper = styled.div`
           font-size: 16px;
 
           input {
-            border: 1px solid gray;
+            border: 1px solid #bbbbbb;
             padding: 4px 10px;
             outline: none;
             border-radius: 7px;
@@ -227,11 +245,11 @@ const RenderProduct = ({ product }) => {
         <ArrowLeftOutlined />
       </Link>
 
-      <div className="main">
+      <div className="carousel-wrapper">
         <ImageGallery
           items={images}
           showPlayButton={false}
-          additionalClass="carousel-wrapper"
+          additionalClass="carousel"
         />
       </div>
 
@@ -247,17 +265,13 @@ const RenderProduct = ({ product }) => {
           <div>
             Listed 2 hours ago in <a href="google.com">Alameda, CA</a>
           </div>
-
           <div className="navbar"></div>
-
           <h4 id="details">Details</h4>
           <Divider style={{ margin: '4px 0 15px 0' }} />
-
           <section>
             <h4>Condition</h4>
             <span>{product.condition}</span>
           </section>
-
           <section>
             <h4>Brand</h4>
             <span>{product.brand}</span>
