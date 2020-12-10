@@ -9,14 +9,14 @@ import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import Icon from './Icon';
 
 const Wrapper = styled.div`
-  height: 179px;
+  height: 180px;
 
   .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #dae4df;
-    overflow: hidden;
+    background-color: #272d3d;
+    color: #fff;
 
     .top {
       display: flex;
@@ -24,13 +24,23 @@ const Wrapper = styled.div`
       flex-wrap: wrap;
       padding: 8px 15px;
       flex-direction: row-reverse;
-      border-bottom: 1px solid #a1a1a1;
+      border-bottom: 1px solid #494949;
 
       .top-right {
         display: flex;
         align-items: center;
         justify-content: flex-end;
         width: 50%;
+
+        .cart-icon {
+          transition-duration: 0.2s;
+          color: #fff;
+          font-size: 28px;
+
+          &:hover {
+            color: #0688f1;
+          }
+        }
       }
 
       .top-left {
@@ -43,12 +53,12 @@ const Wrapper = styled.div`
     }
 
     .middle {
-      padding: 15px 20px 0 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       text-align: center;
+      padding: 15px 20px 0 20px;
 
       .search-bar-wrapper {
         width: 100%;
@@ -62,10 +72,10 @@ const Wrapper = styled.div`
       flex-wrap: wrap;
       padding: 10px 20px;
       margin-top: 15px;
-      border-top: 1px solid #a1a1a1;
+      border-top: 1px solid #494949;
 
       a {
-        color: #111;
+        color: #fff;
         text-decoration: underline;
       }
 
@@ -89,7 +99,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function Navigation() {
+export default function NavigationBar() {
   const [input, setInput] = useState('');
   const { authService } = useOktaAuth();
   //  access user info from local storage
@@ -106,10 +116,7 @@ export default function Navigation() {
             />
 
             <Link to="/cart" style={{ marginLeft: '25px' }}>
-              <Icon
-                Icon={<ShoppingCartOutlined />}
-                styles={{ fontSize: '28px' }}
-              />
+              <ShoppingCartOutlined className="cart-icon" />
             </Link>
           </div>
 
