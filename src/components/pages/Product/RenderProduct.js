@@ -79,7 +79,7 @@ const Wrapper = styled.div`
           }
 
           &:hover {
-            background-color: #f8f8f8;
+            background-color: #4594fa;
           }
         }
       }
