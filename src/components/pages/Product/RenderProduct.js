@@ -9,7 +9,7 @@ import {
   HeartOutlined,
   HeartFilled,
 } from '@ant-design/icons';
-import ImagesGallery from '../../common/ImageGallery';
+import { ImagesGallery } from '../../common';
 
 const Wrapper = styled.div`
   display: flex;

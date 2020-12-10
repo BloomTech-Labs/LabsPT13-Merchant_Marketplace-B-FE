@@ -6,7 +6,6 @@ import { ShoppingCartOutlined } from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
 import FormInput from './FormInput';
 import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
-import Icon from './Icon';
 
 const Wrapper = styled.div`
   height: 180px;
@@ -156,7 +155,7 @@ export default function NavigationBar() {
 
           <section className="create-listing">
             <span style={{ marginRight: '8px' }}>Create New Listing</span>
-            <Icon Icon={<PlusCircleOutlined />} styles={{ fontSize: '24px' }} />
+            <PlusCircleOutlined />
           </section>
         </div>
       </div>
