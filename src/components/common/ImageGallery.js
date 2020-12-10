@@ -16,9 +16,8 @@ const Wrapper = styled.div`
     }
 
     .image-gallery-image {
+      height: 700px;
       object-fit: cover;
-      height: 85vh;
-      border-bottom: 1px solid #bbbbbb;
     }
 
     .image-gallery-icon {
