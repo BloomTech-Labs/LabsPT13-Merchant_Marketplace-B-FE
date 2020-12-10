@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 // we will define a bunch of API calls here.
-const profiles = `${process.env.REACT_APP_API_URI}/profiles`;
-const products = `${process.env.REACT_APP_API_URI}/products`;
+const baseUrl = process.env.REACT_APP_API_URI;
+// const profiles = `${process.env.REACT_APP_API_URI}/profiles`;
+// const products = `${process.env.REACT_APP_API_URI}/products`;
 
 const sleep = time =>
   new Promise(resolve => {
@@ -41,7 +42,7 @@ const apiAuthGet = (url, authHeader) => {
 
 const getProfileData = authState => {
   try {
-    return apiAuthGet(profiles, getAuthHeader(authState)).then(
+    return apiAuthGet(`${baseUrl}/profile`, getAuthHeader(authState)).then(
       response => response.data
     );
   } catch (error) {
@@ -55,7 +56,7 @@ const getProfileData = authState => {
 const getMarketProducts = async authState => {
   try {
     const headers = getAuthHeader(authState);
-    return apiAuthGet(products, headers).then(res => res.data);
+    return apiAuthGet(`${baseUrl}/products`, headers).then(res => res.data);
   } catch (error) {
     return new Promise(() => {
       console.log(error);
@@ -64,4 +65,25 @@ const getMarketProducts = async authState => {
   }
 };
 
-export { sleep, getExampleData, getProfileData, getDSData, getMarketProducts };
+const getProductById = async (id, authState) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthGet(`${baseUrl}/products/${id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    });
+  }
+};
+
+export {
+  sleep,
+  getExampleData,
+  getProfileData,
+  getDSData,
+  getMarketProducts,
+  getProductById,
+};
