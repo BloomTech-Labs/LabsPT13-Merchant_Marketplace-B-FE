@@ -20,7 +20,7 @@ const Wrapper = styled.div`
     position: fixed;
     top: 15px;
     left: 15px;
-    font-size: 30px;
+    font-size: 26px;
     z-index: 99;
     color: #fff;
     cursor: pointer;
@@ -38,11 +38,11 @@ const Wrapper = styled.div`
   .details-wrapper {
     width: 360px;
     align-self: flex-end;
-    border-left: 1px solid #394b86;
+    border-left: 1px solid #2a375a;
 
     .navbar {
       height: 70px;
-      background-color: #394b86;
+      background-color: #2a375a;
     }
 
     .nav-wrapper {
@@ -135,11 +135,11 @@ const Wrapper = styled.div`
         margin: 2px 5px 2px 0;
         border: 1px solid gray;
         padding: 3px 7px;
-        border-radius: 5px;
+        border-radius: 10px;
         cursor: pointer;
 
         &:hover {
-          background-color: #394b86;
+          background-color: #2a375a;
           color: #fff;
         }
       }
@@ -200,7 +200,7 @@ const Wrapper = styled.div`
         bottom: 0;
         width: 360px;
         padding: 15px;
-        background-color: #394b86;
+        background-color: #2a375a;
 
         span {
           color: #fff;
