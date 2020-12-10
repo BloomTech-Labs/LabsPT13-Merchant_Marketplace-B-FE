@@ -57,19 +57,20 @@ const Wrapper = styled.div`
         align-items: center;
 
         svg {
-          font-size: 28px;
+          font-size: 26px;
           color: #fff;
           cursor: pointer;
         }
 
         .button {
           padding: 3px 13px 3px 8px;
-          background-color: #e2e2e2;
+          background-color: #2d88ff;
+          color: #fff;
           border-radius: 3px;
           cursor: pointer;
 
           svg {
-            color: #2d88ff;
+            font-size: 22px;
           }
 
           span {
@@ -216,7 +217,7 @@ const Wrapper = styled.div`
             border: 1px solid #bbbbbb;
             padding: 4px 10px;
             outline: none;
-            border-radius: 7px;
+            border-radius: 5px;
 
             &::selection {
               background-color: #2d88ff;
@@ -324,9 +325,9 @@ const RenderProduct = ({ product }) => {
           <p>{product.description}</p>
 
           <h4>Tags</h4>
-          {product.tags.split(',').map((t, i) => (
+          {product.tags.split(',').map((tag, i) => (
             <span id="tag" key={i}>
-              {t}
+              {tag}
             </span>
           ))}
 
