@@ -2,12 +2,15 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { getMarketProducts } from '../../../api';
 import RenderHomePage from './RenderHomePage';
-import { UserInfoContext, ProductsContext } from '../../../state/contexts';
+import { ProductsContext } from '../../../state/contexts';
+import { useLocalStorage } from 'react-use';
 
 function HomeContainer({ LoadingComponent }) {
   const { authState, authService } = useOktaAuth();
   const [memoAuthService] = useMemo(() => [authService], []);
-  const [userInfo, setUserInfo] = useState(null);
+  const [user, setUser] = useLocalStorage('user', null);
+  // set user info state from local storage
+  const [userInfo, setUserInfo] = useState(user);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -16,16 +19,21 @@ function HomeContainer({ LoadingComponent }) {
     const fetchUserInfo = async () => {
       try {
         const userInfo = await memoAuthService.getUser();
-        if (isSubscribed) setUserInfo(userInfo);
+        if (isSubscribed) {
+          // update user info in local storage
+          setUser(userInfo);
+          setUserInfo(userInfo);
+        }
       } catch (error) {
         isSubscribed = false;
         return setUserInfo(null);
       }
     };
 
-    fetchUserInfo();
+    // only fetch if user info is not in local storage
+    !userInfo && fetchUserInfo();
     return () => (isSubscribed = false);
-  }, [memoAuthService]);
+  }, [memoAuthService, userInfo, setUser]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -46,13 +54,11 @@ function HomeContainer({ LoadingComponent }) {
     <>
       {authState.isAuthenticated &&
         (!userInfo ? (
-          <LoadingComponent message="Fetching user profile..." />
+          <LoadingComponent message="...Fetching profile" />
         ) : (
-          <UserInfoContext.Provider value={userInfo}>
-            <ProductsContext.Provider value={products}>
-              <RenderHomePage />
-            </ProductsContext.Provider>
-          </UserInfoContext.Provider>
+          <ProductsContext.Provider value={products}>
+            <RenderHomePage />
+          </ProductsContext.Provider>
         ))}
     </>
   );

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import WishlistCard from '../../common/WishlistCard';
-import { NavigationBar } from '../../common';
 
 const Wrapper = styled.div``;
 

@@ -6,6 +6,9 @@ import { config } from '../../../utils/oktaConfig';
 import './login.css';
 
 const LoginContainer = () => {
+  // always remove user info from local storage if it exists when in Login
+  window.localStorage.removeItem('user');
+
   useEffect(() => {
     const { pkce, issuer, clientId, redirectUri, scopes } = config;
     // destructure your config so that you can pass it into the required fields in your widget.

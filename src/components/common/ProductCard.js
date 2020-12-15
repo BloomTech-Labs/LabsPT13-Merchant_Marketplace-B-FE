@@ -9,6 +9,7 @@ const Card = styled.div`
   overflow: hidden;
   cursor: pointer;
   transition-duration: 0.3s;
+  border: 1px solid #e9e8e8;
 
   &:hover {
     box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.12),
@@ -26,7 +27,7 @@ const Card = styled.div`
 
   .details {
     padding: 5px;
-    background-color: #fff;
+    background-color: #e8f4f7;
 
     p {
       color: gray;
@@ -47,7 +48,7 @@ export default function ProductCard({ product }) {
     console.log('added to wishlist');
   }
   return (
-    <Link to={`/item/${product.id}`}>
+    <Link to={{ pathname: `/item/${product.id}`, product }}>
       <Card>
         <img src={product.img} alt="market product" />
 

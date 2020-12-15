@@ -13,7 +13,7 @@ jest.mock('@okta/okta-react', () => ({
         isAuthenticated: true,
       },
       authService: {
-        getUser: () => Promise.resolve({ name: 'sara' }),
+        getUser: () => Promise.resolve({ given_name: 'sara' }),
       },
     };
   },
@@ -30,12 +30,14 @@ describe('<HomeContainer /> testing suite', () => {
         />
       </Router>
     );
+
     let loader = getByText(/...fetching profile/i);
     expect(loader).toBeInTheDocument();
 
     await waitFor(async () => {
       await findByText(/Hi, sara/i);
     });
+
     loader = queryByText(/...fetching profile/i);
     expect(loader).toBeNull();
   });
