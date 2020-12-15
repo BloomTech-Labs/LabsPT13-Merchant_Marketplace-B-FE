@@ -112,7 +112,7 @@ export default function NavigationBar() {
               items={['Purchase History', 'Saved Items', 'Messages']}
             />
 
-            <Link to="/cart" style={{ marginLeft: '25px' }}>
+            <Link to="/marketplace/cart" style={{ marginLeft: '25px' }}>
               <ShoppingCartOutlined className="cart-icon" />
             </Link>
           </div>
@@ -152,7 +152,7 @@ export default function NavigationBar() {
           <span>Categories</span>
 
           <section className="create-listing">
-            <Link to="/create" style={{ marginRight: '8px' }}>
+            <Link to="/marketplace/create" style={{ marginRight: '8px' }}>
               Create New Listing
             </Link>
             <PlusCircleOutlined />

@@ -34,9 +34,21 @@ export default function App() {
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
 
-        <SecureRoute path="/cart" exact component={() => <CartPage />} />
-        <SecureRoute path="/item/:id" exact component={() => <ProductPage />} />
-        <SecureRoute path="/create" exact component={() => <CreateProduct />} />
+        <SecureRoute
+          path="/marketplace/cart"
+          exact
+          component={() => <CartPage />}
+        />
+        <SecureRoute
+          path="/marketplace/item/:id"
+          exact
+          component={() => <ProductPage />}
+        />
+        <SecureRoute
+          path="/marketplace/create"
+          exact
+          component={() => <CreateProduct />}
+        />
 
         <Route path="404" component={NotFoundPage} />
       </Switch>
