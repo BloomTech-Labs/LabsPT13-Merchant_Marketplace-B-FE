@@ -75,7 +75,6 @@ const Wrapper = styled.div`
 
       a {
         color: #fff;
-        text-decoration: underline;
       }
 
       .create-listing {
@@ -87,8 +86,7 @@ const Wrapper = styled.div`
         transition-duration: 0.2s;
 
         &:hover {
-          color: #0688f1;
-
+          a,
           svg {
             color: #0688f1;
           }
@@ -154,7 +152,9 @@ export default function NavigationBar() {
           <span>Categories</span>
 
           <section className="create-listing">
-            <span style={{ marginRight: '8px' }}>Create New Listing</span>
+            <Link to="/create" style={{ marginRight: '8px' }}>
+              Create New Listing
+            </Link>
             <PlusCircleOutlined />
           </section>
         </div>

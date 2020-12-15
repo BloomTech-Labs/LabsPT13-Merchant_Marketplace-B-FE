@@ -8,6 +8,7 @@ import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { CartPage } from './components/pages/Cart';
 import { ProductPage } from './components/pages/Product';
+import { CreateProduct } from './components/pages/CreateProduct';
 
 export default function App() {
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
@@ -35,6 +36,7 @@ export default function App() {
 
         <SecureRoute path="/cart" exact component={() => <CartPage />} />
         <SecureRoute path="/item/:id" exact component={() => <ProductPage />} />
+        <SecureRoute path="/create" exact component={() => <CreateProduct />} />
 
         <Route path="404" component={NotFoundPage} />
       </Switch>
