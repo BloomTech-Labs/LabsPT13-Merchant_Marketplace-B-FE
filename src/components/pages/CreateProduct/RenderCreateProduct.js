@@ -43,21 +43,27 @@ const Wrapper = styled.div`
       }
     }
 
-    .photos-upload {
-      border: 1px solid;
-      height: 130px;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-
     .fileUploader {
       .fileContainer {
         background-color: #e6e6e6;
-      }
+        padding: 10px 0;
+        min-height: 170px;
 
-      .uploadPictureContainer {
-        padding: 5px;
-        margin: 15px;
+        .chooseFileButton {
+          padding: 5px 20px;
+        }
+
+        .uploadPictureContainer {
+          padding: 5px;
+          margin: 15px;
+
+          .deleteImage {
+            height: 25px;
+            font-size: 18px;
+            width: 25px;
+            line-height: 25px;
+          }
+        }
       }
     }
   }

@@ -18,6 +18,7 @@ export default function PhotosUploader() {
       onChange={onDrop}
       imgExtension={['.jpg', '.gif', '.png', '.gif']}
       maxFileSize={5242880}
+      label="Max file size: 5MB, Accepted: (JPG, PNG, GIF)"
     />
   );
 }
