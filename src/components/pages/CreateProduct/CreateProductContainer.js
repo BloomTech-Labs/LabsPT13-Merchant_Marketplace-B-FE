@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import RenderCreateProduct from './RenderCreateProduct';
 
 export default function CreateProductContainer() {
