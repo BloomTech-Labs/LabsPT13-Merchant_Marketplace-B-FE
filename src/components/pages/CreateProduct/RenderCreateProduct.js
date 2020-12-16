@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { ArrowLeftOutlined } from '@ant-design/icons';
+import PhotosUploader from '../../common/PhotosUploader';
+
 const Wrapper = styled.div`
   height: 100vh;
 
@@ -47,6 +49,17 @@ const Wrapper = styled.div`
       border-radius: 3px;
       cursor: pointer;
     }
+
+    .fileUploader {
+      .fileContainer {
+        background-color: #e6e6e6;
+      }
+
+      .uploadPictureContainer {
+        padding: 5px;
+        margin: 15px;
+      }
+    }
   }
 `;
 
@@ -70,7 +83,7 @@ export default function RenderCreateProduct({ userInfo }) {
         </section>
 
         <span>Photos - 0/5 - You can add up to 5 photos.</span>
-        <section className="photos-upload"></section>
+        <PhotosUploader />
       </div>
     </Wrapper>
   );
