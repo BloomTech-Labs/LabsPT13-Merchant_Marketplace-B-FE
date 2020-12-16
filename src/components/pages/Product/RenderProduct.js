@@ -16,25 +16,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   min-height: 100vh;
 
-  .anticon-arrow-left {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    font-size: 26px;
-    z-index: 99;
-    color: #fff;
-    cursor: pointer;
-    padding: 10px;
-    background-color: rgba(37, 51, 97, 0.7);
-    border-radius: 50%;
-    transition-duration: 0.3s;
-
-    &:hover {
-      color: #337ab7;
-      background: #fff;
-    }
-  }
-
   .details-wrapper {
     width: 360px;
     align-self: flex-end;
@@ -245,34 +226,20 @@ const Wrapper = styled.div`
   }
 `;
 
-const RenderProduct = ({ product }) => {
+const RenderProduct = ({
+  sellerInfo,
+  product,
+  message,
+  saved,
+  saveMessage,
+  saveProduct,
+  unSaveProduct,
+  sendMessage,
+}) => {
   const images = new Array(3).fill({
     original: product.img,
     thumbnail: product.img,
   });
-
-  const [message, setMessage] = useState('Is this available?');
-  const [saved, setSaved] = useState(false);
-  const sellerInfo = JSON.parse(window.localStorage.getItem('user'));
-
-  const handleChange = e => setMessage(e.target.value);
-  const handleFocus = e => e.target.select();
-  const handleSave = () => {
-    setSaved(!saved);
-
-    if (!saved) {
-      console.log('ADD ITEM TO WISHLIST');
-    } else {
-      console.log('REMOVE ITEM FROM WISHLIST');
-    }
-  };
-
-  const sendMessage = () => {
-    console.log({ message });
-    // disable send button and send message
-
-    setMessage('Is this available');
-  };
 
   return (
     <Wrapper>
@@ -291,7 +258,7 @@ const RenderProduct = ({ product }) => {
             </div>
 
             <Tooltip placement="bottom" title="Save" color="#29577c">
-              <div onClick={handleSave}>
+              <div onClick={saved ? unSaveProduct : saveProduct}>
                 {saved ? <HeartFilled /> : <HeartOutlined />}
               </div>
             </Tooltip>
@@ -373,8 +340,8 @@ const RenderProduct = ({ product }) => {
               <input
                 type="text"
                 value={message}
-                onChange={handleChange}
-                onFocus={handleFocus}
+                onChange={saveMessage}
+                onFocus={e => e.target.select()}
               />
               <button onClick={sendMessage}>Send</button>
             </div>

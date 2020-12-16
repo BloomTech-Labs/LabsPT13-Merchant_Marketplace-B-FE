@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RenderCreateProduct from './RenderCreateProduct';
 
 export default function CreateProductContainer() {
+  const sellerInfo = JSON.parse(window.localStorage.getItem('user'));
+
   return (
     <div>
-      <RenderCreateProduct />
+      <RenderCreateProduct sellerInfo={sellerInfo} />
     </div>
   );
 }
