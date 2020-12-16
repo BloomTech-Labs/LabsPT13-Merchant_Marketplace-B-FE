@@ -48,7 +48,7 @@ export default function ProductCard({ product }) {
     console.log('added to wishlist');
   }
   return (
-    <Link to={{ pathname: `/item/${product.id}`, product }}>
+    <Link to={{ pathname: `/marketplace/item/${product.id}`, product }}>
       <Card>
         <img src={product.img} alt="market product" />
 

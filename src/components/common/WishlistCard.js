@@ -44,8 +44,8 @@ const Card = styled.div`
   }
 `;
 export default function WishlistCard({ product }) {
-  function addToWishlist() {
-    console.log('added to wishlist');
+  function addToCart() {
+    console.log('added to Cart');
   }
   return (
     // <Link to={`/item/${product.id}`}>
@@ -57,11 +57,8 @@ export default function WishlistCard({ product }) {
         <h4>$:Price</h4>
         <h3>title</h3>
         <p>Location</p>
-        <button>Add to cart</button>
+        <button onClick={addToCart}>Add to cart</button>
         <button>Remove</button>
-        <button onClick={addToWishlist}>
-          <HeartOutlined />
-        </button>
       </div>
     </Card>
     // </Link>
