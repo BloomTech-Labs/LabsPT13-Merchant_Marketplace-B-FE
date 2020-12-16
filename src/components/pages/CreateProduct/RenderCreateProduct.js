@@ -1,19 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { ArrowLeftOutlined } from '@ant-design/icons';
-import PhotosUploader from '../../common/PhotosUploader';
+import { Input, Select } from 'antd';
+import ImagesUploader from '../../common/ImagesUploader';
 
 const Wrapper = styled.div`
   height: 100vh;
+  background-color: #f7f7f7;
 
   .form-wrapper {
-    max-width: 700px;
+    max-width: 600px;
     margin: auto;
     padding: 15px;
     height: 100%;
-    border: 1px solid;
+    border: 1px solid #ecebeb;
 
     .user-info {
       display: flex;
@@ -66,10 +67,25 @@ const Wrapper = styled.div`
         }
       }
     }
+
+    .ant-input-affix-wrapper,
+    .ant-select {
+      margin: 6px 0;
+    }
   }
 `;
 
-export default function RenderCreateProduct({ userInfo }) {
+export default function RenderCreateProduct({
+  userInfo,
+  formInfo,
+  onDropImages,
+  handleChange,
+  handleSubmit,
+}) {
+  const { title, price } = formInfo;
+  const { Option } = Select;
+  const { TextArea } = Input;
+
   return (
     <Wrapper>
       <Link to="/">
@@ -89,7 +105,55 @@ export default function RenderCreateProduct({ userInfo }) {
         </section>
 
         <span>Photos - 0/5 - You can add up to 5 photos.</span>
-        <PhotosUploader />
+        <ImagesUploader onDropImages={onDropImages} />
+
+        <Input
+          name="title"
+          value={title}
+          placeholder="Title"
+          onChange={e => handleChange(e.target.name, e.target.value)}
+          allowClear={true}
+        />
+
+        <Input
+          value={price}
+          name="price"
+          type="number"
+          placeholder="Price"
+          onChange={e => handleChange(e.target.name, e.target.value)}
+          suffix="$"
+        />
+
+        <Select
+          showSearch
+          style={{ width: '100%' }}
+          placeholder="Category"
+          onChange={value => handleChange('category', value)}
+        >
+          <Option value="Electronics">Electronics</Option>
+          <Option value="Furniture">Furniture</Option>
+          <Option value="Books">Books</Option>
+        </Select>
+
+        <Select
+          showSearch
+          style={{ width: '100%' }}
+          placeholder="Condition"
+          onChange={value => handleChange('condition', value)}
+        >
+          <Option value="New">New</Option>
+          <Option value="Used - Like New">Used - Like New</Option>
+          <Option value="Used - Good">Used - Good</Option>
+          <Option value="Used - Fair">Used - Fair</Option>
+        </Select>
+
+        <TextArea
+          placeholder="Description"
+          name="description"
+          autoSize={{ minRows: 6, maxRows: 6 }}
+          onChange={e => handleChange(e.target.name, e.target.value)}
+          allowClear={true}
+        />
       </div>
     </Wrapper>
   );
