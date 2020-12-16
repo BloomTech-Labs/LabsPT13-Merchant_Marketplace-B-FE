@@ -1,6 +1,5 @@
 import React from 'react';
-import { NavigationBar } from '../../common';
-import MarketplaceFeed from '../../common/MarketplaceFeed';
+import { NavigationBar, MarketplaceFeed } from '../../common';
 
 function RenderHomePage() {
   return (

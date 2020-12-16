@@ -16,7 +16,7 @@ const Wrapper = styled.div`
     }
 
     .image-gallery-image {
-      height: 700px;
+      height: 80vh;
       object-fit: cover;
     }
 
@@ -30,7 +30,7 @@ const Wrapper = styled.div`
     }
 
     .image-gallery-thumbnails-container {
-      height: 15vh;
+      height: 20vh;
       cursor: auto;
 
       .image-gallery-thumbnail {
