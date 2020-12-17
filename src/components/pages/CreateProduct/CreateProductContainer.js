@@ -57,11 +57,12 @@ export default function CreateProductContainer() {
       <RenderCreateProduct
         userInfo={userInfo}
         formInfo={formInfo}
+        newTag={newTag}
+        images={images}
         onDropImages={onDropImages}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         handleKeyPress={handleKeyPress}
-        newTag={newTag}
         handleTagChange={handleTagChange}
         addTag={addTag}
         removeTag={removeTag}
