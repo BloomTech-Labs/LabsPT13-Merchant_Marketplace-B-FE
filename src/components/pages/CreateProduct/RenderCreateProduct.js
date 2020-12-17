@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ArrowLeftOutlined, PlusOutlined } from '@ant-design/icons';
-import { Input, Select, Tag } from 'antd';
+import { Input, Select } from 'antd';
 import ImagesUploader from '../../common/ImagesUploader';
 
 const Wrapper = styled.div`
@@ -106,6 +106,23 @@ const Wrapper = styled.div`
       input {
         padding: 10px;
         border: none;
+      }
+
+      .addTag-icon {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+        border: 1px solid;
+        padding: 5px;
+        font-size: 11px;
+        border-radius: 50%;
+        background-color: #3f4257;
+        color: #fff;
+
+        &:hover {
+          background-color: #5e6075;
+        }
       }
     }
 
@@ -246,15 +263,24 @@ export default function RenderCreateProduct({
         />
 
         <div className="tags-wrapper">
-          <Input
-            value={newTag}
-            placeholder="Product tags"
-            onChange={handleTagChange}
-          />
+          <div style={{ position: 'relative' }}>
+            <Input
+              value={newTag}
+              placeholder="Product tags"
+              onChange={handleTagChange}
+              onPressEnter={newTag && addTag}
+            />
+
+            {newTag && (
+              <PlusOutlined className="addTag-icon" onClick={addTag} />
+            )}
+          </div>
 
           <div className="tags">
             {tags.map((tag, i) => (
-              <span key={i}>{tag} X</span>
+              <span key={i} onClick={() => removeTag(tag)}>
+                {tag} X
+              </span>
             ))}
           </div>
         </div>
