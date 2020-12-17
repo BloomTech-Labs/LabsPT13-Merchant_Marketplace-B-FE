@@ -14,10 +14,19 @@ const Wrapper = styled.div`
     padding: 20px;
     background-color: #fff;
 
+    button {
+      padding: 5px 20px;
+
+      &:hover {
+        background: #545972;
+      }
+    }
+
     label {
       font-size: 13px;
       color: #b0b3b8;
       display: block;
+      margin-bottom: 4px;
     }
 
     .user-info {
@@ -53,10 +62,6 @@ const Wrapper = styled.div`
         background-color: #e6e6e6;
         padding: 10px 0;
         min-height: 170px;
-
-        .chooseFileButton {
-          padding: 5px 20px;
-        }
 
         .uploadPictureContainer {
           padding: 5px;
@@ -128,6 +133,17 @@ const Wrapper = styled.div`
 
     .submit-btn {
       margin: 20px 0;
+      background: #3f4257;
+      border-radius: 2px;
+      color: white;
+      letter-spacing: 0.5px;
+      width: 100%;
+      font-size: 16px;
+      margin: 40px 0 20px 0;
+      transition: all 0.2s ease-in;
+      cursor: pointer;
+      outline: none;
+      border: none;
     }
   }
 `;
@@ -135,6 +151,7 @@ const Wrapper = styled.div`
 export default function RenderCreateProduct({
   userInfo,
   formInfo,
+  images,
   onDropImages,
   handleChange,
   handleSubmit,
@@ -175,7 +192,7 @@ export default function RenderCreateProduct({
           </section>
         </section>
 
-        <span>Photos - 0/5 - You can add up to 5 photos.</span>
+        <span>Photos - {images.length}/5 - You can add up to 5 photos.</span>
         <ImagesUploader onDropImages={onDropImages} />
 
         <Input
@@ -284,11 +301,13 @@ export default function RenderCreateProduct({
             ))}
           </div>
         </div>
-        <label htmlFor="tags">Optional</label>
+        <label htmlFor="tags">Optional - Limit: 10</label>
 
-        <button type="submit" className="submit-btn">
-          Create Product
-        </button>
+        <div style={{ textAlign: 'center' }}>
+          <button type="submit" className="submit-btn">
+            Create Product
+          </button>
+        </div>
       </form>
     </Wrapper>
   );
