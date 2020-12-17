@@ -116,8 +116,8 @@ const Wrapper = styled.div`
         display: inline-block;
         margin: 2px 5px 2px 0;
         border: 1px solid gray;
-        padding: 3px 7px;
-        border-radius: 10px;
+        padding: 1px 7px;
+        border-radius: 3px;
         cursor: pointer;
 
         &:hover {

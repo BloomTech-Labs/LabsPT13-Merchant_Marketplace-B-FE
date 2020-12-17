@@ -1,20 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { ArrowLeftOutlined } from '@ant-design/icons';
-import { Input, Select } from 'antd';
+import { ArrowLeftOutlined, PlusOutlined } from '@ant-design/icons';
+import { Input, Select, Tag } from 'antd';
 import ImagesUploader from '../../common/ImagesUploader';
 
 const Wrapper = styled.div`
-  height: 100vh;
   background-color: #f7f7f7;
 
-  .form-wrapper {
+  form {
     max-width: 600px;
     margin: auto;
-    padding: 15px;
-    height: 100%;
-    border: 1px solid #ecebeb;
+    padding: 20px;
+    background-color: #fff;
+
+    label {
+      font-size: 13px;
+      color: #b0b3b8;
+      display: block;
+    }
 
     .user-info {
       display: flex;
@@ -72,6 +76,42 @@ const Wrapper = styled.div`
     .ant-select {
       margin: 6px 0;
     }
+
+    .tags-wrapper {
+      margin-top: 10px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+
+      .tags {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 0 10px;
+
+        span {
+          display: inline-block;
+          padding: 2px 7px;
+          border: 1px solid gray;
+          cursor: pointer;
+          border-radius: 3px;
+          margin: 5px 5px 5px 0;
+
+          &:hover {
+            background-color: #2a375a;
+            color: #fff;
+          }
+        }
+      }
+
+      input {
+        padding: 10px;
+        border: none;
+      }
+    }
+
+    .submit-btn {
+      margin: 20px 0;
+    }
   }
 `;
 
@@ -81,8 +121,22 @@ export default function RenderCreateProduct({
   onDropImages,
   handleChange,
   handleSubmit,
+  handleKeyPress,
+  handleTagChange,
+  newTag,
+  addTag,
+  removeTag,
 }) {
-  const { title, price } = formInfo;
+  const {
+    title,
+    price,
+    brand,
+    description,
+    category,
+    condition,
+    delivery_method,
+    tags,
+  } = formInfo;
   const { Option } = Select;
   const { TextArea } = Input;
 
@@ -92,7 +146,7 @@ export default function RenderCreateProduct({
         <ArrowLeftOutlined />
       </Link>
 
-      <div className="form-wrapper">
+      <form onSubmit={handleSubmit} onKeyPress={handleKeyPress}>
         <section className="user-info">
           <img
             src="https://www.mercurynews.com/wp-content/uploads/2020/04/slowstreets417.jpg"
@@ -113,7 +167,18 @@ export default function RenderCreateProduct({
           placeholder="Title"
           onChange={e => handleChange(e.target.name, e.target.value)}
           allowClear={true}
+          required
         />
+
+        <Input
+          name="brand"
+          value={brand}
+          placeholder="Brand"
+          onChange={e => handleChange(e.target.name, e.target.value)}
+          allowClear={true}
+          style={{ marginBottom: 0 }}
+        />
+        <label htmlFor="brand">Optional</label>
 
         <Input
           value={price}
@@ -122,6 +187,7 @@ export default function RenderCreateProduct({
           placeholder="Price"
           onChange={e => handleChange(e.target.name, e.target.value)}
           suffix="$"
+          required
         />
 
         <Select
@@ -129,7 +195,11 @@ export default function RenderCreateProduct({
           style={{ width: '100%' }}
           placeholder="Category"
           onChange={value => handleChange('category', value)}
+          required
         >
+          <Option disabled value={category}>
+            Category
+          </Option>
           <Option value="Electronics">Electronics</Option>
           <Option value="Furniture">Furniture</Option>
           <Option value="Books">Books</Option>
@@ -140,21 +210,60 @@ export default function RenderCreateProduct({
           style={{ width: '100%' }}
           placeholder="Condition"
           onChange={value => handleChange('condition', value)}
+          required
         >
+          <Option disabled value={condition}>
+            Condition
+          </Option>
           <Option value="New">New</Option>
           <Option value="Used - Like New">Used - Like New</Option>
           <Option value="Used - Good">Used - Good</Option>
           <Option value="Used - Fair">Used - Fair</Option>
         </Select>
 
+        <Select
+          showSearch
+          style={{ width: '100%' }}
+          placeholder="Delivery Method"
+          onChange={value => handleChange('delivery_method', value)}
+          required
+        >
+          <Option disabled value={delivery_method}>
+            Delivery Method
+          </Option>
+          <Option value="Local pickup only">Local pickup only</Option>
+          <Option value="Shipping">Shipping</Option>
+        </Select>
+
         <TextArea
           placeholder="Description"
+          value={description}
           name="description"
           autoSize={{ minRows: 6, maxRows: 6 }}
           onChange={e => handleChange(e.target.name, e.target.value)}
           allowClear={true}
+          required
         />
-      </div>
+
+        <div className="tags-wrapper">
+          <Input
+            value={newTag}
+            placeholder="Product tags"
+            onChange={handleTagChange}
+          />
+
+          <div className="tags">
+            {tags.map((tag, i) => (
+              <span key={i}>{tag} X</span>
+            ))}
+          </div>
+        </div>
+        <label htmlFor="tags">Optional</label>
+
+        <button type="submit" className="submit-btn">
+          Create Product
+        </button>
+      </form>
     </Wrapper>
   );
 }
