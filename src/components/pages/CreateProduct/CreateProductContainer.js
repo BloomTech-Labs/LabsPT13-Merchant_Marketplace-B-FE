@@ -6,7 +6,7 @@ const initialState = {
   title: '',
   description: '',
   category: '',
-  tags: ['Fridge', 'Music'],
+  tags: [],
   price: '',
   brand: '',
   condition: '',
@@ -29,21 +29,13 @@ export default function CreateProductContainer() {
 
   const handleTagChange = e => setNewTag(e.target.value);
 
-  const addTag = tag => {
-    setFormInfo({ ...formInfo, tags: [...formInfo.tags, tag] });
+  const addTag = () => {
+    setFormInfo({ ...formInfo, tags: [...formInfo.tags, newTag] });
+    setNewTag('');
   };
 
   const removeTag = tag => {
     setFormInfo({ ...formInfo, tags: formInfo.tags.filter(t => t !== tag) });
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    setFormInfo(initialState);
-    setImages([]);
-
-    console.log(formInfo);
-    console.log(images);
   };
 
   const handleKeyPress = e => {
@@ -52,7 +44,13 @@ export default function CreateProductContainer() {
     }
   };
 
-  console.log(newTag);
+  const handleSubmit = e => {
+    e.preventDefault();
+    setFormInfo(initialState);
+    setImages([]);
+
+    // refactor tags to a sting before submitting
+  };
 
   return (
     <div>
