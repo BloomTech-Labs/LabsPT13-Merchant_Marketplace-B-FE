@@ -68,14 +68,14 @@ export default function CreateProductContainer() {
       data.append(`img_${i + 1}`, img);
     });
 
-    // axios
-    //   .post('http://localhost:8000/products', data)
-    //   .then(res => {
-    //     console.log(res.data);
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
+    axios
+      .post('http://localhost:8000/products', data)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
 
     // reset form
     setFormInfo(initialState);
