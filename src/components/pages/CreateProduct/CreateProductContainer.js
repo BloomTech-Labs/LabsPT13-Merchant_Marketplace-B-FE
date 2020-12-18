@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useOktaAuth } from '@okta/okta-react';
 import RenderCreateProduct from './RenderCreateProduct';
+import { createProduct } from '../../../api';
 
 const initialState = {
   title: '',
@@ -14,6 +15,7 @@ const initialState = {
 };
 
 export default function CreateProductContainer() {
+  const { authState } = useOktaAuth();
   const userInfo = JSON.parse(window.localStorage.getItem('user'));
   const [formInfo, setFormInfo] = useState(initialState);
   const [images, setImages] = useState([]);
@@ -55,10 +57,10 @@ export default function CreateProductContainer() {
     };
 
     // validate form data
+    // !TODO make sure all required inputs are filled
 
     // post form data to backend
     let data = new FormData();
-
     // append product info
     Object.keys(productData).map(key => {
       data.append(key, productData[key]);
@@ -68,10 +70,9 @@ export default function CreateProductContainer() {
       data.append(`img_${i + 1}`, img);
     });
 
-    axios
-      .post('http://localhost:8000/products', data)
+    createProduct(data, authState)
       .then(res => {
-        console.log(res.data);
+        console.log(res);
       })
       .catch(err => {
         console.error(err);
