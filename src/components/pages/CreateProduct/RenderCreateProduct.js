@@ -191,7 +191,7 @@ export default function RenderCreateProduct({
         </section>
 
         <span>Photos - {images.length}/5 - You can add up to 5 photos.</span>
-        <ImagesUploader onDropImages={onDropImages} />
+        <ImagesUploader onDropImages={onDropImages} images={images} />
 
         <Input
           name="title"
