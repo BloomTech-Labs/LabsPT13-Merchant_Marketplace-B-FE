@@ -19,8 +19,8 @@ export default function CreateProductContainer() {
   const [images, setImages] = useState([]);
   const [newTag, setNewTag] = useState('');
 
-  const onDropImages = (imageFiles, photoDataURLs) => {
-    setImages(imageFiles);
+  const onDropImages = images => {
+    setImages(images);
   };
 
   const handleChange = (name, value) => {
@@ -57,30 +57,25 @@ export default function CreateProductContainer() {
     // validate form data
 
     // post form data to backend
+    let data = new FormData();
 
-    // post images to backend
-    var imgData = new FormData();
-    imgData.append('image', images[0]);
+    // append product info
+    Object.keys(productData).map(key => {
+      data.append(key, productData[key]);
+    });
+    // append all uploaded images
+    images.forEach((img, i) => {
+      data.append(`img_${i + 1}`, img);
+    });
 
-    axios
-      .post('http://localhost:8000/products', productData)
-      .then(res => {
-        console.log(res.data);
-        const product_id = res.data.product.id;
-
-        imgData.append('product_id', product_id);
-        axios
-          .post('http://localhost:8000/products/images', imgData)
-          .then(res => {
-            console.log({ res });
-          })
-          .catch(err => console.error(err));
-
-        // create the images
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    // axios
+    //   .post('http://localhost:8000/products', data)
+    //   .then(res => {
+    //     console.log(res.data);
+    //   })
+    //   .catch(err => {
+    //     console.error(err);
+    //   });
 
     // reset form
     setFormInfo(initialState);
