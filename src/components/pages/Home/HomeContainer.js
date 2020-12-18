@@ -38,8 +38,15 @@ function HomeContainer({ LoadingComponent }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const products = await getMarketProducts(authState);
-        setProducts(products);
+        const { products, productsImages } = await getMarketProducts(authState);
+
+        // for each product, insert its images
+        setProducts(
+          products.map(p => ({
+            ...p,
+            images: productsImages[p.id] ? productsImages[p.id] : [],
+          }))
+        );
       } catch (error) {
         console.error(error);
         // Be sure to add functionality that displays errors to your UI here.
