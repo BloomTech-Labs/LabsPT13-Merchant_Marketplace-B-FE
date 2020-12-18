@@ -132,7 +132,6 @@ const Wrapper = styled.div`
     }
 
     .submit-btn {
-      margin: 20px 0;
       background: #3f4257;
       border-radius: 2px;
       color: white;
@@ -142,7 +141,6 @@ const Wrapper = styled.div`
       margin: 40px 0 20px 0;
       transition: all 0.2s ease-in;
       cursor: pointer;
-      outline: none;
       border: none;
     }
   }
