@@ -47,6 +47,9 @@ export default function WishlistCard({ product }) {
   function addToCart() {
     console.log('added to Cart');
   }
+  function removeFromWishlist() {
+    console.log('removed from wishlist');
+  }
   return (
     // <Link to={`/item/${product.id}`}>
     <Card>
@@ -58,7 +61,7 @@ export default function WishlistCard({ product }) {
         <h3>title</h3>
         <p>Location</p>
         <button onClick={addToCart}>Add to cart</button>
-        <button>Remove</button>
+        <button onClick={removeFromWishlist}>Remove</button>
       </div>
     </Card>
     // </Link>

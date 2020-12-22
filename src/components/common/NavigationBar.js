@@ -6,7 +6,6 @@ import { ShoppingCartOutlined } from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
 import FormInput from './FormInput';
 import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
-import RenderWishlist from '../pages/Wishlist/RenderWishlist';
 import { WishlistPage } from '../pages/Wishlist';
 
 const Wrapper = styled.div`
