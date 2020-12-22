@@ -21,8 +21,18 @@ export default function CreateProductContainer() {
   const [images, setImages] = useState([]);
   const [newTag, setNewTag] = useState('');
 
-  const onDropImages = images => {
-    setImages(images);
+  const onDropImages = files => {
+    let dataURLs = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+      reader.readAsDataURL(files[i]);
+      reader.onloadend = () => {
+        dataURLs.push({ image: reader.result, name: files[i].name });
+      };
+    }
+
+    setImages(dataURLs);
   };
 
   const handleChange = (name, value) => {
@@ -50,7 +60,7 @@ export default function CreateProductContainer() {
     e.preventDefault();
 
     // convert the tags to a string before and add seller id
-    const productData = {
+    const product = {
       ...formInfo,
       tags: formInfo.tags.join(),
       profile_id: userInfo.sub,
@@ -59,18 +69,7 @@ export default function CreateProductContainer() {
     // validate form data
     // !TODO make sure all required inputs are filled
 
-    // post form data to backend
-    let data = new FormData();
-    // append product info
-    Object.keys(productData).map(key => {
-      data.append(key, productData[key]);
-    });
-    // append all uploaded images
-    images.forEach((img, i) => {
-      data.append(`img_${i + 1}`, img);
-    });
-
-    createProduct(data, authState)
+    createProduct({ product, images }, authState)
       .then(res => {
         console.log(res);
       })
