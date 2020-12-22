@@ -6,6 +6,8 @@ import { ShoppingCartOutlined } from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
 import FormInput from './FormInput';
 import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import RenderWishlist from '../pages/Wishlist/RenderWishlist';
+import { WishlistPage } from '../pages/Wishlist';
 
 const Wrapper = styled.div`
   height: 180px;
@@ -147,7 +149,7 @@ export default function NavigationBar() {
 
         <div className="bottom">
           <Link to="/">Home</Link>
-          <span>Wishlist</span>
+          <Link to="/wishlist">Wishlist</Link>
           <span>Products</span>
           <span>Categories</span>
 
