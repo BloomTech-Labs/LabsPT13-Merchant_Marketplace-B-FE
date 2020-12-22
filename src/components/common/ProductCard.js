@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image } from 'cloudinary-react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -18,7 +19,6 @@ const Card = styled.div`
   }
 
   img {
-    width: 100%;
     height: 220px;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
@@ -47,7 +47,15 @@ export default function ProductCard({ product }) {
   return (
     <Link to={{ pathname: `/marketplace/item/${product.id}`, product }}>
       <Card>
-        <img src={product.img} alt="market product" />
+        {product.images.length ? (
+          <Image
+            cloudName="rabahcloud"
+            publicId={product.images[0].image_id}
+            width="260"
+          />
+        ) : (
+          <img src={product.img} alt="market product" />
+        )}
 
         <div className="details">
           <h4>${product.price}</h4>

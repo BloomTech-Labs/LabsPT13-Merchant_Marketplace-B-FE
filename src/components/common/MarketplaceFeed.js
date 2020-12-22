@@ -16,18 +16,13 @@ const Wrapper = styled.div`
 
 export default function MarketplaceFeed() {
   const products = useContext(ProductsContext);
-  let img = products[5] && products[5].images[0].image;
 
   return (
     <Wrapper>
       <div className="products">
         {products.map(p => (
           <>
-            {p.images.length ? (
-              <img src={`data:${p.images[0].type};base64,${img.data}`} />
-            ) : (
-              <ProductCard key={p.id} product={p} />
-            )}
+            <ProductCard key={p.id} product={p} />
           </>
         ))}
 
