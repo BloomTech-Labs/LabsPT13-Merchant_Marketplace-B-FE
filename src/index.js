@@ -10,7 +10,7 @@ import 'normalize.css';
 import 'antd/dist/antd.less';
 import './index.css';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, undefined, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
