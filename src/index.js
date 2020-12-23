@@ -11,8 +11,11 @@ import 'normalize.css';
 import 'antd/dist/antd.less';
 import './index.css';
 
-const enhancer = compose(applyMiddleware(thunk), persistState());
-const store = createStore(rootReducer, enhancer);
+const enhancer = compose(
+  applyMiddleware(thunk),
+  persistState(['userInfo'], { key: 'mmp_data' })
+);
+const store = createStore(rootReducer, undefined, enhancer);
 
 ReactDOM.render(
   <React.StrictMode>

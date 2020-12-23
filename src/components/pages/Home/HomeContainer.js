@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import { getMarketProducts } from '../../../api';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../../../state/actions';
 import RenderHomePage from './RenderHomePage';
-import { ProductsContext } from '../../../state/contexts';
 import { useLocalStorage } from 'react-use';
 
 function HomeContainer({ LoadingComponent }) {
@@ -11,7 +11,8 @@ function HomeContainer({ LoadingComponent }) {
   const [user, setUser] = useLocalStorage('user', null);
   // set user info state from local storage
   const [userInfo, setUserInfo] = useState(user);
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const { products } = useSelector(state => state.productsReducer);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -36,19 +37,8 @@ function HomeContainer({ LoadingComponent }) {
   }, [memoAuthService, userInfo, setUser]);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const products = await getMarketProducts(authState);
-        setProducts(products);
-      } catch (error) {
-        console.error(error);
-        // Be sure to add functionality that displays errors to your UI here.
-        // We want our users to know whether something has gone wrong with our request.
-      }
-    };
-
-    fetchProducts();
-  }, [authState]);
+    !products.length && dispatch(fetchProducts(authState));
+  }, [dispatch, authState]);
 
   return (
     <>
@@ -56,9 +46,7 @@ function HomeContainer({ LoadingComponent }) {
         (!userInfo ? (
           <LoadingComponent message="...Fetching profile" />
         ) : (
-          <ProductsContext.Provider value={products}>
-            <RenderHomePage />
-          </ProductsContext.Provider>
+          <RenderHomePage />
         ))}
     </>
   );

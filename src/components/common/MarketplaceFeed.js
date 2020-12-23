@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ProductCard from './ProductCard';
-import { ProductsContext } from '../../state/contexts';
 
 const Wrapper = styled.div`
   padding-bottom: 20px;
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 `;
 
 export default function MarketplaceFeed() {
-  const products = useContext(ProductsContext);
+  const { products } = useSelector(state => state.productsReducer);
 
   return (
     <Wrapper>
