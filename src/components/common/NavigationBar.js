@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -101,6 +102,9 @@ export default function NavigationBar() {
   const { authService } = useOktaAuth();
   //  access user info from local storage
   const userInfo = JSON.parse(window.localStorage.getItem('user'));
+  const test = useSelector(state => state);
+
+  console.log({ test });
 
   return (
     <Wrapper>
@@ -117,7 +121,7 @@ export default function NavigationBar() {
             </Link>
           </div>
 
-          <div className="top-left">
+          {/* <div className="top-left">
             <div className="user-profile">
               <DropdownMenu
                 title={`Hi, ${userInfo.given_name}`}
@@ -127,7 +131,7 @@ export default function NavigationBar() {
                 ]}
               />
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="middle">

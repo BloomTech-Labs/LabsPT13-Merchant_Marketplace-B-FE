@@ -1,16 +1,15 @@
 import { getMarketProducts } from '../../api';
-import { LOADING, SUCCESS, ERROR } from '../actions';
 
 export const fetchProducts = authState => dispatch => {
   try {
-    dispatch({ type: LOADING });
-    console.log('FETCHING');
+    console.log('FETCHING PRODUCTS');
+    dispatch({ type: 'LOADING_PRODUCTS' });
     getMarketProducts(authState).then(products => {
-      dispatch({ type: SUCCESS, payload: products });
+      dispatch({ type: 'LOADED_PRODUCTS', payload: products });
     });
   } catch (err) {
     dispatch({
-      type: ERROR,
+      type: 'ERROR_PRODUCTS',
       payload: 'Request failed, please try again!',
     });
     console.error(err);

@@ -1,18 +1,17 @@
-import { LOADING, SUCCESS, ERROR } from '../actions';
-
 const initialState = {
   userInfo: null,
   loading: false,
   error: '',
 };
 
-export const userInfoReducer = (state = initialState, { type, payload }) => {
+const userInfoReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case LOADING:
+    case 'LOADING_USER_INFO':
+      console.log('LOADING');
       return { ...state, loading: true, error: '' };
-    case SUCCESS:
+    case 'LOADED_USER_INFO':
       return { ...state, loading: false, userInfo: payload };
-    case ERROR:
+    case 'ERROR_USER_INFO':
       return {
         ...state,
         loading: false,
@@ -22,3 +21,5 @@ export const userInfoReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
+
+export default userInfoReducer;

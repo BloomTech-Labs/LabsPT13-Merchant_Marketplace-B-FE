@@ -1,5 +1,3 @@
-import { LOADING, SUCCESS, ERROR } from '../actions';
-
 const initialState = {
   products: [],
   error: '',
@@ -8,11 +6,11 @@ const initialState = {
 
 const productsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case LOADING:
+    case 'LOADING_PRODUCTS':
       return { ...state, loading: true, error: '' };
-    case SUCCESS:
+    case 'LOADED_PRODUCTS':
       return { ...state, loading: false, products: payload };
-    case ERROR:
+    case 'ERROR_PRODUCTS':
       return {
         ...state,
         loading: false,

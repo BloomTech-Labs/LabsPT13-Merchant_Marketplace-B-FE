@@ -13,7 +13,12 @@ import './index.css';
 
 const enhancer = compose(
   applyMiddleware(thunk),
-  persistState(['userInfo'], { key: 'mmp_data' })
+  persistState('userInfo', {
+    key: 'mmp_data',
+    slicer: () => state => {
+      return { userInfo: state.userInfoReducer.userInfo };
+    },
+  })
 );
 const store = createStore(rootReducer, undefined, enhancer);
 
