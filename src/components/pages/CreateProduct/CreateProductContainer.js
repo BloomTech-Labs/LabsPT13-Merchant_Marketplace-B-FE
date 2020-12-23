@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Spin } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
 import RenderCreateProduct from './RenderCreateProduct';
 import { createProduct } from '../../../api';
@@ -21,6 +23,8 @@ export default function CreateProductContainer() {
   const [images, setImages] = useState([]);
   const [newTag, setNewTag] = useState('');
   const [imagesSelected, setImagesSelected] = useState(true);
+  const [listingProduct, setListingProduct] = useState(false);
+  const history = useHistory();
 
   const onDropImages = files => {
     let dataURLs = [];
@@ -71,9 +75,12 @@ export default function CreateProductContainer() {
         profile_id: userInfo.sub,
       };
 
+      setListingProduct(true);
+
       createProduct({ product, images }, authState)
-        .then(res => {
-          console.log(res);
+        .then(() => {
+          setListingProduct(false);
+          history.push('/');
         })
         .catch(err => {
           console.error(err);
@@ -87,20 +94,34 @@ export default function CreateProductContainer() {
 
   return (
     <div>
-      <RenderCreateProduct
-        userInfo={userInfo}
-        formInfo={formInfo}
-        newTag={newTag}
-        images={images}
-        onDropImages={onDropImages}
-        handleChange={handleChange}
-        handleTagChange={handleTagChange}
-        handleSubmit={handleSubmit}
-        handleKeyPress={handleKeyPress}
-        addTag={addTag}
-        removeTag={removeTag}
-        imagesSelected={imagesSelected}
-      />
+      {listingProduct ? (
+        <div
+          style={{
+            width: '100%',
+            height: '100vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Spin tip="Loading" size="large" style={{ fontSize: '18px' }} />
+        </div>
+      ) : (
+        <RenderCreateProduct
+          userInfo={userInfo}
+          formInfo={formInfo}
+          newTag={newTag}
+          images={images}
+          onDropImages={onDropImages}
+          handleChange={handleChange}
+          handleTagChange={handleTagChange}
+          handleSubmit={handleSubmit}
+          handleKeyPress={handleKeyPress}
+          addTag={addTag}
+          removeTag={removeTag}
+          imagesSelected={imagesSelected}
+        />
+      )}
     </div>
   );
 }
