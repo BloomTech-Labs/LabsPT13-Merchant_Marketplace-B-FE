@@ -18,7 +18,7 @@ const initialState = {
 
 export default function CreateProductContainer() {
   const { authState } = useOktaAuth();
-  const userInfo = JSON.parse(window.localStorage.getItem('user'));
+  const userInfo = JSON.parse(window.localStorage.getItem('user_info'));
   const [formInfo, setFormInfo] = useState(initialState);
   const [images, setImages] = useState([]);
   const [newTag, setNewTag] = useState('');

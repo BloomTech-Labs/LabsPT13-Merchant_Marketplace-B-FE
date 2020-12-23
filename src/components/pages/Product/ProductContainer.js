@@ -9,7 +9,7 @@ export default function ProductContainer() {
   const { product } = useLocation();
   const [productInfo, setProductInfo] = useState(product);
 
-  const sellerInfo = JSON.parse(window.localStorage.getItem('user'));
+  const sellerInfo = JSON.parse(window.localStorage.getItem('user_info'));
   const [message, setMessage] = useState('Is this available?');
   const [saved, setSaved] = useState(false);
   const { id } = useParams();

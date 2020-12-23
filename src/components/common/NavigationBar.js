@@ -100,11 +100,7 @@ const Wrapper = styled.div`
 export default function NavigationBar() {
   const [input, setInput] = useState('');
   const { authService } = useOktaAuth();
-  //  access user info from local storage
-  const userInfo = JSON.parse(window.localStorage.getItem('user'));
-  const test = useSelector(state => state);
-
-  console.log({ test });
+  const { userInfo } = useSelector(state => state.userInfoReducer);
 
   return (
     <Wrapper>
@@ -121,7 +117,7 @@ export default function NavigationBar() {
             </Link>
           </div>
 
-          {/* <div className="top-left">
+          <div className="top-left">
             <div className="user-profile">
               <DropdownMenu
                 title={`Hi, ${userInfo.given_name}`}
@@ -131,7 +127,7 @@ export default function NavigationBar() {
                 ]}
               />
             </div>
-          </div> */}
+          </div>
         </div>
 
         <div className="middle">
