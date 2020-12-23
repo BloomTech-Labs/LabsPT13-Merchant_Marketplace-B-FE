@@ -1,17 +1,17 @@
 import { LOADING, SUCCESS, ERROR } from '../actions';
 
 const initialState = {
-  products: [],
-  error: '',
+  userInfo: null,
   loading: false,
+  error: '',
 };
 
-const productsReducer = (state = initialState, { type, payload }) => {
+export const userInfoReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOADING:
       return { ...state, loading: true, error: '' };
     case SUCCESS:
-      return { ...state, loading: false, products: payload };
+      return { ...state, loading: false, userInfo: payload };
     case ERROR:
       return {
         ...state,
@@ -22,5 +22,3 @@ const productsReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
-
-export default productsReducer;

@@ -38,7 +38,7 @@ function HomeContainer({ LoadingComponent }) {
 
   useEffect(() => {
     !products.length && dispatch(fetchProducts(authState));
-  }, [dispatch, authState]);
+  }, [dispatch, authState, products.length]);
 
   return (
     <>

@@ -1,8 +1,5 @@
 import { getMarketProducts } from '../../api';
-
-const LOADING = 'LOADING';
-const SUCCESS = 'SUCCESS';
-const ERROR = 'ERROR';
+import { LOADING, SUCCESS, ERROR } from '../actions';
 
 export const fetchProducts = authState => dispatch => {
   try {
