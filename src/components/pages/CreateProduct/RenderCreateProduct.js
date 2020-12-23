@@ -168,7 +168,6 @@ export default function RenderCreateProduct({
   imagesSelected,
 }) {
   const { title, price, brand, description, tags } = formInfo;
-
   const { TextArea } = Input;
 
   return (
