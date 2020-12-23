@@ -1,9 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import WishListCard from '../../common/WishListCard';
-import { NavigationBar } from '../../common';
+import NavigationBar from '../../common/NavigationBar';
+const Wrapper = styled.div`
+  .Wishlist__ad {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
-const Wrapper = styled.div``;
+  .Wishlist__title {
+    margin-right: 10px;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+  }
+`;
 
 const RenderWishlist = () => {
   return (
@@ -11,11 +21,11 @@ const RenderWishlist = () => {
       <NavigationBar />
       <img
         className="Wishlist__ad"
-        src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
-        alt=""
+        src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg "
+        alt=" "
       />
       <div>
-        <h2 className="Wishlist__Title">Your Wishlist</h2>
+        <h1 className="Wishlist__title">Wishlist</h1>
         {/* {basket.map(item => (
             <WishlistCard
               id={item.id}

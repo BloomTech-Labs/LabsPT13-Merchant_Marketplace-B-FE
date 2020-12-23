@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { HeartOutlined } from '@ant-design/icons';
+import { StopOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
 const Card = styled.div`
   height: 300px;
@@ -17,13 +17,13 @@ const Card = styled.div`
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
-  img {
-    width: 100%;
-    height: 220px;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
-    object-fit: cover;
-  }
+  // img {
+  //   width: 100%;
+  //   height: 220px;
+  //   border-top-right-radius: 3px;
+  //   border-top-left-radius: 3px;
+  //   object-fit: cover;
+  // }
 
   .details {
     padding: 5px;
@@ -41,6 +41,11 @@ const Card = styled.div`
     h3 {
       font-weight: bold;
     }
+    button {
+      height: 35px;
+      width: 35px;
+      margin-top: 110px;
+    }
   }
 `;
 export default function WishlistCard({ product }) {
@@ -56,14 +61,23 @@ export default function WishlistCard({ product }) {
       {/* <img src={product.img} alt="market product" /> */}
 
       <div className="details">
-        <div>img</div>
-        <h4>$:Price</h4>
-        <h3>title</h3>
-        <p>Location</p>
-        <button onClick={addToCart}>Add to cart</button>
-        <button onClick={removeFromWishlist}>Remove</button>
+        <h1>img</h1>
+        <div>
+          <h2>title</h2>
+          <p>
+            <small>$</small>
+            <strong>Price</strong>
+          </p>
+          <button onClick={addToCart}>
+            <ShoppingCartOutlined className="cart-icon" />
+          </button>
+          <button onClick={removeFromWishlist}>
+            <StopOutlined className="remove__icon" />
+          </button>
+        </div>
       </div>
     </Card>
+
     // </Link>
   );
 }
