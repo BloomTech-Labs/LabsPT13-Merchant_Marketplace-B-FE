@@ -236,18 +236,13 @@ const RenderProduct = ({
   unSaveProduct,
   sendMessage,
 }) => {
-  const images = new Array(3).fill({
-    original: product.img,
-    thumbnail: product.img,
-  });
-
   return (
     <Wrapper>
       <Link to="/">
         <ArrowLeftOutlined />
       </Link>
 
-      <ImagesGallery images={images} />
+      <ImagesGallery images={product.images} />
 
       <div className="details-wrapper">
         <div className="nav-wrapper">

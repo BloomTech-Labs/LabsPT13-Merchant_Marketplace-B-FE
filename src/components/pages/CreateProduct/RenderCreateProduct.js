@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ArrowLeftOutlined, PlusOutlined } from '@ant-design/icons';
-import { Input, Select } from 'antd';
+import { Input } from 'antd';
 import ImagesUploader from '../../common/ImagesUploader';
+import FormSelect from '../../common/FomSelect';
 
 const Wrapper = styled.div`
   background-color: #f7f7f7;
@@ -74,6 +75,12 @@ const Wrapper = styled.div`
             line-height: 25px;
           }
         }
+      }
+    }
+
+    .ant-input-affix-wrapper {
+      input::placeholder {
+        color: black;
       }
     }
 
@@ -152,24 +159,16 @@ export default function RenderCreateProduct({
   images,
   onDropImages,
   handleChange,
+  handleTagChange,
   handleSubmit,
   handleKeyPress,
-  handleTagChange,
   newTag,
   addTag,
   removeTag,
+  imagesSelected,
 }) {
-  const {
-    title,
-    price,
-    brand,
-    description,
-    category,
-    condition,
-    delivery_method,
-    tags,
-  } = formInfo;
-  const { Option } = Select;
+  const { title, price, brand, description, tags } = formInfo;
+
   const { TextArea } = Input;
 
   return (
@@ -192,12 +191,17 @@ export default function RenderCreateProduct({
 
         <span>Photos - {images.length}/5 - You can add up to 5 photos.</span>
         <ImagesUploader onDropImages={onDropImages} images={images} />
+        {!imagesSelected && (
+          <div style={{ textAlign: 'center', color: 'red' }}>
+            Please select an image.
+          </div>
+        )}
 
         <Input
           name="title"
           value={title}
           placeholder="Title"
-          onChange={e => handleChange(e.target.name, e.target.value)}
+          onChange={handleChange}
           allowClear={true}
           required
         />
@@ -206,7 +210,7 @@ export default function RenderCreateProduct({
           name="brand"
           value={brand}
           placeholder="Brand"
-          onChange={e => handleChange(e.target.name, e.target.value)}
+          onChange={handleChange}
           allowClear={true}
           style={{ marginBottom: 0 }}
         />
@@ -217,62 +221,38 @@ export default function RenderCreateProduct({
           name="price"
           type="number"
           placeholder="Price"
-          onChange={e => handleChange(e.target.name, e.target.value)}
+          onChange={handleChange}
           suffix="$"
           required
         />
 
-        <Select
-          showSearch
-          style={{ width: '100%' }}
-          placeholder="Category"
-          onChange={value => handleChange('category', value)}
-          required
-        >
-          <Option disabled value={category}>
-            Category
-          </Option>
-          <Option value="Electronics">Electronics</Option>
-          <Option value="Furniture">Furniture</Option>
-          <Option value="Books">Books</Option>
-        </Select>
+        <FormSelect
+          title="Category"
+          name="category"
+          values={['Electronics', 'Furniture', 'Books']}
+          onChange={handleChange}
+        />
 
-        <Select
-          showSearch
-          style={{ width: '100%' }}
-          placeholder="Condition"
-          onChange={value => handleChange('condition', value)}
-          required
-        >
-          <Option disabled value={condition}>
-            Condition
-          </Option>
-          <Option value="New">New</Option>
-          <Option value="Used - Like New">Used - Like New</Option>
-          <Option value="Used - Good">Used - Good</Option>
-          <Option value="Used - Fair">Used - Fair</Option>
-        </Select>
+        <FormSelect
+          title="Condition"
+          name="condition"
+          values={['New', 'Used - Like New', 'Used - Good', 'Used - Fair']}
+          onChange={handleChange}
+        />
 
-        <Select
-          showSearch
-          style={{ width: '100%' }}
-          placeholder="Delivery Method"
-          onChange={value => handleChange('delivery_method', value)}
-          required
-        >
-          <Option disabled value={delivery_method}>
-            Delivery Method
-          </Option>
-          <Option value="Local pickup only">Local pickup only</Option>
-          <Option value="Shipping">Shipping</Option>
-        </Select>
+        <FormSelect
+          title="Delivery Method"
+          name="delivery_method"
+          values={['Local pickup only', 'Shipping']}
+          onChange={handleChange}
+        />
 
         <TextArea
           placeholder="Description"
           value={description}
           name="description"
           autoSize={{ minRows: 6, maxRows: 6 }}
-          onChange={e => handleChange(e.target.name, e.target.value)}
+          onChange={handleChange}
           allowClear={true}
           required
         />
