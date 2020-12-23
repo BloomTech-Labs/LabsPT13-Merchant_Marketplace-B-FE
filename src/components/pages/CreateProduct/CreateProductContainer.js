@@ -20,6 +20,7 @@ export default function CreateProductContainer() {
   const [formInfo, setFormInfo] = useState(initialState);
   const [images, setImages] = useState([]);
   const [newTag, setNewTag] = useState('');
+  const [imagesSelected, setImagesSelected] = useState(true);
 
   const onDropImages = files => {
     let dataURLs = [];
@@ -33,13 +34,14 @@ export default function CreateProductContainer() {
     }
 
     setImages(dataURLs);
-  };
-
-  const handleChange = (name, value) => {
-    setFormInfo({ ...formInfo, [name]: value });
+    setImagesSelected(true);
   };
 
   const handleTagChange = e => setNewTag(e.target.value);
+
+  const handleChange = e => {
+    setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
+  };
 
   const addTag = () => {
     setFormInfo({ ...formInfo, tags: [...formInfo.tags, newTag] });
@@ -59,27 +61,28 @@ export default function CreateProductContainer() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // convert the tags to a string before and add seller id
-    const product = {
-      ...formInfo,
-      tags: formInfo.tags.join(),
-      profile_id: userInfo.sub,
-    };
+    if (!images.length) {
+      setImagesSelected(false);
+    } else {
+      // convert the tags to a string before and add seller id
+      const product = {
+        ...formInfo,
+        tags: formInfo.tags.join(),
+        profile_id: userInfo.sub,
+      };
 
-    // validate form data
-    // !TODO make sure all required inputs are filled
+      createProduct({ product, images }, authState)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.error(err);
+        });
 
-    createProduct({ product, images }, authState)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-
-    // reset form
-    setFormInfo(initialState);
-    setImages([]);
+      // reset form
+      setFormInfo(initialState);
+      setImages([]);
+    }
   };
 
   return (
@@ -91,11 +94,12 @@ export default function CreateProductContainer() {
         images={images}
         onDropImages={onDropImages}
         handleChange={handleChange}
+        handleTagChange={handleTagChange}
         handleSubmit={handleSubmit}
         handleKeyPress={handleKeyPress}
-        handleTagChange={handleTagChange}
         addTag={addTag}
         removeTag={removeTag}
+        imagesSelected={imagesSelected}
       />
     </div>
   );

@@ -21,14 +21,8 @@ export default function MarketplaceFeed() {
     <Wrapper>
       <div className="products">
         {products.map(p => (
-          <>
-            <ProductCard key={p.id} product={p} />
-          </>
-        ))}
-
-        {/* {products.map(p => (
           <ProductCard key={p.id} product={p} />
-        ))} */}
+        ))}
       </div>
     </Wrapper>
   );
