@@ -1,10 +1,12 @@
 import React, { useState,useEffect } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
+import { getProductById } from '../../../api';
 
 import RenderCart from './RenderCart';
 
 export default function CartContainer() {
   const { authState } = useOktaAuth();
+  const [productInfo, setProductInfo] = useState(product);
 
   useEffect(() => {
     const fetchCart = async () => {
