@@ -9,7 +9,8 @@ function HomeContainer({ LoadingComponent }) {
   const dispatch = useDispatch();
   const { authState, authService } = useOktaAuth();
   const [memoAuthService] = useMemo(() => [authService], [authService]);
-  const { userInfo, products } = useSelector(state => state);
+  const { userInfo } = useSelector(state => state.userInfo);
+  const { products } = useSelector(state => state.products);
 
   useEffect(() => {
     let isSubscribed = true;
