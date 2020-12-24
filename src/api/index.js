@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { wrap } from 'module';
 
 // we will define a bunch of API calls here.
 const baseUrl = process.env.REACT_APP_API_URI;
@@ -69,19 +70,19 @@ const getMarketProducts = async authState => {
   }
 };
 
-const getProductById = async (id, authState) => {
-  try {
-    const headers = getAuthHeader(authState);
-    return apiAuthGet(`${baseUrl}/products/${id}`, headers).then(
-      res => res.data
-    );
-  } catch (error) {
-    return new Promise(() => {
-      console.log(error);
-      return {};
-    });
-  }
-};
+// const getProductById = async (id, authState) => {
+//   try {
+//     const headers = getAuthHeader(authState);
+//     return apiAuthGet(`${baseUrl}/products/${id}`, headers).then(
+//       res => res.data
+//     );
+//   } catch (error) {
+//     return new Promise(() => {
+//       console.log(error);
+//       return {};
+//     });
+//   }
+// };
 
 const createProduct = async (product, authState) => {
   try {
@@ -103,6 +104,5 @@ export {
   getProfileData,
   getDSData,
   getMarketProducts,
-  getProductById,
   createProduct,
 };

@@ -98,7 +98,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function NavigationBar({ searchTerm, handleSearchTermChange }) {
+export default function NavigationBar() {
   const dispatch = useDispatch();
   const { authService } = useOktaAuth();
   const { userInfo } = useSelector(state => state.userInfo);
