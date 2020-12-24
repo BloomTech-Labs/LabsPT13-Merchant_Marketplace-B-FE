@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { wrap } from 'module';
 
 // we will define a bunch of API calls here.
 const baseUrl = process.env.REACT_APP_API_URI;

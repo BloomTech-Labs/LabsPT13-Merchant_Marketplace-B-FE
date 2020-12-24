@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 
   .MuiSkeleton-text {
     transform: none;
@@ -14,18 +15,18 @@ const Wrapper = styled.div`
 
   .MuiSkeleton-rect {
     position: absolute;
-    top: 73px;
+    top: 66px;
     align-self: center;
-    min-width: 600px;
+    min-width: 530px;
     background-color: #f7f7f7;
   }
 `;
 
-export default function LoadingSkeleton() {
+export default function NavLoadingSkeleton() {
   return (
     <Wrapper>
-      <Skeleton animation="wave" height={180} />
-      <Skeleton variant="rect" height={36} color="red" />
+      <Skeleton animation="wave" height={160} />
+      <Skeleton variant="rect" height={30} />
     </Wrapper>
   );
 }

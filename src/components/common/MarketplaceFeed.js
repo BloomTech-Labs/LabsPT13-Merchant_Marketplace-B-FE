@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import ProductCard from './ProductCard';
+import ProductCardSkeleton from './ProductCardSkeleton';
+const LazyProductCard = lazy(() => import('./ProductCard'));
 
 const Wrapper = styled.div`
   padding-bottom: 20px;
@@ -25,8 +26,10 @@ export default function MarketplaceFeed() {
   return (
     <Wrapper>
       <div className="products">
-        {searchedProducts.map(p => (
-          <ProductCard key={p.id} product={p} />
+        {searchedProducts.map((p, i) => (
+          <Suspense key={i} fallback={<ProductCardSkeleton />}>
+            <LazyProductCard product={p} />
+          </Suspense>
         ))}
       </div>
     </Wrapper>
