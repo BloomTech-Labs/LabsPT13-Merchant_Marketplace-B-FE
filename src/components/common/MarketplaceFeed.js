@@ -14,10 +14,12 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function MarketplaceFeed({ searchTerm }) {
+export default function MarketplaceFeed() {
   const { products } = useSelector(state => state.products);
+  const { searchedTitle } = useSelector(state => state.marketplaceSearch);
+
   const searchedProducts = products.filter(p =>
-    p.title.toLowerCase().includes(searchTerm.toLowerCase())
+    p.title.toLowerCase().includes(searchedTitle.toLowerCase())
   );
 
   return (
