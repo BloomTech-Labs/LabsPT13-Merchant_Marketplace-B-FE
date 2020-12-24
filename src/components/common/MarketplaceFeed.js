@@ -14,13 +14,16 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function MarketplaceFeed() {
+export default function MarketplaceFeed({ searchTerm }) {
   const { products } = useSelector(state => state.products);
+  const searchedProducts = products.filter(p =>
+    p.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <Wrapper>
       <div className="products">
-        {products.map(p => (
+        {searchedProducts.map(p => (
           <ProductCard key={p.id} product={p} />
         ))}
       </div>

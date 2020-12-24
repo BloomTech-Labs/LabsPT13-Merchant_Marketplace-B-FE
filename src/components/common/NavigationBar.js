@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -97,8 +97,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function NavigationBar() {
-  const [input, setInput] = useState('');
+export default function NavigationBar({ searchTerm, handleSearchTermChange }) {
   const { authService } = useOktaAuth();
   const { userInfo } = useSelector(state => state.userInfo);
 
@@ -135,8 +134,8 @@ export default function NavigationBar() {
             <FormInput
               name="search-bar"
               type="text"
-              value={input}
-              onChange={e => setInput(e.target.value)}
+              value={searchTerm}
+              onChange={handleSearchTermChange}
               placeholder="Search MarketPlace"
               labelId=""
               Icon={<SearchOutlined />}
