@@ -1,22 +1,37 @@
 import React, { lazy, Suspense } from 'react';
-import { NavigationBar, MarketplaceFeed, LoadingComponent } from '../../common';
-import LoadingSkeleton from '../../common/LoadingSkeleton';
+import { MarketplaceFeed, NavigationBar } from '../../common';
+import NavLoadingSkeleton from '../../common/NavLoadingSkeleton';
+import ProductCardSkeleton from '../../common/ProductCardSkeleton';
 
 const LazyNavigationBar = lazy(() => import('../../common/NavigationBar'));
 
 function RenderHomePage({ userInfo, products }) {
   return (
     <>
-      {!userInfo && products.length ? (
+      {userInfo && products.length ? (
         <>
-          <Suspense fallback={<LoadingSkeleton />}>
+          <Suspense fallback={<NavLoadingSkeleton />}>
             <LazyNavigationBar />
           </Suspense>
 
           <MarketplaceFeed />
         </>
       ) : (
-        <LoadingSkeleton />
+        <>
+          <NavLoadingSkeleton />
+
+          <section
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+            }}
+          >
+            {[1, 2, 3, 4, 5].map((p, i) => (
+              <ProductCardSkeleton key={i} />
+            ))}
+          </section>
+        </>
       )}
     </>
   );

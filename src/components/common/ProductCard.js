@@ -45,6 +45,7 @@ const Card = styled.div`
     }
   }
 `;
+
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
 
