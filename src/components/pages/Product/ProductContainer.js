@@ -10,8 +10,6 @@ export default function ProductContainer() {
 
   const { userInfo } = useSelector(state => state.userInfoReducer);
 
-  console.log({ userInfo });
-
   // persist product info via local storage on the first render only
   product &&
     window.localStorage.setItem('product_info', JSON.stringify(product));
