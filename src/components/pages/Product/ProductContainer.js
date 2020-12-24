@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import RenderProduct from './RenderProduct';
 
 export default function ProductContainer() {
   const [message, setMessage] = useState('Is this available?');
   const [saved, setSaved] = useState(false);
-  const { product } = useLocation();
-  const { userInfo } = useSelector(state => state.userInfo);
-
-  // persist product info via local storage on the first render only
-  product &&
-    window.localStorage.setItem('product_info', JSON.stringify(product));
-
-  const productInfo = JSON.parse(window.localStorage.getItem('product_info'));
+  const { userInfo, selectedProduct } = useSelector(state => state);
 
   const saveMessage = e => setMessage(e.target.value);
 
@@ -37,7 +29,7 @@ export default function ProductContainer() {
     <>
       <RenderProduct
         sellerInfo={userInfo}
-        product={productInfo}
+        product={selectedProduct}
         message={message}
         saved={saved}
         saveMessage={saveMessage}
