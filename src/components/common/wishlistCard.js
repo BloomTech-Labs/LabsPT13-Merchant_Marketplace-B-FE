@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import { StopOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
 const Card = styled.div`
-  height: 300px;
+  height: 100%;
   width: 260px;
   border-radius: 4px;
   overflow: hidden;
   cursor: pointer;
   transition-duration: 0.3s;
+  margin: 15px;
 
   &:hover {
     box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.12),
@@ -17,17 +18,17 @@ const Card = styled.div`
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
-  // img {
-  //   width: 100%;
-  //   height: 220px;
-  //   border-top-right-radius: 3px;
-  //   border-top-left-radius: 3px;
-  //   object-fit: cover;
-  // }
+  img {
+    width: 100%;
+    height: 220px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    object-fit: cover;
+  }
 
   .details {
     padding: 5px;
-    background-color: #fff;
+    background-color: #e8f4f7;
 
     p {
       color: gray;
@@ -61,12 +62,15 @@ export default function WishlistCard({ product }) {
       {/* <img src={product.img} alt="market product" /> */}
 
       <div className="details">
-        <h1>img</h1>
+        <img
+          src="https://m.media-amazon.com/images/I/61OUjGDvtLL._AC_UY218_.jpg "
+          alt=" "
+        />
         <div>
-          <h2>title</h2>
+          <h2>Microsoft Xbox One X 1TB Console</h2>
           <p>
             <small>$</small>
-            <strong>Price</strong>
+            <strong>499.99</strong>
           </p>
           <button onClick={addToCart}>
             <ShoppingCartOutlined className="cart-icon" />

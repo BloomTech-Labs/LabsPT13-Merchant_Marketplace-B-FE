@@ -5,7 +5,7 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { HomePage } from './components/pages/Home';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
-import { LoadingComponent } from './components/common';
+import { LoadingComponent, NavigationBar } from './components/common';
 import { CartPage } from './components/pages/Cart';
 import { ProductPage } from './components/pages/Product';
 import { CreateProduct } from './components/pages/CreateProduct';
