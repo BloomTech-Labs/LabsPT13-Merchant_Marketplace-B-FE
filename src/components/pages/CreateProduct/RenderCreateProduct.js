@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ArrowLeftOutlined, PlusOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
-import ImagesUploader from '../../common/ImagesUploader';
-import FormSelect from '../../common/FomSelect';
+import { ImagesUploader, FormSelect } from '../../common';
 
 const Wrapper = styled.div`
   background-color: #f7f7f7;
@@ -191,7 +190,7 @@ export default function RenderCreateProduct({
 
         <span>Photos - {images.length}/5 - You can add up to 5 photos.</span>
         <ImagesUploader onDropImages={onDropImages} images={images} />
-                                             
+
         {!imageSelected && (
           <div style={{ textAlign: 'center', color: 'red' }}>
             Please select an image.

@@ -3,10 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { ShoppingCartOutlined } from '@ant-design/icons';
-import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { Input } from 'antd';
+import {
+  SearchOutlined,
+  PlusCircleOutlined,
+  ShoppingCartOutlined,
+  AudioOutlined,
+} from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
-import FormInput from './FormInput';
 import { searchByTitle } from '../../state/actions';
 
 const Wrapper = styled.div`
@@ -133,14 +137,20 @@ export default function NavigationBar() {
 
         <div className="middle">
           <div className="search-bar-wrapper">
-            <FormInput
-              name="search-bar"
+            <Input
               type="text"
-              onChange={e => dispatch(searchByTitle(e.target.value))}
               placeholder="Search MarketPlace"
-              labelId=""
-              Icon={<SearchOutlined />}
-              styles={{ maxWidth: '500px' }}
+              onChange={e => dispatch(searchByTitle(e.target.value))}
+              style={{ maxWidth: '500px' }}
+              addonAfter={<SearchOutlined />}
+              suffix={
+                <AudioOutlined
+                  style={{
+                    fontSize: 16,
+                    color: '#1890ff',
+                  }}
+                />
+              }
             />
           </div>
         </div>

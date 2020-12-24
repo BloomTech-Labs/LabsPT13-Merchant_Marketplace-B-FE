@@ -1,7 +1,9 @@
 import React, { lazy, Suspense } from 'react';
-import { MarketplaceFeed, NavigationBar } from '../../common';
-import NavLoadingSkeleton from '../../common/NavLoadingSkeleton';
-import ProductCardSkeleton from '../../common/ProductCardSkeleton';
+import {
+  MarketplaceFeed,
+  ProductCardSkeleton,
+  NavLoadingSkeleton,
+} from '../../common';
 
 const LazyNavigationBar = lazy(() => import('../../common/NavigationBar'));
 

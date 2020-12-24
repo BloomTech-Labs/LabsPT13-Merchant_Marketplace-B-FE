@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from '../../../state/actions';
-import { fetchUserInfo } from '../../../state/actions';
+import { fetchUserInfo, fetchProducts } from '../../../state/actions';
 import RenderHomePage from './RenderHomePage';
 
 function HomeContainer() {
