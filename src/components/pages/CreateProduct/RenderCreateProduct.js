@@ -191,6 +191,7 @@ export default function RenderCreateProduct({
 
         <span>Photos - {images.length}/5 - You can add up to 5 photos.</span>
         <ImagesUploader onDropImages={onDropImages} images={images} />
+                                             
         {!imageSelected && (
           <div style={{ textAlign: 'center', color: 'red' }}>
             Please select an image.
