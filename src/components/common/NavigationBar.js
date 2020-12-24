@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
 import FormInput from './FormInput';
-import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { searchByTitle } from '../../state/actions';
 
 const Wrapper = styled.div`
   height: 180px;
@@ -98,6 +99,7 @@ const Wrapper = styled.div`
 `;
 
 export default function NavigationBar({ searchTerm, handleSearchTermChange }) {
+  const dispatch = useDispatch();
   const { authService } = useOktaAuth();
   const { userInfo } = useSelector(state => state.userInfo);
 
@@ -134,8 +136,7 @@ export default function NavigationBar({ searchTerm, handleSearchTermChange }) {
             <FormInput
               name="search-bar"
               type="text"
-              value={searchTerm}
-              onChange={handleSearchTermChange}
+              onChange={e => dispatch(searchByTitle(e.target.value))}
               placeholder="Search MarketPlace"
               labelId=""
               Icon={<SearchOutlined />}

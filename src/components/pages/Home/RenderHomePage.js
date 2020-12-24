@@ -4,12 +4,9 @@ import { NavigationBar, MarketplaceFeed } from '../../common';
 function RenderHomePage({ searchTerm, handleSearchTermChange }) {
   return (
     <>
-      <NavigationBar
-        searchTerm={searchTerm}
-        handleSearchTermChange={handleSearchTermChange}
-      />
+      <NavigationBar />
 
-      <MarketplaceFeed searchTerm={searchTerm} />
+      <MarketplaceFeed />
     </>
   );
 }
