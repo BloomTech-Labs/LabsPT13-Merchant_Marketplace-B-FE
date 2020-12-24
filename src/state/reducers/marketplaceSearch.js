@@ -4,7 +4,7 @@ const initialState = {
 
 const marketplaceSearch = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'TITLE_SEARCHED':
+    case 'SEARCH_BY_TITLE':
       return { ...state, searchedTitle: payload };
     case 'CLEAR':
       return initialState;
