@@ -2,15 +2,14 @@ import React, { useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../../../state/actions';
-import RenderHomePage from './RenderHomePage';
 import { fetchUserInfo } from '../../../state/actions';
+import RenderHomePage from './RenderHomePage';
 
 function HomeContainer({ LoadingComponent }) {
   const dispatch = useDispatch();
   const { authState, authService } = useOktaAuth();
   const [memoAuthService] = useMemo(() => [authService], [authService]);
-  const { products } = useSelector(state => state.products);
-  const { userInfo } = useSelector(state => state.userInfo);
+  const { userInfo, products } = useSelector(state => state);
 
   useEffect(() => {
     let isSubscribed = true;
