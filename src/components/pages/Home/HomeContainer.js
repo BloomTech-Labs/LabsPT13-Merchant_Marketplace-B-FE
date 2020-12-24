@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../../../state/actions';
@@ -11,6 +11,11 @@ function HomeContainer({ LoadingComponent }) {
   const [memoAuthService] = useMemo(() => [authService], [authService]);
   const { userInfo } = useSelector(state => state.userInfo);
   const { products } = useSelector(state => state.products);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearchTermChange = e => {
+    setSearchTerm(e.target.value);
+  };
 
   useEffect(() => {
     let isSubscribed = true;
@@ -26,7 +31,10 @@ function HomeContainer({ LoadingComponent }) {
       {authState.isAuthenticated && !userInfo ? (
         <LoadingComponent message="...Fetching profile" />
       ) : (
-        <RenderHomePage />
+        <RenderHomePage
+          searchTerm={searchTerm}
+          handleSearchTermChange={handleSearchTermChange}
+        />
       )}
     </>
   );

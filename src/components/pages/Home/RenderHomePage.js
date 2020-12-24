@@ -1,12 +1,15 @@
 import React from 'react';
 import { NavigationBar, MarketplaceFeed } from '../../common';
 
-function RenderHomePage() {
+function RenderHomePage({ searchTerm, handleSearchTermChange }) {
   return (
     <>
-      <NavigationBar />
+      <NavigationBar
+        searchTerm={searchTerm}
+        handleSearchTermChange={handleSearchTermChange}
+      />
 
-      <MarketplaceFeed />
+      <MarketplaceFeed searchTerm={searchTerm} />
     </>
   );
 }
