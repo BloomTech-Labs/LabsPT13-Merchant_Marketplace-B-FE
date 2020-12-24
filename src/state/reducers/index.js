@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import userInfoReducer from './userInfoReducer';
-import productsReducer from './productsReducer';
+import userInfo from './userInfo';
+import products from './products';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['userInfoReducer'],
+  whitelist: ['userInfo'],
 };
 
-const rootReducer = combineReducers({ userInfoReducer, productsReducer });
+const rootReducer = combineReducers({ userInfo, products });
 
 export default persistReducer(persistConfig, rootReducer);

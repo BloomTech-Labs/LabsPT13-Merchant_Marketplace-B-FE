@@ -45,7 +45,12 @@ const Card = styled.div`
 `;
 export default function ProductCard({ product }) {
   return (
-    <Link to={{ pathname: `/marketplace/item/${product.id}`, product }}>
+    <Link
+      to={{ pathname: `/marketplace/item/${product.id}`, product }}
+      onClick={() => {
+        console.log('DISPATCH TO REDUX');
+      }}
+    >
       <Card>
         {<img src={product.images[0].img_url} alt="market product" />}
 

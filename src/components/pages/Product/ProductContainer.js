@@ -7,7 +7,7 @@ export default function ProductContainer() {
   const [message, setMessage] = useState('Is this available?');
   const [saved, setSaved] = useState(false);
   const { product } = useLocation();
-  const { userInfo } = useSelector(state => state.userInfoReducer);
+  const { userInfo } = useSelector(state => state.userInfo);
 
   // persist product info via local storage on the first render only
   product &&

@@ -4,11 +4,7 @@
 // You can have multiple action creators per file if it makes sense to the purpose those action creators are serving.
 // Declare action TYPES at the top of the file
 
-import { fetchUserInfo } from './userInfoActions';
-import { fetchProducts } from './productsActions';
+import { fetchUserInfo } from './userInfo';
+import { fetchProducts } from './products';
 
 export { fetchUserInfo, fetchProducts };
-
-export const LOADING = 'LOADING';
-export const SUCCESS = 'SUCCESS';
-export const ERROR = 'ERROR';

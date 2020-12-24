@@ -4,7 +4,7 @@ const initialState = {
   error: '',
 };
 
-const userInfoReducer = (state = initialState, { type, payload }) => {
+const userInfo = (state = initialState, { type, payload }) => {
   switch (type) {
     case 'LOADING_USER_INFO':
       return { ...state, loading: true, error: '' };
@@ -21,4 +21,4 @@ const userInfoReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default userInfoReducer;
+export default userInfo;

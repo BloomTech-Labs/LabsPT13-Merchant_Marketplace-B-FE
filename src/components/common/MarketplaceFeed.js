@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 `;
 
 export default function MarketplaceFeed() {
-  const { products } = useSelector(state => state.productsReducer);
+  const { products } = useSelector(state => state.products);
 
   return (
     <Wrapper>

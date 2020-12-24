@@ -4,13 +4,13 @@ const initialState = {
   loading: false,
 };
 
-const productsReducer = (state = initialState, { type, payload }) => {
+const products = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'LOADING_PRODUCTS':
+    case 'PRODUCTS_LOADING':
       return { ...state, loading: true, error: '' };
-    case 'LOADED_PRODUCTS':
+    case 'PRODUCTS_LOADED':
       return { ...state, loading: false, products: payload };
-    case 'ERROR_PRODUCTS':
+    case 'PRODUCT_ERRORS':
       return {
         ...state,
         loading: false,
@@ -21,4 +21,4 @@ const productsReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default productsReducer;
+export default products;
