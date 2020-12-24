@@ -1,10 +1,15 @@
 import { combineReducers } from 'redux';
-// import all of your reducers into this file, and export them back out.
-// This allows for the simplification of flow when importing reducers into your actions throughout your app.
-
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import userInfoReducer from './userInfoReducer';
 import productsReducer from './productsReducer';
 
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['userInfoReducer'],
+};
+
 const rootReducer = combineReducers({ userInfoReducer, productsReducer });
 
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);

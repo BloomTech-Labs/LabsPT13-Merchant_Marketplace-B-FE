@@ -7,14 +7,12 @@ export default function ProductContainer() {
   const [message, setMessage] = useState('Is this available?');
   const [saved, setSaved] = useState(false);
   const { product } = useLocation();
-
   const { userInfo } = useSelector(state => state.userInfoReducer);
 
   // persist product info via local storage on the first render only
   product &&
     window.localStorage.setItem('product_info', JSON.stringify(product));
 
-  const sellerInfo = JSON.parse(window.localStorage.getItem('user_info'));
   const productInfo = JSON.parse(window.localStorage.getItem('product_info'));
 
   const saveMessage = e => setMessage(e.target.value);
@@ -38,7 +36,7 @@ export default function ProductContainer() {
   return (
     <>
       <RenderProduct
-        sellerInfo={sellerInfo}
+        sellerInfo={userInfo}
         product={productInfo}
         message={message}
         saved={saved}
