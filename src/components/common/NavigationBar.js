@@ -122,7 +122,7 @@ export default function NavigationBar() {
               <DropdownMenu
                 title={`Hi, ${userInfo.given_name}`}
                 items={[
-                  'Account Settings',
+                  <span>Account Settings</span>,
                   <span onClick={() => authService.logout()}>Sign Out</span>,
                 ]}
               />

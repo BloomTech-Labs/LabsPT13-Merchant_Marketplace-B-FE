@@ -7,7 +7,9 @@ export default function DropdownMenu({ title, items }) {
   const menu = (
     <Menu>
       {items.map((item, i) => (
-        <Menu.Item key={i}>{item}</Menu.Item>
+        <Menu.Item key={i} style={{ padding: '10px 15px' }}>
+          {item}
+        </Menu.Item>
       ))}
     </Menu>
   );
