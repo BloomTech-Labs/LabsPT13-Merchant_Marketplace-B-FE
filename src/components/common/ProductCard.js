@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { selectProduct } from '../../state/actions';
 import styled from 'styled-components';
 
 const Card = styled.div`
@@ -44,8 +46,13 @@ const Card = styled.div`
   }
 `;
 export default function ProductCard({ product }) {
+  const dispatch = useDispatch();
+
   return (
-    <Link to={{ pathname: `/marketplace/item/${product.id}`, product }}>
+    <Link
+      to={{ pathname: `/marketplace/item/${product.id}`, product }}
+      onClick={() => dispatch(selectProduct(product))}
+    >
       <Card>
         {<img src={product.images[0].img_url} alt="market product" />}
 

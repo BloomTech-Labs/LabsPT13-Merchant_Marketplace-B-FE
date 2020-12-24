@@ -165,7 +165,8 @@ export default function RenderCreateProduct({
   newTag,
   addTag,
   removeTag,
-  imagesSelected,
+  imageSelected,
+  error,
 }) {
   const { title, price, brand, description, tags } = formInfo;
   const { TextArea } = Input;
@@ -190,7 +191,8 @@ export default function RenderCreateProduct({
 
         <span>Photos - {images.length}/5 - You can add up to 5 photos.</span>
         <ImagesUploader onDropImages={onDropImages} images={images} />
-        {!imagesSelected && (
+                                             
+        {!imageSelected && (
           <div style={{ textAlign: 'center', color: 'red' }}>
             Please select an image.
           </div>
@@ -280,11 +282,11 @@ export default function RenderCreateProduct({
         </div>
         <label htmlFor="tags">Optional - Limit: 10</label>
 
-        <div style={{ textAlign: 'center' }}>
-          <button type="submit" className="submit-btn">
-            Create Product
-          </button>
-        </div>
+        <button type="submit" className="submit-btn">
+          Create Product
+        </button>
+
+        <div style={{ textAlign: 'center', color: 'red' }}>{error}</div>
       </form>
     </Wrapper>
   );

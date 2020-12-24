@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Spin } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
@@ -17,13 +18,14 @@ const initialState = {
 };
 
 export default function CreateProductContainer() {
-  const { authState } = useOktaAuth();
-  const userInfo = JSON.parse(window.localStorage.getItem('user'));
-  const [formInfo, setFormInfo] = useState(initialState);
+  const [formInfo, setFormInfo] = useState({ ...initialState });
   const [images, setImages] = useState([]);
   const [newTag, setNewTag] = useState('');
-  const [imagesSelected, setImagesSelected] = useState(true);
-  const [listingProduct, setListingProduct] = useState(false);
+  const [imageSelected, setImageSelected] = useState(true);
+  const [postingProduct, setPostingProduct] = useState(false);
+  const [error, setError] = useState('');
+  const { userInfo } = useSelector(state => state);
+  const { authState } = useOktaAuth();
   const history = useHistory();
 
   const onDropImages = files => {
@@ -38,7 +40,7 @@ export default function CreateProductContainer() {
     }
 
     setImages(dataURLs);
-    setImagesSelected(true);
+    setImageSelected(true);
   };
 
   const handleTagChange = e => setNewTag(e.target.value);
@@ -66,7 +68,7 @@ export default function CreateProductContainer() {
     e.preventDefault();
 
     if (!images.length) {
-      setImagesSelected(false);
+      setImageSelected(false);
     } else {
       // convert the tags to a string before and add seller id
       const product = {
@@ -75,14 +77,16 @@ export default function CreateProductContainer() {
         profile_id: userInfo.sub,
       };
 
-      setListingProduct(true);
+      setPostingProduct(true);
+      setError('');
 
       createProduct({ product, images }, authState)
         .then(() => {
-          setListingProduct(false);
+          setPostingProduct(false);
           history.push('/');
         })
         .catch(err => {
+          setError("Can't post product now. Try again?");
           console.error(err);
         });
 
@@ -94,7 +98,7 @@ export default function CreateProductContainer() {
 
   return (
     <div>
-      {listingProduct ? (
+      {postingProduct ? (
         <div
           style={{
             width: '100%',
@@ -119,7 +123,8 @@ export default function CreateProductContainer() {
           handleKeyPress={handleKeyPress}
           addTag={addTag}
           removeTag={removeTag}
-          imagesSelected={imagesSelected}
+          imageSelected={imageSelected}
+          error={error}
         />
       )}
     </div>

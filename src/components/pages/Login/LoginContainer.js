@@ -7,7 +7,7 @@ import './login.css';
 
 const LoginContainer = () => {
   // always remove user info from local storage if it exists when in Login
-  window.localStorage.removeItem('user');
+  window.localStorage.removeItem('user_info');
 
   useEffect(() => {
     const { pkce, issuer, clientId, redirectUri, scopes } = config;

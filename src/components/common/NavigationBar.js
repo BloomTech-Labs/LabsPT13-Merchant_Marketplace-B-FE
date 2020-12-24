@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -99,8 +100,7 @@ const Wrapper = styled.div`
 export default function NavigationBar() {
   const [input, setInput] = useState('');
   const { authService } = useOktaAuth();
-  //  access user info from local storage
-  const userInfo = JSON.parse(window.localStorage.getItem('user'));
+  const { userInfo } = useSelector(state => state.userInfo);
 
   return (
     <Wrapper>
