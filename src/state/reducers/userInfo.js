@@ -16,6 +16,8 @@ const userInfo = (state = initialState, { type, payload }) => {
         loading: false,
         error: payload,
       };
+    case 'CLEAR':
+      return initialState;
     default:
       return state;
   }

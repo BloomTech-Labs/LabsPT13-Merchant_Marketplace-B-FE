@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import OktaSignIn from '@okta/okta-signin-widget';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
-
 import { config } from '../../../utils/oktaConfig';
 import './login.css';
 
 const LoginContainer = () => {
-  // always remove user info from local storage if it exists when in Login
-  window.localStorage.removeItem('persist:root');
+  const dispatch = useDispatch();
+  // clear userInfo and selectedProduct from local storage
+  dispatch({ type: 'CLEAR' });
 
   useEffect(() => {
     const { pkce, issuer, clientId, redirectUri, scopes } = config;
