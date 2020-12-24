@@ -54,7 +54,10 @@ export default function ImagesGallery({ images }) {
   return (
     <Wrapper>
       <ImageGallery
-        items={images}
+        items={images.map(img => ({
+          original: img.img_url,
+          thumbnail: img.img_url,
+        }))}
         showPlayButton={false}
         additionalClass="carousel"
       />
