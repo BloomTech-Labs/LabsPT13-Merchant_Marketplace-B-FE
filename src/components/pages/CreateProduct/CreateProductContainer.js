@@ -22,9 +22,9 @@ export default function CreateProductContainer() {
   const [images, setImages] = useState([]);
   const [newTag, setNewTag] = useState('');
   const [imageSelected, setImageSelected] = useState(true);
-  const [postingProduct, setPostingProduct] = useState(false);
+  const [postingProduct, setPostingProduct] = useState(true);
   const [error, setError] = useState('');
-  const { userInfo } = useSelector(state => state);
+  const { userInfo } = useSelector(state => state.userInfo);
   const { authState } = useOktaAuth();
   const history = useHistory();
 
@@ -99,17 +99,38 @@ export default function CreateProductContainer() {
   return (
     <div>
       {postingProduct ? (
-        <div
-          style={{
-            width: '100%',
-            height: '100vh',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Spin tip="Loading" size="large" style={{ fontSize: '18px' }} />
-        </div>
+        <>
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'absolute',
+              zIndex: 99,
+              backgroundColor: 'rgba(65, 66, 66, 0.7)',
+            }}
+          >
+            <Spin tip="Loading" size="large" style={{ fontSize: '18px' }} />
+          </div>
+
+          <RenderCreateProduct
+            userInfo={userInfo}
+            formInfo={formInfo}
+            newTag={newTag}
+            images={images}
+            onDropImages={onDropImages}
+            handleChange={handleChange}
+            handleTagChange={handleTagChange}
+            handleSubmit={handleSubmit}
+            handleKeyPress={handleKeyPress}
+            addTag={addTag}
+            removeTag={removeTag}
+            imageSelected={imageSelected}
+            error={error}
+          />
+        </>
       ) : (
         <RenderCreateProduct
           userInfo={userInfo}
