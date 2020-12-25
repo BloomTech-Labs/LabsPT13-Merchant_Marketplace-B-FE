@@ -1,5 +1,14 @@
 import React from 'react';
+import LoadingOverlay from 'react-loading-overlay';
 
-export default function LoadingComponent({ Component }) {
-  return <div>{Component}</div>;
-}
+const LoadingComponent = ({ active }) => {
+  return (
+    <div>
+      <LoadingOverlay active={active} spinner text="Loading your content...">
+        <p>Some content or children or something.</p>
+      </LoadingOverlay>
+    </div>
+  );
+};
+
+export default LoadingComponent;
