@@ -80,15 +80,20 @@ export default function CreateProductContainer() {
       setPostingProduct(true);
       setError('');
 
-      createProduct({ product, images }, authState)
-        .then(() => {
-          setPostingProduct(false);
-          history.push('/');
-        })
-        .catch(err => {
-          setError("Can't post product now. Try again?");
-          console.error(err);
-        });
+      setTimeout(() => {
+        history.push('/');
+        setPostingProduct(false);
+      }, 2500);
+
+      // createProduct({ product, images }, authState)
+      //   .then(() => {
+      //     setPostingProduct(false);
+      //     history.push('/');
+      //   })
+      //   .catch(err => {
+      //     setError("Can't post product now. Try again?");
+      //     console.error(err);
+      //   });
 
       // reset form
       setFormInfo(initialState);
