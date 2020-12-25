@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Spin } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
+import { LoadingComponent } from '../../common';
 import RenderCreateProduct from './RenderCreateProduct';
 import { createProduct } from '../../../api';
 
@@ -22,7 +22,7 @@ export default function CreateProductContainer() {
   const [images, setImages] = useState([]);
   const [newTag, setNewTag] = useState('');
   const [imageSelected, setImageSelected] = useState(true);
-  const [postingProduct, setPostingProduct] = useState(true);
+  const [postingProduct, setPostingProduct] = useState(false);
   const [error, setError] = useState('');
   const { userInfo } = useSelector(state => state.userInfo);
   const { authState } = useOktaAuth();
@@ -97,57 +97,22 @@ export default function CreateProductContainer() {
   };
 
   return (
-    <div>
-      {postingProduct ? (
-        <>
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              position: 'absolute',
-              zIndex: 99,
-              backgroundColor: 'rgba(65, 66, 66, 0.7)',
-            }}
-          >
-            <Spin tip="Loading" size="large" style={{ fontSize: '18px' }} />
-          </div>
-
-          <RenderCreateProduct
-            userInfo={userInfo}
-            formInfo={formInfo}
-            newTag={newTag}
-            images={images}
-            onDropImages={onDropImages}
-            handleChange={handleChange}
-            handleTagChange={handleTagChange}
-            handleSubmit={handleSubmit}
-            handleKeyPress={handleKeyPress}
-            addTag={addTag}
-            removeTag={removeTag}
-            imageSelected={imageSelected}
-            error={error}
-          />
-        </>
-      ) : (
-        <RenderCreateProduct
-          userInfo={userInfo}
-          formInfo={formInfo}
-          newTag={newTag}
-          images={images}
-          onDropImages={onDropImages}
-          handleChange={handleChange}
-          handleTagChange={handleTagChange}
-          handleSubmit={handleSubmit}
-          handleKeyPress={handleKeyPress}
-          addTag={addTag}
-          removeTag={removeTag}
-          imageSelected={imageSelected}
-          error={error}
-        />
-      )}
-    </div>
+    <LoadingComponent active={postingProduct} message="Listing your item...">
+      <RenderCreateProduct
+        userInfo={userInfo}
+        formInfo={formInfo}
+        newTag={newTag}
+        images={images}
+        onDropImages={onDropImages}
+        handleChange={handleChange}
+        handleTagChange={handleTagChange}
+        handleSubmit={handleSubmit}
+        handleKeyPress={handleKeyPress}
+        addTag={addTag}
+        removeTag={removeTag}
+        imageSelected={imageSelected}
+        error={error}
+      />
+    </LoadingComponent>
   );
 }
