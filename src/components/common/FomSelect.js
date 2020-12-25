@@ -23,7 +23,7 @@ export default function FomSelect({ title, name, values, onChange }) {
   return (
     <Wrapper>
       <select name={name} onChange={onChange} required>
-        <option value="" selected disabled>
+        <option value="" disabled selected>
           {title}
         </option>
 

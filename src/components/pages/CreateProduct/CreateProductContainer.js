@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useOktaAuth } from '@okta/okta-react';
+import { ToastContainer, toast } from 'react-toastify';
 import { LoadingComponent } from '../../common';
 import RenderCreateProduct from './RenderCreateProduct';
 import { createProduct } from '../../../api';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialState = {
   title: '',
@@ -80,20 +82,19 @@ export default function CreateProductContainer() {
       setPostingProduct(true);
       setError('');
 
-      setTimeout(() => {
-        history.push('/');
-        setPostingProduct(false);
-      }, 2500);
+      createProduct({ product, images }, authState)
+        .then(() => {
+          setPostingProduct(false);
+          toast.success('Congrats! Item posted.', { autoClose: 1000 });
 
-      // createProduct({ product, images }, authState)
-      //   .then(() => {
-      //     setPostingProduct(false);
-      //     history.push('/');
-      //   })
-      //   .catch(err => {
-      //     setError("Can't post product now. Try again?");
-      //     console.error(err);
-      //   });
+          setTimeout(() => {
+            history.push('/');
+          }, 1000);
+        })
+        .catch(err => {
+          setError("Can't post product now. Try again?");
+          console.error(err);
+        });
 
       // reset form
       setFormInfo(initialState);
@@ -102,22 +103,26 @@ export default function CreateProductContainer() {
   };
 
   return (
-    <LoadingComponent active={postingProduct} message="Listing your item...">
-      <RenderCreateProduct
-        userInfo={userInfo}
-        formInfo={formInfo}
-        newTag={newTag}
-        images={images}
-        onDropImages={onDropImages}
-        handleChange={handleChange}
-        handleTagChange={handleTagChange}
-        handleSubmit={handleSubmit}
-        handleKeyPress={handleKeyPress}
-        addTag={addTag}
-        removeTag={removeTag}
-        imageSelected={imageSelected}
-        error={error}
-      />
-    </LoadingComponent>
+    <>
+      <LoadingComponent active={postingProduct} message="Listing your item...">
+        <RenderCreateProduct
+          userInfo={userInfo}
+          formInfo={formInfo}
+          newTag={newTag}
+          images={images}
+          onDropImages={onDropImages}
+          handleChange={handleChange}
+          handleTagChange={handleTagChange}
+          handleSubmit={handleSubmit}
+          handleKeyPress={handleKeyPress}
+          addTag={addTag}
+          removeTag={removeTag}
+          imageSelected={imageSelected}
+          error={error}
+        />
+      </LoadingComponent>
+
+      <ToastContainer />
+    </>
   );
 }
