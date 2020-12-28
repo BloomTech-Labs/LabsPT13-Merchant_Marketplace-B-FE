@@ -8,6 +8,7 @@ import { config } from './utils/oktaConfig';
 import { CartPage } from './components/pages/Cart';
 import { ProductPage } from './components/pages/Product';
 import { CreateProduct } from './components/pages/CreateProduct';
+import { SellerPage } from './components/pages/Seller';
 
 export default function App() {
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
@@ -43,6 +44,12 @@ export default function App() {
           path="/marketplace/create"
           exact
           component={() => <CreateProduct />}
+        />
+
+        <SecureRoute
+          path="/marketplace/seller/:name"
+          exact
+          component={() => <SellerPage />}
         />
 
         <Route path="404" component={NotFoundPage} />
