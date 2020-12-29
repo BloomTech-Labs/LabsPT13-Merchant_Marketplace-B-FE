@@ -12,6 +12,14 @@ const Card = styled.div`
     height: 250px;
     padding: 0.5rem;
   }
+
+  .cartButtons {
+    display: flex;
+    font-size: 0.5rem;
+    padding-top: 1rem;
+    color: black;
+  }
+
 `;
 
 export default function CartCard({ product }) {
@@ -29,7 +37,7 @@ export default function CartCard({ product }) {
           <h4>Hoodie</h4>
           <h5>$55.00</h5>
           <h6> Quantity: 1</h6>
-          <div>
+          <div class="cartButtons">
             <button onClick={sendToWishlist}>Send to Wishlist</button>
             <button> Remove </button>
           </div>
