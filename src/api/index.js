@@ -10,12 +10,6 @@ const sleep = time =>
     setTimeout(resolve, time);
   });
 
-const getExampleData = () => {
-  return axios
-    .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
-    .then(response => response.data);
-};
-
 const getAuthHeader = authState => {
   if (!authState.isAuthenticated) {
     throw new Error('Not authenticated');
@@ -44,11 +38,12 @@ const apiAuthPost = (url, data, authHeader) => {
   return axios.post(url, data, { headers: authHeader });
 };
 
-const getProfileData = authState => {
+const getProfileData = (authState, profile_id) => {
   try {
-    return apiAuthGet(`${baseUrl}/profile`, getAuthHeader(authState)).then(
-      response => response.data
-    );
+    return apiAuthGet(
+      `${baseUrl}/profile/${profile_id}`,
+      getAuthHeader(authState)
+    ).then(response => response.data);
   } catch (error) {
     return new Promise(() => {
       console.log(error);
@@ -97,11 +92,4 @@ const createProduct = async (product, authState) => {
   }
 };
 
-export {
-  sleep,
-  getExampleData,
-  getProfileData,
-  getDSData,
-  getMarketProducts,
-  createProduct,
-};
+export { sleep, getProfileData, getDSData, getMarketProducts, createProduct };

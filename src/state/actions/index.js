@@ -4,15 +4,17 @@
 // You can have multiple action creators per file if it makes sense to the purpose those action creators are serving.
 // Declare action TYPES at the top of the file
 
-import { fetchUserInfo, selectSeller } from './userInfo';
+import { fetchUserInfo } from './userInfo';
 import { fetchProducts } from './products';
 import { selectProduct } from './product';
 import { searchByTitle } from './marketplaceSearch';
+import { fetchSellerInfo, selectSeller } from './sellerInfo';
 
 export {
   fetchUserInfo,
   fetchProducts,
   selectProduct,
   searchByTitle,
+  fetchSellerInfo,
   selectSeller,
 };
