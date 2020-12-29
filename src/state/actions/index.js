@@ -8,7 +8,7 @@ import { fetchUserInfo } from './user';
 import { fetchProducts } from './products';
 import { selectProduct } from './product';
 import { searchByTitle } from './marketplaceSearch';
-import { fetchSellerInfo, selectSeller } from './seller';
+import { fetchSellerInfo, selectSeller, fetchSellerInventory } from './seller';
 
 export {
   fetchUserInfo,
@@ -17,4 +17,5 @@ export {
   searchByTitle,
   fetchSellerInfo,
   selectSeller,
+  fetchSellerInventory,
 };

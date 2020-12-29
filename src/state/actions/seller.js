@@ -31,7 +31,7 @@ export const fetchSellerInventory = (authState, profile_id) => dispatch => {
     .then(inventory => {
       dispatch({
         type: 'LOADED_SELLER_INVENTORY',
-        payload: inventory,
+        payload: { inventory, profile_id },
       });
     })
     .catch(err => {

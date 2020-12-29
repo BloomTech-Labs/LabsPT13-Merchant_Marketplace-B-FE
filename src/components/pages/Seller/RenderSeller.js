@@ -39,8 +39,12 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function RenderSeller({ sellerInfo, selectedProduct }) {
-  console.log(sellerInfo);
+export default function RenderSeller({
+  selectedSeller,
+  selectedProduct,
+  inventory,
+}) {
+  console.log(inventory);
 
   return (
     <Wrapper>
