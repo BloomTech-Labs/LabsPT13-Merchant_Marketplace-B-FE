@@ -51,7 +51,7 @@ export default function ProductCard({ product }) {
 
   return (
     <Link
-      to={{ pathname: `/marketplace/item/${product.id}`, product }}
+      to={`/marketplace/item/${product.id}`}
       onClick={() => dispatch(selectProduct(product))}
     >
       <Card>

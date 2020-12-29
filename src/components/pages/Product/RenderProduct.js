@@ -311,9 +311,9 @@ const RenderProduct = ({
             </a>
 
             <section className="info">
-              <a href="google.com" alt="user name">
+              <Link to={`/marketplace/seller/${sellerInfo.name}`}>
                 {sellerInfo.name}
-              </a>
+              </Link>
               <span style={{ color: 'gray' }}>Joined MMP in 2020</span>
             </section>
           </div>

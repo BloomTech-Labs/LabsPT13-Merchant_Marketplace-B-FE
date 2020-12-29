@@ -5,11 +5,12 @@ import userInfo from './userInfo';
 import products from './products';
 import selectedProduct from './selectedProduct';
 import marketplaceSearch from './marketplaceSearch';
+import selectedSeller from './selectedSeller';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['userInfo', 'selectedProduct'],
+  whitelist: ['userInfo', 'selectedProduct', 'selectedSeller'],
 };
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   products,
   selectedProduct,
   marketplaceSearch,
+  selectedSeller,
 });
 
 export default persistReducer(persistConfig, rootReducer);
