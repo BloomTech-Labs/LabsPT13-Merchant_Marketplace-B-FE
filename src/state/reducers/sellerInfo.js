@@ -9,7 +9,7 @@ const sellerInfo = (state = initialState, { type, payload }) => {
     case 'LOADING_SELLER_INFO':
       return { ...state, loading: true, error: '' };
     case 'LOADED_SELLER_INFO':
-      return { ...state, loading: false, userInfo: payload };
+      return { ...state, loading: false, sellerInfo: payload };
     case 'ERROR_SELLER_INFO':
       return {
         ...state,

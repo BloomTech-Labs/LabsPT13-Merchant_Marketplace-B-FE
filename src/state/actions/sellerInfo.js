@@ -1,7 +1,6 @@
 import { getProfileData } from '../../api';
 
 export const fetchSellerInfo = (authState, profile_id) => dispatch => {
-  console.log('FETCHING SELLER');
   dispatch({ type: 'LOADING_SELLER_INFO' });
 
   getProfileData(authState, profile_id)
