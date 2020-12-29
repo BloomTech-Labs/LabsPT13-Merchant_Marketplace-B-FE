@@ -7,7 +7,7 @@ export default function Payments() {
 
     const Checkout = styled.div`
         height: 500px;
-        width: 80%;
+        width: 370px;
         border-radius: 3px;
         border: 2px solid black;
         padding: 1.5rem; 
@@ -25,7 +25,7 @@ export default function Payments() {
             background: black;
             padding: 0.5rem;
             margin-top: 2rem;
-            width: 29.5rem;
+            width: 100%;
         }
     `
     const Line = styled.hr`
