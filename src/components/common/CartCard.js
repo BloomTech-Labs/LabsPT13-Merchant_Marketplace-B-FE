@@ -6,18 +6,32 @@ import styled from 'styled-components';
 const Card = styled.div`
   height: 300px;
   width: 260px;
+  display: flex;
+
+  img {
+    height: 250px;
+    padding: 0.5rem;
+  }
 `;
 
 export default function CartCard({ product }) {
+
+  function sendToWishlist() {
+    console.log('send item to wishlist')
+  }
+
   return (
     <Link>
       <Card>
         {/* <img src={product.img} alt="market product" /> */}
-        <img src="images/iPhone.jpg" />
+        <img src="images/iPhone.jpg" alt="iphone image"/>
         <div className="productDetails">
           <h4>Hoodie</h4>
-          <h3>$55.00</h3>
-          <h3> Quantity: 1</h3>
+          <h5>$55.00</h5>
+          <h6> Quantity: 1</h6>
+          <div>
+            <button onClick={sendToWishlist}>Send to Wishlist</button>
+          </div>
         </div>
       </Card>
     </Link>
