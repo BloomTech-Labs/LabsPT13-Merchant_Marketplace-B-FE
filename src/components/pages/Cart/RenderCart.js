@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavigationBar } from '../../common';
 import { CartCard } from '../../common';
+import { Payments } from '../../common';
 
 const Wrapper = styled.div``;
 
@@ -14,7 +15,9 @@ const RenderCart = () => {
       <div className="productsWrapper">
         <CartCard />
       </div>
-      <div className="paymentsWrapper"></div>
+      <div className="paymentsWrapper">
+        <Payments />
+      </div>
     </Wrapper>
   );
 };
