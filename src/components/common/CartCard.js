@@ -31,6 +31,7 @@ export default function CartCard({ product }) {
           <h6> Quantity: 1</h6>
           <div>
             <button onClick={sendToWishlist}>Send to Wishlist</button>
+            <button> Remove </button>
           </div>
         </div>
       </Card>
