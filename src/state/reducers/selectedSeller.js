@@ -1,6 +1,6 @@
 const selectedSeller = (state = null, { type, payload }) => {
   switch (type) {
-    case 'SELLER_LOADED':
+    case 'SELLER_SELECTED':
       return payload;
     case 'CLEAR':
       return null;

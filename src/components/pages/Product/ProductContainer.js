@@ -8,6 +8,8 @@ export default function ProductContainer() {
   const { selectedProduct } = useSelector(state => state);
   const { userInfo } = useSelector(state => state.userInfo);
 
+  console.log({ selectedProduct });
+
   const saveMessage = e => setMessage(e.target.value);
 
   const saveProduct = () => {

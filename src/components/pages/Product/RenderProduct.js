@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Divider, Tooltip } from 'antd';
@@ -10,6 +11,7 @@ import {
   HeartFilled,
 } from '@ant-design/icons';
 import { ImagesGallery } from '../../common';
+import { selectSeller } from '../../../state/actions';
 
 const Wrapper = styled.div`
   display: flex;
@@ -236,6 +238,8 @@ const RenderProduct = ({
   unSaveProduct,
   sendMessage,
 }) => {
+  const dispatch = useDispatch();
+
   return (
     <Wrapper>
       <Link to="/">
@@ -303,15 +307,21 @@ const RenderProduct = ({
 
           <h3>Seller Information</h3>
           <div className="seller-info">
-            <a href="google.com" alt="user avatar">
+            <Link
+              to={`/marketplace/seller/:${sellerInfo.name}`}
+              onClick={() => dispatch(selectSeller(sellerInfo))}
+            >
               <img
                 src="https://www.mercurynews.com/wp-content/uploads/2020/04/slowstreets417.jpg"
                 alt="seller avatar"
               />
-            </a>
+            </Link>
 
             <section className="info">
-              <Link to={`/marketplace/seller/${sellerInfo.name}`}>
+              <Link
+                to={`/marketplace/seller/:${sellerInfo.name}`}
+                onClick={() => dispatch(selectSeller(sellerInfo))}
+              >
                 {sellerInfo.name}
               </Link>
               <span style={{ color: 'gray' }}>Joined MMP in 2020</span>

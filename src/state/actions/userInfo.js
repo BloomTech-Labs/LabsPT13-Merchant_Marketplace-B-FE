@@ -24,3 +24,8 @@ export const fetchUserInfo = (memoAuthService, isSubscribed) => dispatch => {
     isSubscribed = false;
   }
 };
+
+export const selectSeller = sellerInfo => ({
+  type: 'SELLER_SELECTED',
+  payload: sellerInfo,
+});
