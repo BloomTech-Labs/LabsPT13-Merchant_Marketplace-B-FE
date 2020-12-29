@@ -4,19 +4,23 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Card = styled.div`
-  height: 300px;
-  width: 260px;
+  height: 235px;
+  width: 250px;
   display: flex;
 
   img {
-    height: 250px;
+    height: 230px;
     padding: 0.5rem;
+  }
+
+  .productDetails {
+    height: 230px;
   }
 
   .cartButtons {
     display: flex;
     font-size: 0.5rem;
-    padding-top: 1rem;
+    padding-top: 6rem;
     color: black;
   }
 
