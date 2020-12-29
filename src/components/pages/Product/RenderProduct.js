@@ -310,7 +310,9 @@ const RenderProduct = ({
               <h3>Seller Information</h3>
               <div className="seller-info">
                 <Link
-                  to={`/marketplace/seller/:${sellerInfo.name}`}
+                  to={`/marketplace/seller/${sellerInfo.name
+                    .split(' ')
+                    .join('-')}`}
                   onClick={() => dispatch(selectSeller(sellerInfo))}
                 >
                   <img
@@ -321,7 +323,9 @@ const RenderProduct = ({
 
                 <section className="info">
                   <Link
-                    to={`/marketplace/seller/:${sellerInfo.name}`}
+                    to={`/marketplace/seller/${sellerInfo.name
+                      .split(' ')
+                      .join('-')}`}
                     onClick={() => dispatch(selectSeller(sellerInfo))}
                   >
                     {sellerInfo.name}

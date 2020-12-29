@@ -4,12 +4,9 @@ import RenderSeller from './RenderSeller';
 
 export default function SellerContainer() {
   const sellerInfo = useSelector(state => state.selectedSeller);
-
-  console.log({ sellerInfo });
+  const { selectedProduct } = useSelector(state => state);
 
   return (
-    <div>
-      <RenderSeller />
-    </div>
+    <RenderSeller sellerInfo={sellerInfo} selectedProduct={selectedProduct} />
   );
 }
