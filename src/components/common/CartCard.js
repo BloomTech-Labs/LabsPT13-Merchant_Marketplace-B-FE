@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { selectProduct } from '../../state/actions';
+//import { selectProduct } from '../../state/actions';
 import styled from 'styled-components';
 
 const Card = styled.div`
@@ -8,12 +8,12 @@ const Card = styled.div`
   width: 260px;
 `;
 
-export default function CartCard({product}) {
+export default function CartCard({ product }) {
   return (
     <Link>
       <Card>
-        <img src={product.img} alt="market product" />
-
+        {/* <img src={product.img} alt="market product" /> */}
+        <img src="images/iPhone.jpg" />
         <div className="productDetails">
           <h4>Hoodie</h4>
           <h3>$55.00</h3>

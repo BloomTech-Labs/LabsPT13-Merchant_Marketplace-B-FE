@@ -100,7 +100,7 @@ const Wrapper = styled.div`
 export default function NavigationBar() {
   const [input, setInput] = useState('');
   const { authService } = useOktaAuth();
-  const { userInfo } = useSelector(state => state.userInfo);
+  const { userInfo } = useSelector(state => state);
 
   return (
     <Wrapper>
