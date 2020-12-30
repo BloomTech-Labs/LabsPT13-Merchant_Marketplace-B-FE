@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Divider, Tooltip } from 'antd';
@@ -116,8 +116,8 @@ const Wrapper = styled.div`
         display: inline-block;
         margin: 2px 5px 2px 0;
         border: 1px solid gray;
-        padding: 3px 7px;
-        border-radius: 10px;
+        padding: 1px 7px;
+        border-radius: 3px;
         cursor: pointer;
 
         &:hover {
@@ -236,18 +236,13 @@ const RenderProduct = ({
   unSaveProduct,
   sendMessage,
 }) => {
-  const images = new Array(3).fill({
-    original: product.img,
-    thumbnail: product.img,
-  });
-
   return (
     <Wrapper>
       <Link to="/">
         <ArrowLeftOutlined />
       </Link>
 
-      <ImagesGallery images={images} />
+      <ImagesGallery images={product.images} />
 
       <div className="details-wrapper">
         <div className="nav-wrapper">

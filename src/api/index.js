@@ -40,6 +40,10 @@ const apiAuthGet = (url, authHeader) => {
   return axios.get(url, { headers: authHeader });
 };
 
+const apiAuthPost = (url, data, authHeader) => {
+  return axios.post(url, data, { headers: authHeader });
+};
+
 const getProfileData = authState => {
   try {
     return apiAuthGet(`${baseUrl}/profile`, getAuthHeader(authState)).then(
@@ -79,6 +83,20 @@ const getProductById = async (id, authState) => {
   }
 };
 
+const createProduct = async (product, authState) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthPost(`${baseUrl}/products`, product, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    });
+  }
+};
+
 export {
   sleep,
   getExampleData,
@@ -86,4 +104,5 @@ export {
   getDSData,
   getMarketProducts,
   getProductById,
+  createProduct,
 };

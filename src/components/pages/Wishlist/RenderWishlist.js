@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import WishListCard from '../../common/WishListCard';
+import WishlistCard from '../../common/WishlistCard';
 import NavigationBar from '../../common/NavigationBar';
 const Wrapper = styled.div`
   .Wishlist__ad {
@@ -36,7 +36,7 @@ const RenderWishlist = () => {
             />
           ))} */}
       </div>
-      <WishListCard />
+      <WishlistCard />
     </Wrapper>
   );
 };

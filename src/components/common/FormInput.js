@@ -4,18 +4,16 @@ import { Input } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
-const FormInput = props => {
-  const {
-    name,
-    value,
-    onChange,
-    placeholder,
-    labelId,
-    type,
-    Icon,
-    styles,
-  } = props;
-
+const FormInput = ({
+  name,
+  value,
+  onChange,
+  placeholder,
+  labelId,
+  type,
+  Icon,
+  styles,
+}) => {
   return (
     <>
       <label htmlFor={labelId}>{labelId}</label>
