@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 //import { selectProduct } from '../../state/actions';
 import styled from 'styled-components';
 
+
 const Card = styled.div`
   height: 235px;
   width: 250px;
@@ -36,7 +37,7 @@ export default function CartCard({ product }) {
     <Link>
       <Card>
         {/* <img src={product.img} alt="market product" /> */}
-        <img src="images/iPhone.jpg" alt="iphone image"/>
+        <img src="iPhone.jpg" alt="iphone image"/>
         <div className="productDetails">
           <h4>Hoodie</h4>
           <h5>$55.00</h5>

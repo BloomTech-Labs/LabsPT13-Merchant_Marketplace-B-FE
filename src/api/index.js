@@ -97,6 +97,21 @@ const createProduct = async (product, authState) => {
   }
 };
 
+const getCartItems = async (profile_id, authState) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthGet(`${baseUrl}/carts/${profile_id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    })
+  }
+
+};
+
 export {
   sleep,
   getExampleData,
@@ -105,4 +120,5 @@ export {
   getMarketProducts,
   getProductById,
   createProduct,
+  getCartItems
 };
