@@ -120,5 +120,5 @@ export {
   getMarketProducts,
   getProductById,
   createProduct,
-  getCartItems
+  getCartItems,
 };
