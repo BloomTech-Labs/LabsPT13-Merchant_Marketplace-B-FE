@@ -1,18 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { ArrowLeftOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, StarFilled } from '@ant-design/icons';
 
 const Wrapper = styled.div`
   .main {
     .seller-info {
-      .bg-img {
-        height: 300px;
-        padding: 15px;
-        background-image: url('https://images.unsplash.com/photo-1476820865390-c52aeebb9891?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8YmFja2dyb3VuZHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60');
-        background-size: cover;
-        background-position: center;
-      }
+      height: 300px;
+      background: linear-gradient(
+        0deg,
+        rgba(209, 81, 26, 1) 0%,
+        rgba(27, 82, 126, 1) 100%
+      );
 
       .info {
         position: absolute;
@@ -20,8 +19,76 @@ const Wrapper = styled.div`
         width: 90%;
         top: 100px;
         left: 5%;
+        padding: 10px;
         border-radius: 5px;
         background-color: #fff;
+
+        .top {
+          display: flex;
+          padding-bottom: 10px;
+          margin-bottom: 10px;
+          border-bottom: 1px solid #9fb1cc;
+
+          .avatar {
+            height: 150px;
+            width: 150px;
+            background-color: orange;
+          }
+
+          .top-right {
+            display: flex;
+            width: calc(100% - 150px);
+            padding: 5px;
+
+            .details {
+              width: 250px;
+              h3 {
+                font-weight: bold;
+                margin: 0;
+
+                a {
+                  font-weight: normal;
+                  margin-left: 3px;
+                }
+              }
+            }
+
+            .description {
+              margin: 50px 0 0 30px;
+            }
+          }
+        }
+
+        .bottom {
+          display: flex;
+          justify-content: space-between;
+          height: calc(100% - 170px);
+
+          .left,
+          .right {
+            width: 48%;
+            display: flex;
+            padding: 10px;
+            border: 1px solid #a8cea8;
+          }
+
+          .left {
+          }
+
+          .right {
+            justify-content: flex-end;
+
+            a {
+              height: fit-content;
+            }
+          }
+
+          .middle {
+            width: 1px;
+            background-color: #9fb1cc;
+            margin: 30px 0;
+          }
+        }
       }
     }
 
@@ -44,7 +111,7 @@ export default function RenderSeller({
   selectedProduct,
   inventory,
 }) {
-  console.log(inventory);
+  console.log(selectedSeller);
 
   return (
     <Wrapper>
@@ -54,8 +121,40 @@ export default function RenderSeller({
 
       <div className="main">
         <div className="seller-info">
-          <section className="bg-img" />
-          <section className="info"></section>
+          <section className="info">
+            <div className="top">
+              <div className="avatar">Seller Avatar</div>
+              <div className="top-right">
+                <section className="details">
+                  <h3>
+                    {selectedSeller.name}
+                    <a href="google.com">
+                      (66
+                      <StarFilled />)
+                    </a>
+                  </h3>
+                  <span>100% positive feedback</span>
+                </section>
+
+                <section className="description">
+                  <p>
+                    Hey just a seller who sells anything to make some money, i
+                    collect supreme and any shoes. Feel safe buying with me!
+                  </p>
+                </section>
+              </div>
+            </div>
+
+            <div className="bottom">
+              <div className="left">Reviews</div>
+
+              <div className="middle" />
+
+              <div className="right">
+                <a href="google.com"> Sell all reviews</a>
+              </div>
+            </div>
+          </section>
         </div>
 
         <div className="seller-products">
