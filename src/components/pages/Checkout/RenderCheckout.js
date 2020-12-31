@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CartCard } from '../../common';
+import { OrderSummary } from '../../common';
 
 
 const Wrapper = styled.div`
@@ -22,6 +23,9 @@ const RenderCheckout = () => {
       
       </InfoWrapper>
       <OrderSummaryWrapper>
+          <h3> Order Summary</h3>
+          <OrderSummary />
+          <div> Items </div>
 
       </OrderSummaryWrapper>
       
