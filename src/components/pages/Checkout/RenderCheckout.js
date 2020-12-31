@@ -5,6 +5,7 @@ import { OrderSummary } from '../../common';
 import { ContactInfo } from '../../common';
 import { ShippingInfo } from '../../common';
 import { PaymentMethod } from '../../common';
+import { BillingAddress } from '../../common';
 
 const Wrapper = styled.div`
   
@@ -29,7 +30,7 @@ const RenderCheckout = () => {
           <h3> 3 - Payment Method </h3>
             <PaymentMethod />
           <h3> 4 - Billing Address </h3>
-
+            <BillingAddress />
           <button> PLACE ORDER </button>
       
       </InfoWrapper>
