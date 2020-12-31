@@ -20,12 +20,22 @@ const RenderCheckout = () => {
   return (
     <Wrapper>
       <InfoWrapper>
+          <h3> 1 - Contact Info </h3>
+
+          <h3> 2 - Shipping Info </h3>
+
+          <h3> 3 - Payment Method </h3>
+
+          <h3> 4 - Billing Address </h3>
+
+          <button> PLACE ORDER </button>
       
       </InfoWrapper>
       <OrderSummaryWrapper>
-          <h3> Order Summary</h3>
+          <h4> Order Summary </h4>
           <OrderSummary />
           <div> Items </div>
+          <CartCard />
 
       </OrderSummaryWrapper>
       
@@ -34,4 +44,4 @@ const RenderCheckout = () => {
   );
 };
 
-export default RenderCart;
+export default RenderCheckout;
