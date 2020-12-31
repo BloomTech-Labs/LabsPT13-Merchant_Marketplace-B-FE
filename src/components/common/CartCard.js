@@ -10,7 +10,8 @@ const Card = styled.div`
   display: flex;
 
   img {
-    height: 230px;
+    height: 12.9rem;
+    width: 15rem;
     padding: 0.5rem;
   }
 
@@ -37,7 +38,7 @@ export default function CartCard({ product }) {
     <Link>
       <Card>
         {/* <img src={product.img} alt="market product" /> */}
-        <img src="iPhone.jpg" alt="iphone image"/>
+        <img src="https://photos5.appleinsider.com/gallery/38960-74440-iPhone-12-Pro-Max-Back-xl.jpg" alt="iphone image"/>
         <div className="productDetails">
           <h4>Hoodie</h4>
           <h5>$55.00</h5>
