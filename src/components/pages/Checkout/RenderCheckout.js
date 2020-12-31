@@ -4,6 +4,7 @@ import { CartCard } from '../../common';
 import { OrderSummary } from '../../common';
 import { ContactInfo } from '../../common';
 import { ShippingInfo } from '../../common';
+import { PaymentMethod } from '../../common';
 
 const Wrapper = styled.div`
   
@@ -26,7 +27,7 @@ const RenderCheckout = () => {
           <h3> 2 - Shipping Info </h3>
             <ShippingInfo />
           <h3> 3 - Payment Method </h3>
-
+            <PaymentMethod />
           <h3> 4 - Billing Address </h3>
 
           <button> PLACE ORDER </button>
