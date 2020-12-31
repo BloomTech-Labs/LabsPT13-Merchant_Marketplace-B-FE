@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { CartCard } from '../../common';
 import { OrderSummary } from '../../common';
-
+import { ContactInfo } from '../../common';
+import { ShippingInfo } from '../../common';
 
 const Wrapper = styled.div`
   
@@ -21,9 +22,9 @@ const RenderCheckout = () => {
     <Wrapper>
       <InfoWrapper>
           <h3> 1 - Contact Info </h3>
-
+            <ContactInfo />
           <h3> 2 - Shipping Info </h3>
-
+            <ShippingInfo />
           <h3> 3 - Payment Method </h3>
 
           <h3> 4 - Billing Address </h3>
