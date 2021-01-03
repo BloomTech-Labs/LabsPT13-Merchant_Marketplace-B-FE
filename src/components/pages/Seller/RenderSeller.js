@@ -144,8 +144,6 @@ export default function RenderSeller({
 
   const [value, updateValue] = useState(4.5);
 
-  console.log({ inventory });
-
   return (
     <Wrapper>
       <Link to={`/marketplace/item/${selectedProduct.id}`}>
