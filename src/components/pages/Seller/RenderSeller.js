@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ArrowLeftOutlined, StarFilled } from '@ant-design/icons';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import { Feedback } from '../../common';
+import { Feedback, ProductModal } from '../../common';
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -176,6 +176,8 @@ export default function RenderSeller({
   selectedSeller,
   selectedProduct,
   inventory,
+  modalOpen,
+  setModal,
 }) {
   let joiningDate = new Date(selectedSeller.created_at)
     .toDateString()
@@ -249,7 +251,11 @@ export default function RenderSeller({
 
           <div className="products">
             {inventory.map(p => (
-              <div key={p.id} className="product-card">
+              <div
+                key={p.id}
+                className="product-card"
+                onClick={() => setModal(true)}
+              >
                 <img src={p.images[0].img_url} alt="inventory product" />
 
                 <div className="details">
@@ -259,6 +265,8 @@ export default function RenderSeller({
               </div>
             ))}
           </div>
+
+          <ProductModal open={modalOpen} setOpen={setModal} />
         </div>
       </div>
     </Wrapper>
