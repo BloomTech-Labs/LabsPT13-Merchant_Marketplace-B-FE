@@ -8,6 +8,7 @@ export default function SellerContainer() {
   const dispatch = useDispatch();
   const { authState } = useOktaAuth();
   const { selectedSeller, selectedProduct } = useSelector(state => state);
+
   const { inventory, prevSellerId } = useSelector(
     state => state.sellerInventory
   );

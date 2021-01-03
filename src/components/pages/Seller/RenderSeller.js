@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ArrowLeftOutlined, StarFilled } from '@ant-design/icons';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import { Feedback, ProductCard } from '../../common';
 
 const Wrapper = styled.div`
+  min-height: 100vh;
+  background-color: #f7f7f7;
+
   .main {
     .seller-info {
       height: 300px;
@@ -15,7 +20,6 @@ const Wrapper = styled.div`
 
       .info {
         position: absolute;
-        height: 400px;
         width: 90%;
         top: 100px;
         left: 5%;
@@ -42,6 +46,7 @@ const Wrapper = styled.div`
 
             .details {
               width: 250px;
+
               h3 {
                 font-weight: bold;
                 margin: 0;
@@ -66,20 +71,35 @@ const Wrapper = styled.div`
 
           .left,
           .right {
-            width: 48%;
             display: flex;
+            width: 48%;
             padding: 10px;
-            border: 1px solid #a8cea8;
+            /* border: 1px solid #a8cea8; */
           }
 
           .left {
+            flex-direction: column;
+
             h3 {
               font-weight: bold;
+            }
+            section {
+              display: flex;
+              justify-content: space-between;
+              border-bottom: 1px solid #9fb1cc;
+              margin-top: 10px;
+            }
+
+            .feedback {
+            }
+
+            .member-since {
             }
           }
 
           .right {
-            justify-content: flex-end;
+            justify-content: center;
+            align-items: center;
 
             a {
               height: fit-content;
@@ -95,15 +115,19 @@ const Wrapper = styled.div`
       }
     }
 
-    .seller-products {
-      border: 1px solid orange;
-      padding: 230px 20px 20px 20px;
-      background-color: #f7f7f7;
+    .products-wrapper {
+      padding: 150px 20px 20px 20px;
 
       h2 {
-        margin: 0;
+        margin: 0 0 15px 0;
         font-weight: bold;
         border-bottom: 1px solid #b8b9b9;
+      }
+
+      .products {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
       }
     }
   }
@@ -114,7 +138,13 @@ export default function RenderSeller({
   selectedProduct,
   inventory,
 }) {
-  console.log(selectedSeller);
+  let joiningDate = new Date(selectedSeller.created_at)
+    .toDateString()
+    .split(' ');
+
+  const [value, updateValue] = useState(4.5);
+
+  console.log({ inventory });
 
   return (
     <Wrapper>
@@ -150,7 +180,22 @@ export default function RenderSeller({
 
             <div className="bottom">
               <div className="left">
-                <h3>Feedback Ratings:</h3>
+                <section className="feedback">
+                  <h3>Feedback Ratings:</h3>
+                  <Feedback
+                    value={value}
+                    updateValue={newValue => updateValue(newValue)}
+                  />
+                </section>
+
+                <section className="member-since">
+                  <h3>Member since:</h3>
+                  <div style={{ display: 'flex' }}>
+                    {`${joiningDate[1]} ${joiningDate[2]}, ${joiningDate[3]}`} |
+                    <LocationOnIcon color="secondary" fontSize="small" />{' '}
+                    California
+                  </div>
+                </section>
               </div>
 
               <div className="middle" />
@@ -162,8 +207,14 @@ export default function RenderSeller({
           </section>
         </div>
 
-        <div className="seller-products">
-          <h2>Items for sale(99)</h2>
+        <div className="products-wrapper">
+          <h2>Items for sale({inventory.length})</h2>
+
+          <div className="products">
+            {inventory.map(p => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
         </div>
       </div>
     </Wrapper>

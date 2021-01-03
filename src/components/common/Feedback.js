@@ -21,26 +21,28 @@ const useStyles = makeStyles({
     width: 200,
     display: 'flex',
     alignItems: 'center',
+    height: 'fit-content',
   },
 });
 
-export default function Feedback() {
-  const [value, setValue] = React.useState(2);
-  const [hover, setHover] = React.useState(-1);
+export default function Feedback({ readOnly = true, value, updateValue }) {
+  const [hover, setHover] = useState(-1);
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Rating
-        name="hover-feedback"
-        value={value}
+        name="half-rating-read"
+        defaultValue={4.5}
         precision={0.5}
-        onChange={(event, newValue) => {
-          setValue(newValue);
+        value={value}
+        onChange={(e, newValue) => {
+          updateValue(newValue);
         }}
-        onChangeActive={(event, newHover) => {
+        onChangeActive={(e, newHover) => {
           setHover(newHover);
         }}
+        readOnly={readOnly}
       />
       {value !== null && (
         <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
