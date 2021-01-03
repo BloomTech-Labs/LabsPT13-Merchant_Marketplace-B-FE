@@ -20,10 +20,10 @@ const Wrapper = styled.div`
 
       .info {
         position: absolute;
-        width: 90%;
+        max-width: 1100px;
+        left: calc((100vw - 1100px) / 2);
         top: 100px;
-        left: 5%;
-        padding: 10px;
+        padding: 15px;
         border-radius: 5px;
         background-color: #fff;
 
@@ -85,6 +85,7 @@ const Wrapper = styled.div`
             section {
               display: flex;
               justify-content: space-between;
+              flex-wrap: wrap;
               border-bottom: 1px solid #9fb1cc;
               margin-top: 10px;
             }
