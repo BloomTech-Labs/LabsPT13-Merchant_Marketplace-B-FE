@@ -73,6 +73,9 @@ const Wrapper = styled.div`
           }
 
           .left {
+            h3 {
+              font-weight: bold;
+            }
           }
 
           .right {
@@ -146,7 +149,9 @@ export default function RenderSeller({
             </div>
 
             <div className="bottom">
-              <div className="left">Reviews</div>
+              <div className="left">
+                <h3>Feedback Ratings:</h3>
+              </div>
 
               <div className="middle" />
 
