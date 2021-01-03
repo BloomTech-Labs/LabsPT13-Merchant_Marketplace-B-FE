@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ArrowLeftOutlined, StarFilled } from '@ant-design/icons';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import { Feedback, ProductCard } from '../../common';
+import { Feedback } from '../../common';
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -119,7 +119,7 @@ const Wrapper = styled.div`
       padding: 150px 20px 20px 20px;
 
       h2 {
-        margin: 0 0 15px 0;
+        margin: 0 0 20px 0;
         font-weight: bold;
         border-bottom: 1px solid #b8b9b9;
       }
@@ -128,6 +128,44 @@ const Wrapper = styled.div`
         display: flex;
         flex-wrap: wrap;
         gap: 15px;
+
+        .product-card {
+          height: 250px;
+          width: 230px;
+          border-radius: 4px;
+          overflow: hidden;
+          cursor: pointer;
+          transition-duration: 0.3s;
+
+          &:hover {
+            box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.12),
+              0 1px 2px rgba(0, 0, 0, 0.24);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          }
+
+          img {
+            height: 180px;
+            width: 250px;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            object-fit: cover;
+          }
+
+          .details {
+            padding: 5px;
+            height: 70px;
+            background-color: #fff;
+
+            h3,
+            h4 {
+              font-size: 16px;
+              margin: 0;
+            }
+            h3 {
+              font-weight: bold;
+            }
+          }
+        }
       }
     }
   }
@@ -210,7 +248,14 @@ export default function RenderSeller({
 
           <div className="products">
             {inventory.map(p => (
-              <ProductCard key={p.id} product={p} />
+              <div key={p.id} className="product-card">
+                <img src={p.images[0].img_url} />
+
+                <div className="details">
+                  <h4>${p.price}</h4>
+                  <h3>{p.title}</h3>
+                </div>
+              </div>
             ))}
           </div>
         </div>

@@ -8,7 +8,6 @@ import { fetchUserInfo } from './user';
 import { fetchProducts } from './products';
 import { selectProduct } from './product';
 import { searchByTitle } from './marketplaceSearch';
-import { addPath, removePath } from './browserPaths';
 import { fetchSellerInfo, selectSeller, fetchSellerInventory } from './seller';
 
 export {
@@ -19,6 +18,4 @@ export {
   fetchSellerInfo,
   selectSeller,
   fetchSellerInventory,
-  addPath,
-  removePath,
 };

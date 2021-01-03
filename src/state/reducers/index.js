@@ -8,12 +8,11 @@ import marketplaceSearch from './marketplaceSearch';
 import sellerInfo from './sellerInfo';
 import selectedSeller from './selectedSeller';
 import sellerInventory from './sellerInventory';
-import browserPaths from './browserPaths';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['userInfo', 'selectedProduct', 'selectedSeller', 'browserPaths'],
+  whitelist: ['userInfo', 'selectedProduct', 'selectedSeller'],
 };
 
 const rootReducer = combineReducers({
@@ -24,7 +23,6 @@ const rootReducer = combineReducers({
   selectedSeller,
   sellerInfo,
   sellerInventory,
-  browserPaths,
 });
 
 export default persistReducer(persistConfig, rootReducer);
