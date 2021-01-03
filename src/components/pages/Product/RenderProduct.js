@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { Divider, Tooltip } from 'antd';
 import {
   MessageFilled,
-  ArrowLeftOutlined,
   ShoppingCartOutlined,
   HeartOutlined,
   HeartFilled,
@@ -244,10 +243,6 @@ const RenderProduct = ({
     <Wrapper>
       {sellerInfo ? (
         <>
-          <Link to="/">
-            <ArrowLeftOutlined />
-          </Link>
-
           <ImagesGallery images={product.images} />
 
           <div className="details-wrapper">

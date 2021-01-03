@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { ArrowLeftOutlined, StarFilled } from '@ant-design/icons';
+import { StarFilled } from '@ant-design/icons';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { Feedback, ProductCard } from '../../common';
 
@@ -20,8 +19,8 @@ const Wrapper = styled.div`
 
       .info {
         position: absolute;
-        max-width: 1100px;
-        left: calc((100vw - 1100px) / 2);
+        width: 90%;
+        left: 5%;
         top: 100px;
         padding: 15px;
         border-radius: 5px;
@@ -185,10 +184,6 @@ export default function RenderSeller({
 
   return (
     <Wrapper>
-      <Link to={`/marketplace/item/${selectedProduct.id}`}>
-        <ArrowLeftOutlined />
-      </Link>
-
       <div className="main">
         <div className="seller-info">
           <section className="info">
@@ -249,7 +244,7 @@ export default function RenderSeller({
 
           <div className="products">
             {inventory.map(p => (
-              <ProductCard product={p} />
+              <ProductCard key={p.id} product={p} />
             ))}
           </div>
         </div>
