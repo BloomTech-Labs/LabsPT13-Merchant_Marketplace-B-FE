@@ -9,6 +9,7 @@ import NavLoadingSkeleton from './NavLoadingSkeleton';
 import ProductCardSkeleton from './ProductCardSkeleton';
 import FormSelect from './FomSelect';
 import Feedback from './Feedback';
+import ProductModal from './ProductModal';
 // notice we're building out a 'package' of reusables here and exporting them as an object of component properties.
 // to use this, simply `import {foo, bar, baz} from '<path-to-this-directory>/ReusableComponents';`
 export {
@@ -23,4 +24,5 @@ export {
   NavLoadingSkeleton,
   FormSelect,
   Feedback,
+  ProductModal,
 };

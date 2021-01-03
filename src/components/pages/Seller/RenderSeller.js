@@ -74,7 +74,6 @@ const Wrapper = styled.div`
             display: flex;
             width: 48%;
             padding: 10px;
-            /* border: 1px solid #a8cea8; */
           }
 
           .left {
@@ -107,9 +106,9 @@ const Wrapper = styled.div`
           }
 
           .middle {
-            width: 1px;
+            width: 2px;
             background-color: #9fb1cc;
-            margin: 30px 0;
+            margin: 10px 0;
           }
         }
       }
@@ -136,6 +135,7 @@ const Wrapper = styled.div`
           overflow: hidden;
           cursor: pointer;
           transition-duration: 0.3s;
+          border: 1px solid #cecccc;
 
           &:hover {
             box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.12),
@@ -249,7 +249,7 @@ export default function RenderSeller({
           <div className="products">
             {inventory.map(p => (
               <div key={p.id} className="product-card">
-                <img src={p.images[0].img_url} />
+                <img src={p.images[0].img_url} alt="inventory product" />
 
                 <div className="details">
                   <h4>${p.price}</h4>
