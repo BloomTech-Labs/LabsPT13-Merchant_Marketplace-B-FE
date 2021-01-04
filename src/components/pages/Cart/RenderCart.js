@@ -25,7 +25,7 @@ const CardWrapper = styled.div`
 `
 
 export default function RenderCart() {
-  const { carts } = useSelector(state => state.cartItems);
+  const { carts } = useSelector(state => state.carts);
 
   return (
     <Wrapper>
