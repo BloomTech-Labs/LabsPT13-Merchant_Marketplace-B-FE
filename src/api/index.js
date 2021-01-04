@@ -78,6 +78,20 @@ const getMarketProducts = async authState => {
   }
 };
 
+const getSellerReviews = async (authState, seller_id) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthGet(`${baseUrl}/reviews/${seller_id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    });
+  }
+};
+
 const createProduct = async (product, authState) => {
   try {
     const headers = getAuthHeader(authState);

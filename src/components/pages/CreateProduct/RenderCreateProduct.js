@@ -152,6 +152,9 @@ const Wrapper = styled.div`
   }
 `;
 
+// !todo add more categories
+const categories = ['Electronics', 'Furniture', 'Books'];
+
 export default function RenderCreateProduct({
   userInfo,
   formInfo,
@@ -229,7 +232,7 @@ export default function RenderCreateProduct({
         <FormSelect
           title="Category"
           name="category"
-          values={['Electronics', 'Furniture', 'Books']}
+          values={categories}
           onChange={handleChange}
         />
 
