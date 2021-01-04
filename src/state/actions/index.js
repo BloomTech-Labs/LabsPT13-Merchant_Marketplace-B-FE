@@ -7,5 +7,6 @@
 import { fetchUserInfo } from './userInfo';
 import { fetchProducts } from './products';
 import { selectProduct } from './product';
+import { fetchWishlist } from './wishlists';
 
-export { fetchUserInfo, fetchProducts, selectProduct };
+export { fetchUserInfo, fetchProducts, selectProduct, fetchWishlist };

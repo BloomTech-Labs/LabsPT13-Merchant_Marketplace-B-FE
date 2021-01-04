@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { StopOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
 const Card = styled.div`
   height: 100%;
@@ -43,9 +42,15 @@ const Card = styled.div`
       font-weight: bold;
     }
     button {
-      height: 35px;
-      width: 35px;
-      margin-top: 110px;
+      padding: 3px 13px 3px 8px;
+      background-color: #2d88ff;
+      color: #fff;
+      border-radius: 3px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #4594fa;
+      }
     }
   }
 `;
@@ -63,7 +68,7 @@ export default function WishlistCard({ product }) {
 
       <div className="details">
         <img
-          src="https://m.media-amazon.com/images/I/61OUjGDvtLL._AC_UY218_.jpg "
+          src="https://m.media-amazon.com/images/I/61OUjGDvtLL._AC_UY218_.jpg"
           alt=" "
         />
         <div>
@@ -72,12 +77,8 @@ export default function WishlistCard({ product }) {
             <small>$</small>
             <strong>499.99</strong>
           </p>
-          <button onClick={addToCart}>
-            <ShoppingCartOutlined className="cart-icon" />
-          </button>
-          <button onClick={removeFromWishlist}>
-            <StopOutlined className="remove__icon" />
-          </button>
+          <button onClick={addToCart}>Add to cart</button>
+          <button onClick={removeFromWishlist}>Remove</button>
         </div>
       </div>
     </Card>

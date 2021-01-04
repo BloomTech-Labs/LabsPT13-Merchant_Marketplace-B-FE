@@ -97,6 +97,20 @@ const createProduct = async (product, authState) => {
   }
 };
 
+const getWishListProducts = async (profile_id, authState) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthGet(`${baseUrl}/wishlists/${profile_id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    });
+  }
+};
+
 export {
   sleep,
   getExampleData,
@@ -105,4 +119,5 @@ export {
   getMarketProducts,
   getProductById,
   createProduct,
+  getWishListProducts,
 };
