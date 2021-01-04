@@ -1,29 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import { getProductById } from '../../../api';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCart } from '../../../state/actions';
+import { fetchUserInfo } from '../../../state/actions';
+import { getProfileData } from '../../../api'
 
 import RenderCart from './RenderCart';
 
-export default function CartContainer() {
-  const { authState } = useOktaAuth();
-  const [products, setProducts] = useState([]);
+export default function CartContainer({ LoadingComponent }) {
+  const dispatch = useDispatch();
+  const { authState, authService } = useOktaAuth();
+  const [memoAuthService] = useMemo(() => [authService], [authService]);
+  const { userInfo, cart } = useSelector(state => state);
+  const profile = getProfileData()
+
+  console.log(profile)
+  const profile_id = profile.id
+
+
 
   useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        //const product = await getProductById(id, authState);
-        //setProductInfo(product);
-      } catch (error) {
-        console.error(error);
-        // Be sure to add functionality that displays errors to your UI here.
-        // We want our users to know whether something has gone wrong with our request.
-      }
-    };
-  }, []);
+    let isSubscribed = true;
+
+    !userInfo && dispatch(fetchUserInfo(memoAuthService, isSubscribed));
+    !cart && dispatch(fetchCart(profile_id, authState));
+
+    return () => (isSubscribed = false);
+  }, [dispatch, authState, userInfo, cart, memoAuthService]);
 
   return (
-    <div>
-      <RenderCart />
-    </div>
+    <>
+      {authState.isAuthenticated && !userInfo ? (
+        <LoadingComponent message="...Fetching profile" />
+      ) : (
+        <RenderCart />
+      )}
+    </>
   );
+
 }
