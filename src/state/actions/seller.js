@@ -51,12 +51,14 @@ export const fetchSellerReviews = (authState, seller_id) => dispatch => {
   dispatch({ type: 'REVIEWS_LOADING' });
 
   getSellerReviews(authState, seller_id)
-    .then(reviews => ({ type: 'REVIEWS_LOADED', payload: reviews }))
+    .then(reviews => {
+      dispatch({ type: 'REVIEWS_LOADED', payload: reviews });
+    })
     .catch(err => {
-      console.error(err);
-      return {
+      dispatch({
         type: 'REVIEWS_ERROR',
         payload: 'Request failed, please try again!',
-      };
+      });
+      console.error(err);
     });
 };

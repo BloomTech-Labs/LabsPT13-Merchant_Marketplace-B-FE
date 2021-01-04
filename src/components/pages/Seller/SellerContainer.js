@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSellerInventory } from '../../../state/actions';
+import {
+  fetchSellerInventory,
+  fetchSellerReviews,
+} from '../../../state/actions';
 import RenderSeller from './RenderSeller';
 
 export default function SellerContainer() {
@@ -11,8 +14,12 @@ export default function SellerContainer() {
   const { inventory, prevSellerId } = useSelector(
     state => state.sellerInventory
   );
+  const { reviews } = useSelector(state => state.sellerReviews);
 
   useEffect(() => {
+    !reviews.length &&
+      dispatch(fetchSellerReviews(authState, selectedSeller.id));
+
     // only fetch for seller inventory if a different seller is selected
     if (inventory.length) {
       if (prevSellerId !== selectedSeller.id) {
@@ -21,7 +28,22 @@ export default function SellerContainer() {
     } else {
       dispatch(fetchSellerInventory(authState, selectedSeller.id));
     }
-  }, [dispatch, inventory.length, prevSellerId, selectedSeller.id, authState]);
+  }, [
+    dispatch,
+    inventory.length,
+    reviews.length,
+    prevSellerId,
+    selectedSeller.id,
+    authState,
+  ]);
 
-  return <RenderSeller selectedSeller={selectedSeller} inventory={inventory} />;
+  return inventory.length ? (
+    <RenderSeller
+      selectedSeller={selectedSeller}
+      inventory={inventory}
+      reviews={reviews}
+    />
+  ) : (
+    <div>Loading seller page skeleton...</div>
+  );
 }

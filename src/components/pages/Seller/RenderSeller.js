@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { StarFilled } from '@ant-design/icons';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -173,12 +173,13 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function RenderSeller({ selectedSeller, inventory }) {
+export default function RenderSeller({ selectedSeller, inventory, reviews }) {
   let joiningDate = new Date(selectedSeller.created_at)
     .toDateString()
     .split(' ');
 
-  const [value, updateValue] = useState(4.5);
+  const avgRating =
+    reviews.reduce((acc, curr) => acc + curr.rate, 0) / reviews.length;
 
   return (
     <Wrapper>
@@ -192,7 +193,7 @@ export default function RenderSeller({ selectedSeller, inventory }) {
                   <h3>
                     {selectedSeller.name}
                     <a href="google.com">
-                      (66
+                      ({reviews.length}
                       <StarFilled />)
                     </a>
                   </h3>
@@ -212,10 +213,7 @@ export default function RenderSeller({ selectedSeller, inventory }) {
               <div className="left">
                 <section className="feedback">
                   <h3>Feedback Ratings:</h3>
-                  <Feedback
-                    value={value}
-                    updateValue={newValue => updateValue(newValue)}
-                  />
+                  <Feedback value={avgRating} />
                 </section>
 
                 <section className="member-since">

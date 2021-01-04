@@ -25,7 +25,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Feedback({ readOnly = true, value, updateValue }) {
+export default function Feedback({
+  readOnly = true,
+  value,
+  updateValue = null,
+}) {
   const [hover, setHover] = useState(-1);
   const classes = useStyles();
 
