@@ -1,4 +1,8 @@
-import { getProfileData, getProfileInventory } from '../../api';
+import {
+  getProfileData,
+  getProfileInventory,
+  getSellerReviews,
+} from '../../api';
 
 export const fetchSellerInfo = (authState, profile_id) => dispatch => {
   dispatch({ type: 'LOADING_SELLER_INFO' });
@@ -40,5 +44,19 @@ export const fetchSellerInventory = (authState, profile_id) => dispatch => {
         payload: 'Request failed, please try again!',
       });
       console.error(err);
+    });
+};
+
+export const fetchSellerReviews = (authState, seller_id) => dispatch => {
+  dispatch({ type: 'REVIEWS_LOADING' });
+
+  getSellerReviews(authState, seller_id)
+    .then(reviews => ({ type: 'REVIEWS_LOADED', payload: reviews }))
+    .catch(err => {
+      console.error(err);
+      return {
+        type: 'REVIEWS_ERROR',
+        payload: 'Request failed, please try again!',
+      };
     });
 };
