@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import userInfo from './userInfo';
 import products from './products';
 import selectedProduct from './selectedProduct';
+import carts from './carts';
 
 const persistConfig = {
   key: 'root',
@@ -11,6 +12,6 @@ const persistConfig = {
   whitelist: ['userInfo', 'selectedProduct'],
 };
 
-const rootReducer = combineReducers({ userInfo, products, selectedProduct });
+const rootReducer = combineReducers({ userInfo, products, selectedProduct,carts });
 
 export default persistReducer(persistConfig, rootReducer);
