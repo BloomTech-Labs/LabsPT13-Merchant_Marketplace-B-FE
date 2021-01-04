@@ -99,9 +99,11 @@ const Wrapper = styled.div`
           .right {
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+            gap: 10px;
 
             a {
-              height: fit-content;
+              text-decoration: underline;
             }
           }
 
@@ -171,11 +173,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function RenderSeller({
-  selectedSeller,
-  selectedProduct,
-  inventory,
-}) {
+export default function RenderSeller({ selectedSeller, inventory }) {
   let joiningDate = new Date(selectedSeller.created_at)
     .toDateString()
     .split(' ');
@@ -233,7 +231,8 @@ export default function RenderSeller({
               <div className="middle" />
 
               <div className="right">
-                <a href="google.com"> Sell all reviews</a>
+                <a href="google.com"> Seller reviews</a>
+                <a href="google.com"> Contact Seller</a>
               </div>
             </div>
           </section>
