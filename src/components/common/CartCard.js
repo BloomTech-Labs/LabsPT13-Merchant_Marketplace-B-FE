@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//import { selectProduct } from '../../state/actions';
+import { useDispatch } from 'react-redux';
+import { selectProduct } from '../../state/actions';
 import styled from 'styled-components';
 
 
@@ -30,18 +31,25 @@ const Card = styled.div`
 
 export default function CartCard({ product }) {
 
+  const dispatch = useDispatch();
+
   function sendToWishlist() {
     console.log('send item to wishlist')
   }
 
   return (
-    <Link>
+    <Link
+      to={{ pathname: `/marketplace/item/${product.id}`, product }}
+      onClick={() => dispatch(selectProduct(product))}
+    >
       <Card>
         {/* <img src={product.img} alt="market product" /> */}
-        <img src="https://photos5.appleinsider.com/gallery/38960-74440-iPhone-12-Pro-Max-Back-xl.jpg" alt="iphone image"/>
+        {/* <img src="https://photos5.appleinsider.com/gallery/38960-74440-iPhone-12-Pro-Max-Back-xl.jpg" alt="iphone image"/> */}
+        
+        {<img src={product.images[0].img_url} alt="market product" />}
         <div className="productDetails">
-          <h4>Hoodie</h4>
-          <h5>$55.00</h5>
+          <h4>{product.title}</h4>
+          <h5>{product.price}</h5>
           <h6> Quantity: 1</h6>
           <div class="cartButtons">
             <button onClick={sendToWishlist}>Send to Wishlist</button>

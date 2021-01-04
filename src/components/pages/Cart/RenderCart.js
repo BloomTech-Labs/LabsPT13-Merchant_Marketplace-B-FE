@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 import { NavigationBar } from '../../common';
 import { CartCard } from '../../common';
 import { Payments } from '../../common';
@@ -23,7 +24,9 @@ const CardWrapper = styled.div`
   }
 `
 
-const RenderCart = () => {
+export default function RenderCart() {
+  const { carts } = useSelector(state => state.cartItems);
+
   return (
     <Wrapper>
       <NavigationBar />
@@ -31,7 +34,9 @@ const RenderCart = () => {
       <CardWrapper>
       
       <div className="productsWrapper">
-        <CartCard />
+      {carts.map(p => (
+          <CartCard key={p.id} product={p} />
+        ))}
       </div>
       <div className="paymentsWrapper">
         <Payments />
@@ -40,5 +45,3 @@ const RenderCart = () => {
     </Wrapper>
   );
 };
-
-export default RenderCart;
