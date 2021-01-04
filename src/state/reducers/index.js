@@ -8,6 +8,7 @@ import marketplaceSearch from './marketplaceSearch';
 import sellerInfo from './sellerInfo';
 import selectedSeller from './selectedSeller';
 import sellerInventory from './sellerInventory';
+import sellerReviews from './sellerReviews';
 
 const persistConfig = {
   key: 'root',
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   selectedSeller,
   sellerInfo,
   sellerInventory,
+  sellerReviews,
 });
 
 export default persistReducer(persistConfig, rootReducer);

@@ -1,16 +1,16 @@
 const initialState = {
-  products: [],
+  reviews: [],
   error: '',
   loading: false,
 };
 
-const products = (state = initialState, { type, payload }) => {
+const sellerReviews = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'PRODUCTS_LOADING':
+    case 'REVIEWS_LOADING':
       return { ...state, loading: true, error: '' };
-    case 'PRODUCTS_LOADED':
-      return { ...state, loading: false, products: payload };
-    case 'PRODUCTS_ERRORS':
+    case 'REVIEWS_LOADED':
+      return { ...state, loading: false, reviews: payload };
+    case 'REVIEWS_ERRORS':
       return {
         ...state,
         loading: false,
@@ -21,4 +21,4 @@ const products = (state = initialState, { type, payload }) => {
   }
 };
 
-export default products;
+export default sellerReviews;

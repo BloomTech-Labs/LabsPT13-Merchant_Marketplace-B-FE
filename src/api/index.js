@@ -113,4 +113,5 @@ export {
   getDSData,
   getMarketProducts,
   createProduct,
+  getSellerReviews,
 };
