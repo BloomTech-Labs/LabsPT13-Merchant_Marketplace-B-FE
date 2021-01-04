@@ -1,11 +1,11 @@
 import { getCartItems } from '../../api';
 
-export const fetchCart = authState => dispatch => {
+export const fetchCart = (profile_id,authState) => dispatch => {
   try {
     console.log('FETCHING ITEMS FROM THE CART');
-    dispatch({ type: 'CART_LOADING' });
-    getCartItems(authState).then(items => {
-      dispatch({ type: 'PRODUCTS_LOADED', payload: items });
+    dispatch({ type: 'CARTS_LOADING' });
+    getCartItems(profile_id,authState).then(items => {
+      dispatch({ type: 'CARTS_LOADED', payload: items });
     });
   } catch (err) {
     dispatch({

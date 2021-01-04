@@ -9,7 +9,7 @@ const initialState = {
       case 'CARTS_LOADING':
         return { ...state, loading: true, error: '' };
       case 'CARTS_LOADED':
-        return { ...state, loading: false, products: payload };
+        return { ...state, loading: false, items: payload };
       case 'CART_ERRORS':
         return {
           ...state,

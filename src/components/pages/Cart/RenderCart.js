@@ -26,7 +26,7 @@ const CardWrapper = styled.div`
 
 export default function RenderCart() {
   const { carts } = useSelector(state => state.carts);
-
+  console.log(carts)
   return (
     <Wrapper>
       <NavigationBar />
