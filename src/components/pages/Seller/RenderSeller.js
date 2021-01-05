@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'react-scroll';
 import { StarFilled } from '@ant-design/icons';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import TimeAgo from 'react-timeago';
 import { Feedback, ProductCard } from '../../common';
 
 const Wrapper = styled.div`
@@ -155,6 +157,8 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
     .toDateString()
     .split(' ');
 
+  console.log(reviews);
+
   const avgRating = reviews.reduce((acc, curr) => acc + curr.rate, 0);
 
   return (
@@ -244,6 +248,15 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
               <section>
                 <Feedback value={review.rate} addLabel={false} />
                 <h3>{review.title}</h3>
+              </section>
+
+              <section style={{ gap: '5px' }}>
+                <VerifiedUserIcon style={{ color: 'green' }} fontSize="small" />
+                <span>Verified Purchase</span>
+                <span style={{ fontWeight: 'bold' }}> | </span>
+                <span>
+                  Posted <TimeAgo date={review.created_at} />.
+                </span>
               </section>
 
               <p>{review.description}</p>
