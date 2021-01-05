@@ -44,6 +44,10 @@ const apiAuthPost = (url, data, authHeader) => {
   return axios.post(url, data, { headers: authHeader });
 };
 
+const apiAuthDelete = (url, data, authHeader) => {
+  return axios.delete(url, data, { headers: authHeader })
+};
+
 const getProfileData = authState => {
   try {
     return apiAuthGet(`${baseUrl}/profile`, getAuthHeader(authState)).then(
@@ -111,7 +115,7 @@ const getCartItems = async (profile_id, authState) => {
   }
 };
 
-const removeCartItem = async (profile_id, authState) => {
+const removeCartItem = async (profile_id, product_id, authState) => {
   try {
     const headers = getAuthHeader(authState);
     return apiAuthDelete(`${baseUrl}/carts/${profile_id}/${product_id}`, headers).then(
