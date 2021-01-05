@@ -1,4 +1,5 @@
 import { getCartItems } from '../../api';
+import { removeCartItem } from '../../api';
 
 export const fetchCart = (profile_id,authState) => dispatch => {
   try {
