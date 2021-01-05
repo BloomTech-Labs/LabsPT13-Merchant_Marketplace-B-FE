@@ -1,6 +1,6 @@
 const selectedProduct = (state = null, { type, payload }) => {
   switch (type) {
-    case 'PRODUCT_LOADED':
+    case 'PRODUCT_SELECTED':
       return payload;
     case 'CLEAR':
       return null;

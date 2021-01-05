@@ -85,11 +85,11 @@ export default function CreateProductContainer() {
       createProduct({ product, images }, authState)
         .then(() => {
           setPostingProduct(false);
-          toast.success('Congrats! Item posted.', { autoClose: 1000 });
+          toast.success('Congrats! Item posted.', { autoClose: 900 });
 
           setTimeout(() => {
-            history.push('/');
-          }, 1000);
+            history.push({ pathname: '/', state: true });
+          }, 900);
         })
         .catch(err => {
           setError("Can't post product now. Try again?");
