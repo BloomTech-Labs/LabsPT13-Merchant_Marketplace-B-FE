@@ -5,7 +5,7 @@
 // Declare action TYPES at the top of the file
 
 import { fetchUserInfo } from './user';
-import { fetchProducts } from './products';
+import { fetchProducts, fetchOrders } from './products';
 import { selectProduct } from './product';
 import { searchByTitle } from './marketplaceSearch';
 import {
@@ -18,6 +18,7 @@ import {
 export {
   fetchUserInfo,
   fetchProducts,
+  fetchOrders,
   selectProduct,
   searchByTitle,
   fetchSellerInfo,
