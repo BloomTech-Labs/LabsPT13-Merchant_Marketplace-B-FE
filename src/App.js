@@ -5,7 +5,6 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { HomePage } from './components/pages/Home';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
-import { LoadingComponent } from './components/common';
 import { CartPage } from './components/pages/Cart';
 import { ProductPage } from './components/pages/Product';
 import { CreateProduct } from './components/pages/CreateProduct';
@@ -28,11 +27,7 @@ export default function App() {
         <Route path="/implicit/callback" component={LoginCallback} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
 
-        <SecureRoute
-          path="/"
-          exact
-          component={() => <HomePage LoadingComponent={LoadingComponent} />}
-        />
+        <SecureRoute path="/" exact component={() => <HomePage />} />
 
         <SecureRoute
           path="/marketplace/cart"

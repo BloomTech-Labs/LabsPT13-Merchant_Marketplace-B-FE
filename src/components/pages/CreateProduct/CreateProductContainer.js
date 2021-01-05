@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Spin } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
+import { ToastContainer, toast } from 'react-toastify';
+import { LoadingComponent } from '../../common';
 import RenderCreateProduct from './RenderCreateProduct';
 import { createProduct } from '../../../api';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialState = {
   title: '',
@@ -24,7 +26,7 @@ export default function CreateProductContainer() {
   const [imageSelected, setImageSelected] = useState(true);
   const [postingProduct, setPostingProduct] = useState(false);
   const [error, setError] = useState('');
-  const { userInfo } = useSelector(state => state);
+  const { userInfo } = useSelector(state => state.userInfo);
   const { authState } = useOktaAuth();
   const history = useHistory();
 
@@ -83,7 +85,11 @@ export default function CreateProductContainer() {
       createProduct({ product, images }, authState)
         .then(() => {
           setPostingProduct(false);
-          history.push('/');
+          toast.success('Congrats! Item posted.', { autoClose: 1000 });
+
+          setTimeout(() => {
+            history.push('/');
+          }, 1000);
         })
         .catch(err => {
           setError("Can't post product now. Try again?");
@@ -97,20 +103,8 @@ export default function CreateProductContainer() {
   };
 
   return (
-    <div>
-      {postingProduct ? (
-        <div
-          style={{
-            width: '100%',
-            height: '100vh',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Spin tip="Loading" size="large" style={{ fontSize: '18px' }} />
-        </div>
-      ) : (
+    <>
+      <LoadingComponent active={postingProduct} message="Listing your item...">
         <RenderCreateProduct
           userInfo={userInfo}
           formInfo={formInfo}
@@ -126,7 +120,9 @@ export default function CreateProductContainer() {
           imageSelected={imageSelected}
           error={error}
         />
-      )}
-    </div>
+      </LoadingComponent>
+
+      <ToastContainer />
+    </>
   );
 }

@@ -1,11 +1,10 @@
 import React, { useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from '../../../state/actions';
-import { fetchUserInfo } from '../../../state/actions';
+import { fetchUserInfo, fetchProducts } from '../../../state/actions';
 import RenderHomePage from './RenderHomePage';
 
-function HomeContainer({ LoadingComponent }) {
+function HomeContainer() {
   const dispatch = useDispatch();
   const { authState, authService } = useOktaAuth();
   const [memoAuthService] = useMemo(() => [authService], [authService]);
@@ -23,10 +22,10 @@ function HomeContainer({ LoadingComponent }) {
 
   return (
     <>
-      {authState.isAuthenticated && !userInfo ? (
-        <LoadingComponent message="...Fetching profile" />
+      {authState.isAuthenticated ? (
+        <RenderHomePage userInfo={userInfo} products={products} />
       ) : (
-        <RenderHomePage />
+        <div>You must be authenticated to browse.</div>
       )}
     </>
   );

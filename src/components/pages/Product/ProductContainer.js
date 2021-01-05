@@ -5,7 +5,8 @@ import RenderProduct from './RenderProduct';
 export default function ProductContainer() {
   const [message, setMessage] = useState('Is this available?');
   const [saved, setSaved] = useState(false);
-  const { userInfo, selectedProduct } = useSelector(state => state);
+  const { selectedProduct } = useSelector(state => state);
+  const { userInfo } = useSelector(state => state.userInfo);
 
   const saveMessage = e => setMessage(e.target.value);
 
