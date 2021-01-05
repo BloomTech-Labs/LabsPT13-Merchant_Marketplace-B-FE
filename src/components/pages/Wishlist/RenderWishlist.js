@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import WishlistCard from '../../common/WishlistCard';
+import { useSelector } from 'react-redux';
+
+import WishlistCard from '../../common/wishlistCard.js';
+
 import NavigationBar from '../../common/NavigationBar';
+
 const Wrapper = styled.div`
   .Wishlist__ad {
     width: 100%;
@@ -16,6 +20,7 @@ const Wrapper = styled.div`
 `;
 
 const RenderWishlist = () => {
+  const { wishlists } = useSelector(state => state.wishlists);
   return (
     <Wrapper>
       <NavigationBar />
@@ -26,17 +31,10 @@ const RenderWishlist = () => {
       />
       <div>
         <h1 className="Wishlist__title">Wishlist</h1>
-        {/* {basket.map(item => (
-            <WishlistCard
-              id={item.id}
-              title={item.title}
-              image={item.image}
-              price={item.price}
-              rating={item.rating}
-            />
-          ))} */}
       </div>
-      <WishlistCard />
+      {wishlists.map(p => (
+        <WishlistCard key={p.id} product={p} />
+      ))}
     </Wrapper>
   );
 };

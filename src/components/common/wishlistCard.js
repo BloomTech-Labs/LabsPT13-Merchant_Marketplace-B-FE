@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { selectProduct } from '../../state/actions';
 
 const Card = styled.div`
   height: 100%;
@@ -55,6 +57,7 @@ const Card = styled.div`
   }
 `;
 export default function WishlistCard({ product }) {
+  const dispatch = useDispatch();
   function addToCart() {
     console.log('added to Cart');
   }
@@ -62,27 +65,25 @@ export default function WishlistCard({ product }) {
     console.log('removed from wishlist');
   }
   return (
-    // <Link to={`/item/${product.id}`}>
-    <Card>
-      {/* <img src={product.img} alt="market product" /> */}
-
-      <div className="details">
-        <img
-          src="https://m.media-amazon.com/images/I/61OUjGDvtLL._AC_UY218_.jpg"
-          alt=" "
-        />
-        <div>
-          <h2>Microsoft Xbox One X 1TB Console</h2>
-          <p>
-            <small>$</small>
-            <strong>499.99</strong>
-          </p>
-          <button onClick={addToCart}>Add to cart</button>
-          <button onClick={removeFromWishlist}>Remove</button>
+    <Link
+      to={`/marketplace/item/${product.id}`}
+      onClick={() => dispatch(selectProduct(product))}
+    >
+      <Card>
+        <div className="details">
+          {<img src={product.images[0].img_url} alt="market product" />}
+          <div>
+            <h2>{product.title}</h2>
+            <p>
+              <small>$</small>
+              <strong>{product.price}</strong>
+            </p>
+            <button onClick={addToCart}>Add to cart</button>
+            <button onClick={removeFromWishlist}>Remove</button>
+          </div>
         </div>
-      </div>
-    </Card>
-
-    // </Link>
+      </Card>
+      /{' '}
+    </Link>
   );
 }
