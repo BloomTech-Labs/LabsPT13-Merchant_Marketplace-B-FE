@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-scroll';
 import { StarFilled } from '@ant-design/icons';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { Feedback, ProductCard } from '../../common';
@@ -132,7 +133,7 @@ const Wrapper = styled.div`
     }
 
     .reviews-wrapper {
-      padding: 30px 15px 15px 15px;
+      padding: 40px 15px 15px 15px;
 
       .review {
         padding: 30px 0;
@@ -159,8 +160,6 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
 
   const avgRating = reviews.reduce((acc, curr) => acc + curr.rate, 0);
 
-  console.log(reviews);
-
   return (
     <Wrapper>
       <div className="main">
@@ -172,10 +171,10 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
                 <section className="details">
                   <h3>
                     {selectedSeller.name}
-                    <a href="google.com">
+                    <Link to="reviews-wrapper" smooth={true} duration={700}>
                       ({reviews.length}
                       <StarFilled />)
-                    </a>
+                    </Link>
                   </h3>
                 </section>
 
@@ -210,7 +209,10 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
               <div className="middle" />
 
               <div className="right">
-                <a href="google.com"> Seller reviews</a>
+                <Link to="reviews-wrapper" smooth={true} duration={700}>
+                  {' '}
+                  Seller reviews
+                </Link>
                 <a href="google.com"> Contact Seller</a>
               </div>
             </div>
