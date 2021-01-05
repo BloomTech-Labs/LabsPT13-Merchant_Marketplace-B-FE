@@ -10,6 +10,8 @@ const Wrapper = styled.div`
 
   .main {
     .seller-info {
+      display: flex;
+      justify-content: center;
       height: 300px;
       background: linear-gradient(
         0deg,
@@ -18,13 +20,13 @@ const Wrapper = styled.div`
       );
 
       .info {
-        position: absolute;
-        width: 90%;
-        left: 5%;
+        position: relative;
+        max-width: 1100px;
         top: 100px;
         padding: 15px;
         border-radius: 5px;
         background-color: #fff;
+        margin: 0 15px;
 
         .top {
           display: flex;
@@ -42,9 +44,10 @@ const Wrapper = styled.div`
             display: flex;
             width: calc(100% - 150px);
             padding: 5px;
+            justify-content: space-between;
 
             .details {
-              width: 250px;
+              min-width: 220px;
 
               h3 {
                 font-weight: bold;
@@ -53,12 +56,14 @@ const Wrapper = styled.div`
                 a {
                   font-weight: normal;
                   margin-left: 3px;
+                  letter-spacing: 2px;
                 }
               }
             }
 
             .description {
-              margin: 50px 0 0 30px;
+              align-self: center;
+              padding: 20px;
             }
           }
         }
@@ -71,11 +76,11 @@ const Wrapper = styled.div`
           .left,
           .right {
             display: flex;
-            width: 48%;
             padding: 10px;
           }
 
           .left {
+            width: 60%;
             flex-direction: column;
 
             h3 {
@@ -88,15 +93,10 @@ const Wrapper = styled.div`
               border-bottom: 1px solid #9fb1cc;
               margin-top: 10px;
             }
-
-            .feedback {
-            }
-
-            .member-since {
-            }
           }
 
           .right {
+            width: 30%;
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -116,58 +116,26 @@ const Wrapper = styled.div`
       }
     }
 
-    .products-wrapper {
-      padding: 150px 20px 20px 20px;
+    h2 {
+      margin: 0 0 20px 0;
+      font-weight: bold;
+      border-bottom: 1px solid #b8b9b9;
+    }
 
-      h2 {
-        margin: 0 0 20px 0;
-        font-weight: bold;
-        border-bottom: 1px solid #b8b9b9;
-      }
+    .products-wrapper {
+      padding: 150px 15px 15px 15px;
 
       .products {
         display: flex;
         flex-wrap: wrap;
         gap: 15px;
+      }
+    }
 
-        .product-card {
-          height: 250px;
-          width: 230px;
-          border-radius: 4px;
-          overflow: hidden;
-          cursor: pointer;
-          transition-duration: 0.3s;
-          border: 1px solid #cecccc;
+    .reviews-wrapper {
+      padding: 30px 15px 15px 15px;
 
-          &:hover {
-            box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.12),
-              0 1px 2px rgba(0, 0, 0, 0.24);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-          }
-
-          img {
-            height: 180px;
-            width: 250px;
-            border-top-right-radius: 3px;
-            border-top-left-radius: 3px;
-            object-fit: cover;
-          }
-
-          .details {
-            padding: 5px;
-            height: 70px;
-            background-color: #fff;
-
-            h3,
-            h4 {
-              font-size: 16px;
-              margin: 0;
-            }
-            h3 {
-              font-weight: bold;
-            }
-          }
-        }
+      .reviews {
       }
     }
   }
@@ -178,8 +146,7 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
     .toDateString()
     .split(' ');
 
-  const avgRating =
-    reviews.reduce((acc, curr) => acc + curr.rate, 0) / reviews.length;
+  const avgRating = reviews.reduce((acc, curr) => acc + curr.rate, 0);
 
   return (
     <Wrapper>
@@ -197,7 +164,6 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
                       <StarFilled />)
                     </a>
                   </h3>
-                  <span>100% positive feedback</span>
                 </section>
 
                 <section className="description">
@@ -213,7 +179,9 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
               <div className="left">
                 <section className="feedback">
                   <h3>Feedback Ratings:</h3>
-                  <Feedback value={avgRating} />
+                  <Feedback
+                    value={avgRating === 0 ? 0 : avgRating / reviews.length}
+                  />
                 </section>
 
                 <section className="member-since">
@@ -244,6 +212,12 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
+        </div>
+
+        <div className="reviews-wrapper">
+          <h2>Reviews:({reviews.length})</h2>
+
+          <div className="reviews"></div>
         </div>
       </div>
     </Wrapper>

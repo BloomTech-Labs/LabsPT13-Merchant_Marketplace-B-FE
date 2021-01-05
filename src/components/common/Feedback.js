@@ -4,6 +4,7 @@ import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 
 const labels = {
+  0: 'Not yet reviewed',
   0.5: 'Useless',
   1: 'Useless+',
   1.5: 'Poor',
@@ -18,7 +19,6 @@ const labels = {
 
 const useStyles = makeStyles({
   root: {
-    width: 200,
     display: 'flex',
     alignItems: 'center',
     height: 'fit-content',
