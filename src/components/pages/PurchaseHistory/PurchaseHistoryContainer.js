@@ -11,8 +11,8 @@ export default function PurchaseHistoryContainer() {
   const { orders, loading } = useSelector(state => state.purchaseHistory);
 
   useEffect(() => {
-    userInfo && dispatch(fetchUserOrders(authState, userInfo.sub));
-  }, [dispatch, authState, userInfo]);
+    dispatch(fetchUserOrders(authState, userInfo.sub));
+  }, [dispatch, authState, userInfo.sub]);
 
   return <RenderPurchaseHistory orders={orders} loading={loading} />;
 }
