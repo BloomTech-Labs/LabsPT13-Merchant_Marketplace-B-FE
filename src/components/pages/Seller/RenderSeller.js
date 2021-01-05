@@ -213,7 +213,6 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
                   {' '}
                   Seller reviews
                 </Link>
-                <a href="google.com"> Contact Seller</a>
               </div>
             </div>
           </section>
