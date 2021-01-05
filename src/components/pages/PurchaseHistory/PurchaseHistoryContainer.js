@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOrders } from '../../../state/actions';
+import { fetchUserOrders } from '../../../state/actions';
 import RenderPurchaseHistory from './RenderPurchaseHistory';
 
 export default function PurchaseHistoryContainer() {
@@ -11,14 +11,8 @@ export default function PurchaseHistoryContainer() {
   const { orders, loading } = useSelector(state => state.purchaseHistory);
 
   useEffect(() => {
-    !orders && dispatch(fetchOrders(authState, userInfo.sub));
-  }, [dispatch, orders, userInfo.sub, authState]);
+    userInfo && dispatch(fetchUserOrders(authState, userInfo.sub));
+  }, [dispatch, authState, userInfo]);
 
-  console.log(orders);
-
-  return loading ? (
-    <span>Loading orders...</span>
-  ) : (
-    <RenderPurchaseHistory orders={orders} />
-  );
+  return <RenderPurchaseHistory orders={orders} loading={loading} />;
 }
