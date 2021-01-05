@@ -157,8 +157,6 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
     .toDateString()
     .split(' ');
 
-  console.log(reviews);
-
   const avgRating = reviews.reduce((acc, curr) => acc + curr.rate, 0);
 
   return (
