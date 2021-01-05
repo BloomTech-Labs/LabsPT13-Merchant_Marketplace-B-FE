@@ -1,6 +1,5 @@
 export const fetchUserInfo = (memoAuthService, isSubscribed) => dispatch => {
   try {
-    console.log('FETCHING USER');
     dispatch({ type: 'LOADING_USER_INFO' });
 
     memoAuthService

@@ -1,7 +1,7 @@
 const initialState = {
   orders: null,
   error: '',
-  loading: false,
+  loading: true,
 };
 
 const purchaseHistory = (state = initialState, { type, payload }) => {
