@@ -1,40 +1,29 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect} from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCart } from '../../../state/actions';
-import { fetchUserInfo } from '../../../state/actions';
-import { getProfileData } from '../../../api'
 
 import RenderCart from './RenderCart';
 
 export default function CartContainer({ LoadingComponent }) {
   const dispatch = useDispatch();
-  const { authState, authService } = useOktaAuth();
-  const [memoAuthService] = useMemo(() => [authService], [authService]);
-  const { userInfo, cart } = useSelector(state => state);
-  const profile = getProfileData()
-
-  console.log(profile)
-  const profile_id = profile.id
-
+  const { authState } = useOktaAuth();
+  
+  const {userInfo} = useSelector(state => state.userInfo);
+  const {cart} = useSelector(state => state.carts );
+  console.log({userInfo})
 
 
   useEffect(() => {
-    let isSubscribed = true;
 
-    !userInfo && dispatch(fetchUserInfo(memoAuthService, isSubscribed));
-    !cart && dispatch(fetchCart(profile_id, authState));
+    !cart.length && dispatch(fetchCart(userInfo.sub, authState));
 
-    return () => (isSubscribed = false);
-  }, [dispatch, authState, userInfo, cart, memoAuthService]);
+  }, [dispatch, authState, userInfo, cart.length]);
 
   return (
     <>
-      {authState.isAuthenticated && !userInfo ? (
-        <LoadingComponent message="...Fetching profile" />
-      ) : (
-        <RenderCart />
-      )}
+      <RenderCart /> 
+     
     </>
   );
 

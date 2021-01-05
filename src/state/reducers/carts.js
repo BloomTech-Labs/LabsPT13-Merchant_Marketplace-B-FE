@@ -1,5 +1,5 @@
 const initialState = {
-    carts: [],
+    cart: [],
     error: '',
     loading: false,
   };
@@ -9,7 +9,7 @@ const initialState = {
       case 'CARTS_LOADING':
         return { ...state, loading: true, error: '' };
       case 'CARTS_LOADED':
-        return { ...state, loading: false, items: payload };
+        return { ...state, loading: false, cart: payload };
       case 'CART_ERRORS':
         return {
           ...state,

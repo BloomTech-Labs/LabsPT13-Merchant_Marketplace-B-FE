@@ -25,8 +25,8 @@ const CardWrapper = styled.div`
 `
 
 export default function RenderCart() {
-  const { carts } = useSelector(state => state.carts);
-  console.log(carts)
+  const { cart } = useSelector(state => state.carts);
+  console.log(cart)
   return (
     <Wrapper>
       <NavigationBar />
@@ -34,7 +34,7 @@ export default function RenderCart() {
       <CardWrapper>
       
       <div className="productsWrapper">
-      {carts.map(p => (
+      {cart.map(p => (
           <CartCard key={p.id} product={p} />
         ))}
       </div>
