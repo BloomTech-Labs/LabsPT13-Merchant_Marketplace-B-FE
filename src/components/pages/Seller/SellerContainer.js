@@ -11,21 +11,24 @@ export default function SellerContainer() {
   const dispatch = useDispatch();
   const { authState } = useOktaAuth();
   const { selectedSeller } = useSelector(state => state);
-  const { inventory, prevSellerId } = useSelector(
+  const { inventory, prevSellerId, loading: loadingInventory } = useSelector(
     state => state.sellerInventory
   );
-  const { reviews } = useSelector(state => state.sellerReviews);
+  const { reviews, loading: loadingReviews } = useSelector(
+    state => state.sellerReviews
+  );
 
   useEffect(() => {
-    // only fetch for seller inventory if a different seller is selected
-    if (inventory) {
+    // only fetch for seller inventory and reviews if a different seller is selected
+    if (inventory && reviews) {
       if (prevSellerId !== selectedSeller.id) {
         dispatch(fetchSellerInventory(authState, selectedSeller.id));
+        dispatch(fetchSellerReviews(authState, selectedSeller.id));
       }
     } else {
       dispatch(fetchSellerInventory(authState, selectedSeller.id));
+      dispatch(fetchSellerReviews(authState, selectedSeller.id));
     }
-    !reviews && dispatch(fetchSellerReviews(authState, selectedSeller.id));
   }, [
     dispatch,
     inventory,
@@ -35,13 +38,13 @@ export default function SellerContainer() {
     authState,
   ]);
 
-  return inventory ? (
+  return (
     <RenderSeller
       selectedSeller={selectedSeller}
       inventory={inventory}
       reviews={reviews}
+      loadingInventory={loadingInventory}
+      loadingReviews={loadingReviews}
     />
-  ) : (
-    <div>Loading seller page skeleton...</div>
   );
 }

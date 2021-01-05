@@ -1,7 +1,7 @@
 const initialState = {
   prevSellerId: null,
   inventory: null,
-  loading: false,
+  loading: true,
   error: '',
 };
 

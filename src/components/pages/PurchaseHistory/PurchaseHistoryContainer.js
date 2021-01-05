@@ -8,7 +8,7 @@ export default function PurchaseHistoryContainer() {
   const dispatch = useDispatch();
   const { authState } = useOktaAuth();
   const { userInfo } = useSelector(state => state.userInfo);
-  const { orders } = useSelector(state => state.purchaseHistory);
+  const { orders, loading } = useSelector(state => state.purchaseHistory);
 
   useEffect(() => {
     !orders && dispatch(fetchOrders(authState, userInfo.sub));
@@ -16,9 +16,9 @@ export default function PurchaseHistoryContainer() {
 
   console.log(orders);
 
-  return (
-    <div>
-      <RenderPurchaseHistory />
-    </div>
+  return loading ? (
+    <span>Loading orders...</span>
+  ) : (
+    <RenderPurchaseHistory orders={orders} />
   );
 }

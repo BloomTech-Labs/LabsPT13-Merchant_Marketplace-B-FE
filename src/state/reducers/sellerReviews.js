@@ -1,7 +1,7 @@
 const initialState = {
   reviews: null,
   error: '',
-  loading: false,
+  loading: true,
 };
 
 const sellerReviews = (state = initialState, { type, payload }) => {
