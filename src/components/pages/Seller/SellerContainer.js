@@ -17,27 +17,25 @@ export default function SellerContainer() {
   const { reviews } = useSelector(state => state.sellerReviews);
 
   useEffect(() => {
-    !reviews.length &&
-      dispatch(fetchSellerReviews(authState, selectedSeller.id));
-
     // only fetch for seller inventory if a different seller is selected
-    if (inventory.length) {
+    if (inventory) {
       if (prevSellerId !== selectedSeller.id) {
         dispatch(fetchSellerInventory(authState, selectedSeller.id));
       }
     } else {
       dispatch(fetchSellerInventory(authState, selectedSeller.id));
     }
+    !reviews && dispatch(fetchSellerReviews(authState, selectedSeller.id));
   }, [
     dispatch,
-    inventory.length,
-    reviews.length,
+    inventory,
+    reviews,
     prevSellerId,
     selectedSeller.id,
     authState,
   ]);
 
-  return inventory.length ? (
+  return inventory ? (
     <RenderSeller
       selectedSeller={selectedSeller}
       inventory={inventory}
