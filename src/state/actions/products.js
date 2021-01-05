@@ -1,4 +1,4 @@
-import { getMarketProducts } from '../../api';
+import { getMarketProducts, getProfileOrders } from '../../api';
 
 export const fetchProducts = authState => dispatch => {
   try {
@@ -17,6 +17,10 @@ export const fetchProducts = authState => dispatch => {
 
 export const fetchOrders = (authState, profile_id) => dispatch => {
   try {
+    dispatch({ type: 'ORDERS_LOADING' });
+    getProfileOrders(authState, profile_id).then(orders => {
+      dispatch({ type: 'ORDERS_LOADED', payload: orders });
+    });
   } catch (err) {
     dispatch({
       type: 'ORDERS_ERROR',
