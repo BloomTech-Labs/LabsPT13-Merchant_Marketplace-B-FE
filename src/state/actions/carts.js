@@ -17,12 +17,18 @@ export const fetchCart = (profile_id,authState) => dispatch => {
   }
 };
 
-export const removeFromCart = id => dispatch => {
+export const removeFromCart = (profile_id,authState) => dispatch => {
   try {
-    dispatch({ type: 'REMOVE_FROM_CART', id});
+    console.log('DELETING ITEM FROM THE CART')
+    dispatch({ type: 'REMOVE_FROM_CART'});
+    removeCartItem(profile_id,authState).then(cart => {
+      dispatch({ type: 'ITEM_REMOVED', payload: cart})
+    })
   } catch (err) {
     dispatch({
-      type: 'ERROR_REMOVING_ITEM'
-    })
+      type: 'ERROR_REMOVING_ITEM',
+      payload: 'Request failed, please try again!',
+    });
+    console.error(err)
   }
 }
