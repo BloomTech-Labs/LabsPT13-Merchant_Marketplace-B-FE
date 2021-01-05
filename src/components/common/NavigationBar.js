@@ -114,7 +114,11 @@ export default function NavigationBar() {
           <div className="top-right">
             <DropdownMenu
               title="My Market"
-              items={['Purchase History', 'Saved Items', 'Messages']}
+              items={[
+                <Link to="/marketplace/buyer/history">Purchase History</Link>,
+                'Saved Items',
+                'Messages',
+              ]}
             />
 
             <Link to="/marketplace/cart" style={{ marginLeft: '25px' }}>
