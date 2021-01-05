@@ -136,9 +136,6 @@ const Wrapper = styled.div`
       padding: 40px 15px 15px 15px;
 
       .review {
-        padding: 30px 0;
-        border-bottom: 1px solid #b8b9b9;
-
         section {
           display: flex;
           align-items: center;
@@ -231,8 +228,19 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
         <div className="reviews-wrapper">
           <h2>Reviews:({reviews.length})</h2>
 
-          {reviews.map(review => (
-            <div className="review" key={review.buyer_id}>
+          {reviews.map((review, i) => (
+            <div
+              className="review"
+              key={review.buyer_id}
+              style={
+                i !== reviews.length - 1
+                  ? {
+                      padding: '30px 0',
+                      borderBottom: '1px solid #b8b9b9',
+                    }
+                  : { padding: '30px 0 20px  0' }
+              }
+            >
               <section>
                 <Feedback value={review.rate} addLabel={false} />
                 <h3>{review.title}</h3>
