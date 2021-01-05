@@ -10,12 +10,6 @@ const sleep = time =>
     setTimeout(resolve, time);
   });
 
-const getExampleData = () => {
-  return axios
-    .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
-    .then(response => response.data);
-};
-
 const getAuthHeader = authState => {
   if (!authState.isAuthenticated) {
     throw new Error('Not authenticated');
@@ -44,11 +38,26 @@ const apiAuthPost = (url, data, authHeader) => {
   return axios.post(url, data, { headers: authHeader });
 };
 
-const getProfileData = authState => {
+const getProfileData = (authState, profile_id) => {
   try {
-    return apiAuthGet(`${baseUrl}/profile`, getAuthHeader(authState)).then(
-      response => response.data
-    );
+    return apiAuthGet(
+      `${baseUrl}/profile/${profile_id}`,
+      getAuthHeader(authState)
+    ).then(response => response.data);
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return [];
+    });
+  }
+};
+
+const getProfileInventory = (authState, profile_id) => {
+  try {
+    return apiAuthGet(
+      `${baseUrl}/profile/${profile_id}/inventory`,
+      getAuthHeader(authState)
+    ).then(response => response.data);
   } catch (error) {
     return new Promise(() => {
       console.log(error);
@@ -69,19 +78,19 @@ const getMarketProducts = async authState => {
   }
 };
 
-// const getProductById = async (id, authState) => {
-//   try {
-//     const headers = getAuthHeader(authState);
-//     return apiAuthGet(`${baseUrl}/products/${id}`, headers).then(
-//       res => res.data
-//     );
-//   } catch (error) {
-//     return new Promise(() => {
-//       console.log(error);
-//       return {};
-//     });
-//   }
-// };
+const getSellerReviews = async (authState, seller_id) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthGet(`${baseUrl}/reviews/${seller_id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    });
+  }
+};
 
 const createProduct = async (product, authState) => {
   try {
@@ -99,9 +108,10 @@ const createProduct = async (product, authState) => {
 
 export {
   sleep,
-  getExampleData,
   getProfileData,
+  getProfileInventory,
   getDSData,
   getMarketProducts,
   createProduct,
+  getSellerReviews,
 };
