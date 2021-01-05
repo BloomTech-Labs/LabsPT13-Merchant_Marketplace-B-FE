@@ -50,9 +50,6 @@ const Wrapper = styled.div`
               min-width: 220px;
 
               h3 {
-                font-weight: bold;
-                margin: 0;
-
                 a {
                   font-weight: normal;
                   margin-left: 3px;
@@ -83,9 +80,6 @@ const Wrapper = styled.div`
             width: 60%;
             flex-direction: column;
 
-            h3 {
-              font-weight: bold;
-            }
             section {
               display: flex;
               justify-content: space-between;
@@ -119,7 +113,12 @@ const Wrapper = styled.div`
     h2 {
       margin: 0 0 20px 0;
       font-weight: bold;
-      border-bottom: 1px solid #b8b9b9;
+      border-bottom: 2px solid #b8b9b9;
+    }
+
+    h3 {
+      font-weight: bold;
+      margin: 0;
     }
 
     .products-wrapper {
@@ -135,7 +134,19 @@ const Wrapper = styled.div`
     .reviews-wrapper {
       padding: 30px 15px 15px 15px;
 
-      .reviews {
+      .review {
+        padding: 30px 0;
+        border-bottom: 1px solid #b8b9b9;
+
+        section {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+
+          h3 {
+            margin-left: 7px;
+          }
+        }
       }
     }
   }
@@ -147,6 +158,8 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
     .split(' ');
 
   const avgRating = reviews.reduce((acc, curr) => acc + curr.rate, 0);
+
+  console.log(reviews);
 
   return (
     <Wrapper>
@@ -177,14 +190,14 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
 
             <div className="bottom">
               <div className="left">
-                <section className="feedback">
+                <section>
                   <h3>Feedback Ratings:</h3>
                   <Feedback
                     value={avgRating === 0 ? 0 : avgRating / reviews.length}
                   />
                 </section>
 
-                <section className="member-since">
+                <section>
                   <h3>Member since:</h3>
                   <div style={{ display: 'flex' }}>
                     {`${joiningDate[1]} ${joiningDate[2]}, ${joiningDate[3]}`} |
@@ -217,7 +230,16 @@ export default function RenderSeller({ selectedSeller, inventory, reviews }) {
         <div className="reviews-wrapper">
           <h2>Reviews:({reviews.length})</h2>
 
-          <div className="reviews"></div>
+          {reviews.map(review => (
+            <div className="review" key={review.buyer_id}>
+              <section>
+                <Feedback value={review.rate} addLabel={false} />
+                <h3>{review.title}</h3>
+              </section>
+
+              <p>{review.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </Wrapper>

@@ -26,8 +26,9 @@ const useStyles = makeStyles({
 });
 
 export default function Feedback({
-  readOnly = true,
   value,
+  readOnly = true,
+  addLabel = true,
   updateValue = null,
 }) {
   const [hover, setHover] = useState(-1);
@@ -48,7 +49,7 @@ export default function Feedback({
         }}
         readOnly={readOnly}
       />
-      {value !== null && (
+      {value !== null && addLabel && (
         <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
       )}
     </div>
