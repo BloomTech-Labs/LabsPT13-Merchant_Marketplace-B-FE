@@ -17,10 +17,10 @@ function HomeContainer() {
     let isSubscribed = true;
 
     !userInfo && dispatch(fetchUserInfo(memoAuthService, isSubscribed));
-    (!products.length || state) && dispatch(fetchProducts(authState));
+    (!products || state) && dispatch(fetchProducts(authState));
 
     return () => (isSubscribed = false);
-  }, [dispatch, authState, userInfo, products.length, memoAuthService, state]);
+  }, [dispatch, authState, userInfo, products, memoAuthService, state]);
 
   return (
     <>

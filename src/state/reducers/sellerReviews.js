@@ -1,5 +1,5 @@
 const initialState = {
-  reviews: [],
+  reviews: null,
   error: '',
   loading: false,
 };

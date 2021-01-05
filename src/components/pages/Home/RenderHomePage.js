@@ -10,7 +10,7 @@ const LazyNavigationBar = lazy(() => import('../../common/NavigationBar'));
 function RenderHomePage({ userInfo, products }) {
   return (
     <>
-      {userInfo && products.length ? (
+      {userInfo && products ? (
         <>
           <Suspense fallback={<NavLoadingSkeleton />}>
             <LazyNavigationBar />

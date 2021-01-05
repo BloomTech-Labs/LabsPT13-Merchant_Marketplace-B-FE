@@ -1,5 +1,5 @@
 const initialState = {
-  orders: [],
+  orders: null,
   error: '',
   loading: false,
 };
