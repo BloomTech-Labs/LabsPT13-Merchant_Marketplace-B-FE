@@ -16,6 +16,7 @@
     "axios": "^0.19.2",
     "cloudinary-react": "^1.6.8",
     "craco-less": "^1.17.0",
+    "material-ui": "^0.20.2",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
