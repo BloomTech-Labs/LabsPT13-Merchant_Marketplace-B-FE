@@ -1,36 +1,24 @@
-import React, { useEffect, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchWishlist } from '../../../state/actions';
-import { fetchUserInfo } from '../../../state/actions';
-import { getProfileData } from '../../../api';
 
 import RenderWishlist from './RenderWishlist';
 
 export default function WishlistContainer({ LoadingComponent }) {
   const dispatch = useDispatch();
-  const { authState, authService } = useOktaAuth();
-  const [memoAuthService] = useMemo(() => [authService], [authService]);
-  const { userInfo, wishlists } = useSelector(state => state);
-  const profile = getProfileData();
-  const profile_id = profile.id;
+  const { authState } = useOktaAuth();
+  const { userInfo } = useSelector(state => state.userInfo);
+  console.log({ userInfo });
+  const { wishlist } = useSelector(state => state.wishlists);
+  console.log({ wishlist });
 
   useEffect(() => {
-    let isSubscribed = true;
-
-    !userInfo && dispatch(fetchUserInfo(memoAuthService, isSubscribed));
-    !wishlists && dispatch(fetchWishlist(profile_id, authState));
-
-    return () => (isSubscribed = false);
-  }, [dispatch, authState, wishlists, memoAuthService, userInfo, profile_id]);
-
+    !wishlist.length && dispatch(fetchWishlist(userInfo.sub, authState));
+  }, [dispatch, authState, userInfo, wishlist.length]);
   return (
     <>
-      {authState.isAuthenticated && !userInfo ? (
-        <LoadingComponent message="...Fetching profile" />
-      ) : (
-        <RenderWishlist />
-      )}
+      <RenderWishlist />
     </>
   );
 }

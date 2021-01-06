@@ -1,5 +1,5 @@
 const initialState = {
-  wishlists: [],
+  wishlist: [],
   error: '',
   loading: false,
 };
@@ -9,33 +9,27 @@ const wishlists = (state = initialState, { type, payload }) => {
     case 'WISHLIST_LOADING':
       return { ...state, loading: true, error: '' };
     case 'WISHLIST_LOADED:':
-      return { ...state, loading: false, wishlists: payload };
+      return { ...state, loading: false, wishlist: payload };
     case 'WISHLIST_ERRORS':
       return {
         ...state,
         loading: false,
         error: payload,
       };
-    case 'START_ADDED':
+    case 'REMOVE_FROM_WISHLIST':
       return {
         ...state,
-        loading: true,
-        error: '',
+        wishlist: state.wishlist.map(wishlist =>
+          wishlist.id === type.id ? { ...wishlist, selected: false } : wishlist
+        ),
       };
-    case 'WISHLIST_ADDED':
+    case 'ADD_TO_WISHLIST':
       return {
         ...state,
-        loading: false,
-        error: '',
-        wishlists: payload,
+        wishlist: state.wishlist.map(wishlist =>
+          wishlist.id === type.id ? { ...wishlist, selected: true } : wishlist
+        ),
       };
-    case 'WISHLIST_FAIL':
-      return {
-        ...state,
-        loading: false,
-        error: payload,
-      };
-
     default:
       return state;
   }
