@@ -9,16 +9,11 @@ export default function WishlistContainer({ LoadingComponent }) {
   const dispatch = useDispatch();
   const { authState } = useOktaAuth();
   const { userInfo } = useSelector(state => state.userInfo);
+
   console.log({ userInfo });
-  const { wishlist } = useSelector(state => state.wishlists);
-  console.log({ wishlist });
 
   useEffect(() => {
-    !wishlist.length && dispatch(fetchWishlist(userInfo.sub, authState));
-  }, [dispatch, authState, userInfo, wishlist.length]);
-  return (
-    <>
-      <RenderWishlist />
-    </>
-  );
+    dispatch(fetchWishlist(authState, userInfo.sub));
+  }, [dispatch, authState, userInfo.sub]);
+  return <RenderWishlist />;
 }

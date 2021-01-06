@@ -1,14 +1,14 @@
 const initialState = {
   wishlist: [],
+  loading: true,
   error: '',
-  loading: false,
 };
 
-const wishlists = (state = initialState, { type, payload }) => {
+const wishlist = (state = initialState, { type, payload }) => {
   switch (type) {
     case 'WISHLIST_LOADING':
       return { ...state, loading: true, error: '' };
-    case 'WISHLIST_LOADED:':
+    case 'WISHLIST_LOADED':
       return { ...state, loading: false, wishlist: payload };
     case 'WISHLIST_ERRORS':
       return {
@@ -35,4 +35,4 @@ const wishlists = (state = initialState, { type, payload }) => {
   }
 };
 
-export default wishlists;
+export default wishlist;

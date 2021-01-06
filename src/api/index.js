@@ -140,18 +140,16 @@ const addToWishlist = async (profile_id, product_id, authState) => {
   }
 };
 
-const getWishListProducts = async (profile_id, authState) => {
-  try {
-    const headers = getAuthHeader(authState);
-    return apiAuthGet(`${baseUrl}/wishlists/${profile_id}`, headers).then(
-      res => res.data
-    );
-  } catch (error) {
-    return new Promise(() => {
-      console.log(error);
-      return {};
+const getWishListProducts = (profile_id, authState) => {
+  const headers = getAuthHeader(authState);
+  return apiAuthGet(`${baseUrl}/wishlists/${profile_id}`, headers)
+    .then(res => res.data)
+    .catch(err => {
+      return new Promise(() => {
+        console.log(err);
+        return {};
+      });
     });
-  }
 };
 
 export {

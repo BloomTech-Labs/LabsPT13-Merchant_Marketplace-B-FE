@@ -9,7 +9,6 @@ export const fetchWishlist = (authState, profile_id) => dispatch => {
     console.log('FETCHING WISHLIST');
     dispatch({ type: 'WISHLIST_LOADING' });
     getWishListProducts(profile_id, authState).then(wishlist => {
-      console.log(wishlist);
       dispatch({ type: 'WISHLIST_LOADED', payload: wishlist });
     });
   } catch (err) {

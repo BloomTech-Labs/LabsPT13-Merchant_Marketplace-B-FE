@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import WishlistCard from '../../common/wishlistCard.js';
 
-import NavigationBar from '../../common/NavigationBar';
+import { NavigationBar, ProductCard } from '../../common';
 
 const Wrapper = styled.div`
   .Wishlist__ad {
@@ -20,7 +20,9 @@ const Wrapper = styled.div`
 `;
 
 const RenderWishlist = () => {
-  const { wishlists } = useSelector(state => state.wishlists);
+  const { wishlist, loading } = useSelector(state => state.wishlist);
+  console.log({ wishlist });
+
   return (
     <Wrapper>
       <NavigationBar />
@@ -32,9 +34,17 @@ const RenderWishlist = () => {
       <div>
         <h1 className="Wishlist__title">Wishlist</h1>
       </div>
-      {wishlists.map(p => (
-        <WishlistCard key={p.id} product={p} />
-      ))}
+
+      {/* <WishlistCard /> */}
+      {loading ? (
+        <div>Loading wishlist...</div>
+      ) : (
+        <div className="wishlist-container">
+          {wishlist.map((item, i) => (
+            <WishlistCard key={i} product={item} />
+          ))}
+        </div>
+      )}
     </Wrapper>
   );
 };

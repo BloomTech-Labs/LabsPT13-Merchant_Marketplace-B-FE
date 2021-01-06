@@ -11,7 +11,7 @@ export default function ProductContainer() {
   const { selectedProduct } = useSelector(state => state);
   const { sellerInfo } = useSelector(state => state.sellerInfo);
   const dispatch = useDispatch();
-
+  console.log({ sellerInfo });
   useEffect(() => {
     // only fetch for seller info if selected product belongs to different seller
     if (sellerInfo) {
