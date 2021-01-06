@@ -127,7 +127,20 @@ const removeCartItem = async (profile_id, product_id, authState) => {
       return {};
     })
   }
+};
 
+const addCartItem = async (profile_id, product_id, authState) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthPost(`${baseUrl}/carts/${profile_id}/${product_id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    })
+  }
 };
 
 export {
@@ -140,4 +153,5 @@ export {
   createProduct,
   getCartItems,
   removeCartItem,
+  addCartItem
 };
