@@ -16,6 +16,17 @@ const initialState = {
           loading: false,
           error: payload,
         };
+      case 'REMOVING_FROM_CART':
+        return { ...state, loading: true, error: '' };
+      case 'ITEM_REMOVED':
+        return { ...state, loading: false, cart: payload };
+      case 'ERROR_REMOVING_ITEM':
+        return {
+          ...state,
+          loading: false,
+          error: payload,
+        };
+
       default:
         return state;
     }

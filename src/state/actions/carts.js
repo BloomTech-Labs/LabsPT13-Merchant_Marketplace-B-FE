@@ -22,7 +22,7 @@ export const fetchCart = (profile_id,authState) => dispatch => {
 export const removeFromCart = (profile_id, product_id, authState) => dispatch => {
   try {
     console.log('DELETING ITEM FROM THE CART')
-    dispatch({ type: 'REMOVE_FROM_CART'});
+    dispatch({ type: 'REMOVING_FROM_CART'});
     removeCartItem(profile_id, product_id, authState).then(cart => {
       dispatch({ type: 'ITEM_REMOVED', payload: cart})
     })
