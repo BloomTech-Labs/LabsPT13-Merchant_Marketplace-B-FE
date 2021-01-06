@@ -26,6 +26,16 @@ const initialState = {
           loading: false,
           error: payload,
         };
+      case 'ADDING_TO_CART':
+        return { ...state, loading: true, error: '' };
+      case 'ITEM_ADDED':
+        return { ...state, loading: false, cart: payload };
+      case 'ERROR_ADDING_ITEM':
+        return {
+          ...state,
+          loading: false,
+          error: payload,
+        };
 
       default:
         return state;

@@ -38,7 +38,7 @@ export const removeFromCart = (profile_id, product_id, authState) => dispatch =>
 export const addToCart = (profile_id, product_id, authState) => dispatch => {
   try {
     console.log('ADDING ITEM TO THE CART')
-    dispatch({ type: 'ADD_TO_CART'});
+    dispatch({ type: 'ADDING_TO_CART'});
     addCartItem(profile_id, product_id, authState).then(cart => {
       dispatch({ type: 'ITEM_ADDED', payload: cart})
     })
