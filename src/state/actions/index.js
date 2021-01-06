@@ -14,6 +14,7 @@ import {
   fetchSellerInventory,
   fetchSellerReviews,
 } from './seller';
+import { fetchWishlist } from './wishlists';
 
 export {
   fetchUserInfo,
@@ -24,4 +25,5 @@ export {
   selectSeller,
   fetchSellerInventory,
   fetchSellerReviews,
+  fetchWishlist,
 };
