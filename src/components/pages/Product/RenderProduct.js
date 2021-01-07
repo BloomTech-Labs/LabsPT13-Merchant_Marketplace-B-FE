@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Divider, Tooltip } from 'antd';
 import {
@@ -10,6 +11,7 @@ import {
   HeartFilled,
 } from '@ant-design/icons';
 import { ImagesGallery } from '../../common';
+import { addToCart } from '../../../state/actions';
 
 const Wrapper = styled.div`
   display: flex;
@@ -236,6 +238,9 @@ const RenderProduct = ({
   unSaveProduct,
   sendMessage,
 }) => {
+  const dispatch = useDispatch();
+  console.log(product)
+  
   return (
     <Wrapper>
       <Link to="/">
@@ -259,7 +264,9 @@ const RenderProduct = ({
             </Tooltip>
 
             <Tooltip placement="bottom" title="Add to cart" color="#29577c">
-              <ShoppingCartOutlined />
+              <div onClick={() => dispatch(addToCart())} >
+                <ShoppingCartOutlined />
+              </div>
             </Tooltip>
           </div>
         </div>
