@@ -19,12 +19,7 @@ import {
   } from './seller';
   
 import { searchByTitle, updateValue } from './marketplaceSearch';
-import {
-  fetchSellerInfo,
-  selectSeller,
-  fetchSellerInventory,
-  fetchSellerReviews,
-} from './seller';
+
 import { fetchWishlist } from './wishlists';
 
 export {
