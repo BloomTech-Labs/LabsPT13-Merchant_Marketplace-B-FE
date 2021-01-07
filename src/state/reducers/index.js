@@ -10,6 +10,8 @@ import sellerInfo from './sellerInfo';
 import selectedSeller from './selectedSeller';
 import sellerInventory from './sellerInventory';
 import sellerReviews from './sellerReviews';
+import wishlist from './wishlist';
+import purchaseHistory from './purchaseHistory';
 
 const persistConfig = {
   key: 'root',
@@ -27,6 +29,8 @@ const rootReducer = combineReducers({
   sellerInventory,
   sellerReviews,
   carts,
+  wishlist,
+  purchaseHistory,
 });
 
 export default persistReducer(persistConfig, rootReducer);

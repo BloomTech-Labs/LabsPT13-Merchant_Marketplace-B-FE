@@ -42,7 +42,6 @@ const apiAuthDelete = (url, data, authHeader) => {
   return axios.delete(url, data, { headers: authHeader })
 };
 
-
 const getProfileData = (authState, profile_id) => {
   try {
     return apiAuthGet(
@@ -111,6 +110,20 @@ const createProduct = async (product, authState) => {
   }
 };
 
+const getProfileOrders = async (authState, profile_id) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthGet(`${baseUrl}/orders/${profile_id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    });
+  }
+};
+
 const getCartItems = async (profile_id, authState) => {
   try {
     const headers = getAuthHeader(authState);
@@ -124,6 +137,22 @@ const getCartItems = async (profile_id, authState) => {
     });
   }
 };
+
+const removeWishlistById = async (profile_id, product_id, authState) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthDelete(
+      `${baseUrl}/wishlists/${profile_id}/${product_id}`,
+      headers
+    ).then(res => res.data);
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    })
+  }
+};
+
 
 const removeCartItem = async (profile_id, product_id, authState) => {
   try {
@@ -151,6 +180,32 @@ const addCartItem = async (body, authState) => {
       return {};
     })
   }
+    });
+  }
+};
+
+const addToWishlist = async (body, authState) => {
+  const headers = getAuthHeader(authState);
+  return apiAuthPost(`${baseUrl}/wishlists`, body, headers)
+    .then(res => res.data)
+    .catch(error => {
+      return new Promise(() => {
+        console.log(error);
+        return {};
+      });
+    });
+};
+
+const getWishListProducts = (profile_id, authState) => {
+  const headers = getAuthHeader(authState);
+  return apiAuthGet(`${baseUrl}/wishlists/${profile_id}`, headers)
+    .then(res => res.data)
+    .catch(err => {
+      return new Promise(() => {
+        console.log(err);
+        return {};
+      });
+    });
 };
 
 export {
@@ -163,5 +218,9 @@ export {
   getCartItems,
   removeCartItem,
   addCartItem,
+  getWishListProducts,
+  removeWishlistById,
+  addToWishlist,
   getSellerReviews,
+  getProfileOrders,
 };

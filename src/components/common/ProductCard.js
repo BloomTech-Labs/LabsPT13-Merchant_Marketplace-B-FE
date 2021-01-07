@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { selectProduct } from '../../state/actions';
 import styled from 'styled-components';
 
@@ -55,7 +55,7 @@ export default function ProductCard({ product }) {
       onClick={() => dispatch(selectProduct(product))}
     >
       <Card>
-        {<img src={product.images[0].img_url} alt="market product" />}
+        {/* {<img src={product.images[0].img_url} alt="market product" />} */}
 
         <div className="details">
           <h4>${product.price}</h4>
