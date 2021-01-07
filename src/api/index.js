@@ -106,6 +106,20 @@ const createProduct = async (product, authState) => {
   }
 };
 
+const getProfileOrders = async (authState, profile_id) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthGet(`${baseUrl}/orders/${profile_id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    });
+  }
+};
+
 export {
   sleep,
   getProfileData,
@@ -114,4 +128,5 @@ export {
   getMarketProducts,
   createProduct,
   getSellerReviews,
+  getProfileOrders,
 };
