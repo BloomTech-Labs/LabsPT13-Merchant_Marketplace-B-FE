@@ -10,30 +10,28 @@ const LazyNavigationBar = lazy(() => import('../../common/NavigationBar'));
 function RenderHomePage({ userInfo, products }) {
   return (
     <>
-      {userInfo && products.length ? (
-        <>
-          <Suspense fallback={<NavLoadingSkeleton />}>
-            <LazyNavigationBar />
-          </Suspense>
-
-          <MarketplaceFeed />
-        </>
+      {userInfo ? (
+        <Suspense fallback={<NavLoadingSkeleton />}>
+          <LazyNavigationBar />
+        </Suspense>
       ) : (
-        <>
-          <NavLoadingSkeleton />
+        <NavLoadingSkeleton />
+      )}
 
-          <section
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-            }}
-          >
-            {[1, 2, 3, 4, 5].map((p, i) => (
-              <ProductCardSkeleton key={i} />
-            ))}
-          </section>
-        </>
+      {userInfo && products ? (
+        <MarketplaceFeed />
+      ) : (
+        <section
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+        >
+          {[1, 2, 3, 4, 5].map((p, i) => (
+            <ProductCardSkeleton key={i} />
+          ))}
+        </section>
       )}
     </>
   );

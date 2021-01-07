@@ -129,6 +129,10 @@ const addToWishlist = async (body, authState) => {
   try {
     const headers = getAuthHeader(authState);
     return apiAuthPost(`${baseUrl}/wishlists`, body, headers).then(
+const getProfileOrders = async (authState, profile_id) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthGet(`${baseUrl}/orders/${profile_id}`, headers).then(
       res => res.data
     );
   } catch (error) {
@@ -150,7 +154,7 @@ const getWishListProducts = (profile_id, authState) => {
       });
     });
 };
-
+    
 export {
   sleep,
   getProfileData,
@@ -162,4 +166,5 @@ export {
   removeWishlistById,
   addToWishlist,
   getSellerReviews,
+  getProfileOrders,
 };

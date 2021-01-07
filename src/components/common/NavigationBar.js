@@ -1,17 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Input } from 'antd';
 import {
-  SearchOutlined,
   PlusCircleOutlined,
   ShoppingCartOutlined,
   AudioOutlined,
 } from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
-import { searchByTitle } from '../../state/actions';
+import { searchByTitle, updateValue } from '../../state/actions';
 
 const Wrapper = styled.div`
   height: 180px;
@@ -104,8 +103,11 @@ const Wrapper = styled.div`
 
 export default function NavigationBar() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { authService } = useOktaAuth();
   const { userInfo } = useSelector(state => state.userInfo);
+  const { value } = useSelector(state => state.marketplaceSearch);
+  const { Search } = Input;
 
   return (
     <Wrapper>
@@ -114,7 +116,11 @@ export default function NavigationBar() {
           <div className="top-right">
             <DropdownMenu
               title="My Market"
-              items={['Purchase History', 'Saved Items', 'Messages']}
+              items={[
+                <Link to="/marketplace/buyer/history">Purchase History</Link>,
+                'Saved Items',
+                'Messages',
+              ]}
             />
 
             <Link to="/marketplace/cart" style={{ marginLeft: '25px' }}>
@@ -137,12 +143,15 @@ export default function NavigationBar() {
 
         <div className="middle">
           <div className="search-bar-wrapper">
-            <Input
-              type="text"
-              placeholder="Search MarketPlace"
-              onChange={e => dispatch(searchByTitle(e.target.value))}
+            <Search
+              placeholder="Search marketplace"
+              onChange={e => dispatch(updateValue(e.target.value))}
+              onSearch={val => {
+                dispatch(searchByTitle(val));
+                history.push('/');
+              }}
+              enterButton
               style={{ maxWidth: '500px' }}
-              addonAfter={<SearchOutlined />}
               suffix={
                 <AudioOutlined
                   style={{
@@ -151,6 +160,7 @@ export default function NavigationBar() {
                   }}
                 />
               }
+              value={value}
             />
           </div>
         </div>
