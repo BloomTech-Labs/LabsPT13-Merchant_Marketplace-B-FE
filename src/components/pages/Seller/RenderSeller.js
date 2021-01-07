@@ -5,6 +5,7 @@ import { StarFilled } from '@ant-design/icons';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import TimeAgo from 'react-timeago';
+import { formatDate } from '../../../helpers';
 import { Feedback, ProductCard } from '../../common';
 
 const Wrapper = styled.div`
@@ -152,115 +153,133 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function RenderSeller({ selectedSeller, inventory, reviews }) {
-  let joiningDate = new Date(selectedSeller.created_at)
-    .toDateString()
-    .split(' ');
-
-  const avgRating = reviews.reduce((acc, curr) => acc + curr.rate, 0);
+export default function RenderSeller({
+  selectedSeller,
+  inventory,
+  reviews,
+  loadingInventory,
+  loadingReviews,
+}) {
+  const avgRating = reviews
+    ? reviews.reduce((acc, curr) => acc + curr.rate, 0)
+    : 0;
 
   return (
     <Wrapper>
       <div className="main">
-        <div className="seller-info">
-          <section className="info">
-            <div className="top">
-              <div className="avatar">Seller Avatar</div>
-              <div className="top-right">
-                <section className="details">
-                  <h3>
-                    {selectedSeller.name}
-                    <Link to="reviews-wrapper" smooth={true} duration={700}>
-                      ({reviews.length}
-                      <StarFilled />)
-                    </Link>
-                  </h3>
-                </section>
+        {!selectedSeller || loadingReviews ? (
+          <div>Loading...</div>
+        ) : (
+          <div className="seller-info">
+            <section className="info">
+              <div className="top">
+                <div className="avatar">Seller Avatar</div>
+                <div className="top-right">
+                  <section className="details">
+                    <h3>
+                      {selectedSeller.name}
+                      <Link to="reviews-wrapper" smooth={true} duration={700}>
+                        ({reviews.length}
+                        <StarFilled />)
+                      </Link>
+                    </h3>
+                  </section>
 
-                <section className="description">
-                  <p>
-                    Hey just a seller who sells anything to make some money, i
-                    collect supreme and any shoes. Feel safe buying with me!
-                  </p>
-                </section>
-              </div>
-            </div>
-
-            <div className="bottom">
-              <div className="left">
-                <section>
-                  <h3>Feedback Ratings:</h3>
-                  <Feedback
-                    value={avgRating === 0 ? 0 : avgRating / reviews.length}
-                  />
-                </section>
-
-                <section>
-                  <h3>Member since:</h3>
-                  <div style={{ display: 'flex' }}>
-                    {`${joiningDate[1]} ${joiningDate[2]}, ${joiningDate[3]}`} |
-                    <LocationOnIcon color="secondary" fontSize="small" />{' '}
-                    California
-                  </div>
-                </section>
+                  <section className="description">
+                    <p>
+                      Hey just a seller who sells anything to make some money, i
+                      collect supreme and any shoes. Feel safe buying with me!
+                    </p>
+                  </section>
+                </div>
               </div>
 
-              <div className="middle" />
+              <div className="bottom">
+                <div className="left">
+                  <section>
+                    <h3>Feedback Ratings:</h3>
+                    <Feedback
+                      value={avgRating === 0 ? 0 : avgRating / reviews.length}
+                    />
+                  </section>
 
-              <div className="right">
-                <Link to="reviews-wrapper" smooth={true} duration={700}>
-                  {' '}
-                  Seller reviews
-                </Link>
+                  <section>
+                    <h3>Member since:</h3>
+                    <div style={{ display: 'flex' }}>
+                      {formatDate(selectedSeller.created_at)}
+                      |
+                      <LocationOnIcon color="secondary" fontSize="small" />{' '}
+                      California
+                    </div>
+                  </section>
+                </div>
+
+                <div className="middle" />
+
+                <div className="right">
+                  <Link to="reviews-wrapper" smooth={true} duration={700}>
+                    {' '}
+                    Seller reviews
+                  </Link>
+                </div>
               </div>
-            </div>
-          </section>
-        </div>
-
-        <div className="products-wrapper">
-          <h2>Items for sale({inventory.length})</h2>
-
-          <div className="products">
-            {inventory.map(p => (
-              <ProductCard key={p.id} product={p} />
-            ))}
+            </section>
           </div>
-        </div>
+        )}
 
-        <div className="reviews-wrapper">
-          <h2>Reviews:({reviews.length})</h2>
+        {!selectedSeller || loadingInventory || loadingReviews ? (
+          <div>Loading...</div>
+        ) : (
+          <>
+            <div className="products-wrapper">
+              <h2>Items for sale({inventory.length})</h2>
 
-          {reviews.map((review, i) => (
-            <div
-              className="review"
-              key={review.buyer_id}
-              style={
-                i !== reviews.length - 1
-                  ? {
-                      padding: '30px 0',
-                      borderBottom: '1px solid #b8b9b9',
-                    }
-                  : { padding: '30px 0 20px  0' }
-              }
-            >
-              <section>
-                <Feedback value={review.rate} addLabel={false} />
-                <h3>{review.title}</h3>
-              </section>
-
-              <section style={{ gap: '5px' }}>
-                <VerifiedUserIcon style={{ color: 'green' }} fontSize="small" />
-                <span>Verified Purchase</span>
-                <span style={{ fontWeight: 'bold' }}> | </span>
-                <span>
-                  Posted <TimeAgo date={review.created_at} />.
-                </span>
-              </section>
-
-              <p>{review.description}</p>
+              <div className="products">
+                {inventory.map(p => (
+                  <ProductCard key={p.id} product={p} />
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
+
+            <div className="reviews-wrapper">
+              <h2>Reviews:({reviews.length})</h2>
+
+              {reviews.map((review, i) => (
+                <div
+                  className="review"
+                  key={review.buyer_id}
+                  style={
+                    i !== reviews.length - 1
+                      ? {
+                          padding: '30px 0',
+                          borderBottom: '1px solid #b8b9b9',
+                        }
+                      : { padding: '30px 0 20px  0' }
+                  }
+                >
+                  <section>
+                    <Feedback value={review.rate} addLabel={false} />
+                    <h3>{review.title}</h3>
+                  </section>
+
+                  <section style={{ gap: '5px' }}>
+                    <VerifiedUserIcon
+                      style={{ color: 'green' }}
+                      fontSize="small"
+                    />
+                    <span>Verified Purchase</span>
+                    <span style={{ fontWeight: 'bold' }}> | </span>
+                    <span>
+                      Posted <TimeAgo date={review.created_at} />.
+                    </span>
+                  </section>
+
+                  <p>{review.description}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </Wrapper>
   );

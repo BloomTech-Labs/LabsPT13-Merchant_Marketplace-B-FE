@@ -9,11 +9,11 @@ export default function ProductContainer() {
   const { authState } = useOktaAuth();
   const [message, setMessage] = useState('Is this available?');
   const [saved, setSaved] = useState(false);
-  const { selectedProduct } = useSelector(state => state);
   const { sellerInfo } = useSelector(state => state.sellerInfo);
   const { userInfo } = useSelector(state => state.userInfo);
+  const { selectedProduct } = useSelector(state => state);
   const dispatch = useDispatch();
-  console.log({ sellerInfo });
+
   useEffect(() => {
     // only fetch for seller info if selected product belongs to different seller
     if (sellerInfo) {
