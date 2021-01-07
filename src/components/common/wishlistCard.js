@@ -64,6 +64,7 @@ export default function WishlistCard({ product }) {
     console.log('added to Cart');
   }
   function removeFromWishlist() {
+    // Need to connect action.
     console.log('removed from wishlist');
   }
   return (
