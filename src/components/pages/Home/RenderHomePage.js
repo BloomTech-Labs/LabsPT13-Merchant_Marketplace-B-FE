@@ -1,27 +1,39 @@
-import React from 'react';
-import styled from 'styled-components';
-import { NavigationBar } from '../../common';
-import MarketplaceFeed from '../../common/MarketplaceFeed';
+import React, { lazy, Suspense } from 'react';
+import {
+  MarketplaceFeed,
+  ProductCardSkeleton,
+  NavLoadingSkeleton,
+} from '../../common';
 
-const Wrapper = styled.div`
-  background-color: #ecf0ee;
+const LazyNavigationBar = lazy(() => import('../../common/NavigationBar'));
 
-  .main-content {
-    padding: 180px 15px 15px;
-  }
-`;
-
-function RenderHomePage() {
+function RenderHomePage({ userInfo, products }) {
   return (
-    <Wrapper>
-      <NavigationBar />
+    <>
+      {userInfo ? (
+        <Suspense fallback={<NavLoadingSkeleton />}>
+          <LazyNavigationBar />
+        </Suspense>
+      ) : (
+        <NavLoadingSkeleton />
+      )}
 
-      <div className="main-content">
-        <MarketplaceFeed
-          LoadingComponent={() => <div>Loading Products...</div>}
-        />
-      </div>
-    </Wrapper>
+      {userInfo && products ? (
+        <MarketplaceFeed />
+      ) : (
+        <section
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+        >
+          {[1, 2, 3, 4, 5].map((p, i) => (
+            <ProductCardSkeleton key={i} />
+          ))}
+        </section>
+      )}
+    </>
   );
 }
 export default RenderHomePage;
