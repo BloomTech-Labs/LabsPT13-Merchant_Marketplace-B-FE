@@ -3,6 +3,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSellerInfo } from '../../../state/actions';
 import RenderProduct from './RenderProduct';
+import { addCartItem } from '../../../api';
 import { addToWishlist } from '../../../api';
 
 export default function ProductContainer() {
@@ -41,6 +42,18 @@ export default function ProductContainer() {
       });
   };
 
+  const addItem = () => {
+    const profile_id = userInfo.sub;
+    const body = {profile_id, product_id: selectedProduct.id};
+
+    addCartItem(body, authState)
+      .then(res => {
+        console.log({ res });
+      }) .catch(err => {
+        console.error(err)
+      })
+  }
+
   const unSaveProduct = () => {
     setSaved(false);
     console.log('REMOVE PRODUCT FROM WISHLIST');
@@ -63,6 +76,7 @@ export default function ProductContainer() {
         saveProduct={saveProduct}
         unSaveProduct={unSaveProduct}
         sendMessage={sendMessage}
+        addItem={addItem}
       />
     </>
   );

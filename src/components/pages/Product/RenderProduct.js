@@ -20,16 +20,13 @@ const Wrapper = styled.div`
   .details-wrapper {
     width: 360px;
     align-self: flex-end;
-    border-left: 1px solid #2a375a;
-
+    border-left: 1px solid #2A375A;
     .navbar {
       height: 70px;
-      background-color: #2a375a;
+      background-color: #2A375A;
     }
-
     .nav-wrapper {
       height: 80px;
-
       .navbar {
         position: fixed;
         top: 0;
@@ -43,25 +40,21 @@ const Wrapper = styled.div`
           color: #fff;
           cursor: pointer;
         }
-
         .button {
           padding: 3px 13px 3px 8px;
-          background-color: #2d88ff;
+          background-color: #2D88FF;
           color: #fff;
           border-radius: 3px;
           cursor: pointer;
-
           svg {
             font-size: 22px;
           }
-
           span {
             vertical-align: middle;
             margin-left: 5px;
           }
-
           &:hover {
-            background-color: #4594fa;
+            background-color: #4594FA;
           }
         }
       }
@@ -69,7 +62,6 @@ const Wrapper = styled.div`
 
     .details {
       padding: 10px 15px;
-
       .navbar {
         margin: 8px 0 15px 0;
       }
@@ -89,7 +81,6 @@ const Wrapper = styled.div`
       h4 {
         font-size: 15px;
       }
-
       h5 {
         font-size: 20px;
         margin: 30px 0 0 0;
@@ -103,7 +94,6 @@ const Wrapper = styled.div`
       a {
         color: inherit;
         cursor: pointer;
-
         &:hover {
           text-decoration: underline;
         }
@@ -112,7 +102,6 @@ const Wrapper = styled.div`
       p {
         margin: 15px 0 20px 0;
       }
-
       #tag {
         display: inline-block;
         margin: 2px 5px 2px 0;
@@ -122,11 +111,10 @@ const Wrapper = styled.div`
         cursor: pointer;
 
         &:hover {
-          background-color: #2a375a;
+          background-color: #2A375A;
           color: #fff;
         }
       }
-
       .map-wrapper {
         margin: 15px 0;
 
@@ -183,8 +171,7 @@ const Wrapper = styled.div`
         bottom: 0;
         width: 360px;
         padding: 15px;
-        background-color: #2a375a;
-
+        background-color: #2A375A;
         span {
           color: #fff;
         }
@@ -194,15 +181,13 @@ const Wrapper = styled.div`
           flex-direction: column;
           margin-top: 5px;
           font-size: 16px;
-
           input {
-            border: 1px solid #bbbbbb;
+            border: 1px solid #BBBBBB;
             padding: 4px 10px;
             outline: none;
             border-radius: 5px;
-
             &::selection {
-              background-color: #2d88ff;
+              background-color: #2D88FF;
             }
           }
 
@@ -210,15 +195,15 @@ const Wrapper = styled.div`
             margin-top: 15px;
             padding: 7px 0;
             border: none;
-            background-color: #2d88ff;
+            background-color: #2D88FF;
+
             color: #fff;
             border-radius: 7px;
             font-weight: 600;
             cursor: pointer;
             outline: none;
-
             &:hover {
-              background-color: #4391f7;
+              background-color: #4391F7;
             }
           }
         }
@@ -236,9 +221,9 @@ const RenderProduct = ({
   saveProduct,
   unSaveProduct,
   sendMessage,
+  addItem,
 }) => {
   const dispatch = useDispatch();
-
   return (
     <Wrapper>
       {sellerInfo ? (
@@ -252,19 +237,19 @@ const RenderProduct = ({
                   <MessageFilled />
                   <span>Message</span>
                 </div>
+                <Tooltip placement="bottom" title="Save" color="#29577C">
 
-                <Tooltip placement="bottom" title="Save" color="#29577c">
                   <div onClick={saved ? unSaveProduct : saveProduct}>
                     {saved ? <HeartFilled /> : <HeartOutlined />}
                   </div>
                 </Tooltip>
-
-                <Tooltip placement="bottom" title="Add to cart" color="#29577c">
-                  <ShoppingCartOutlined />
+                <Tooltip placement="bottom" title="Add to cart" color="#29577C">
+                  <div onClick={addItem} >
+                    <ShoppingCartOutlined />
+                  </div>
                 </Tooltip>
               </div>
             </div>
-
             <div className="details">
               <h2>4K ultra hd 55 LED Insigna Roku TV</h2>
               <h3>${product.price}</h3>
@@ -272,7 +257,6 @@ const RenderProduct = ({
               <div>
                 Listed 2 hours ago in <a href="google.com">Alameda, CA</a>
               </div>
-
               <h5>Details</h5>
               <Divider style={{ margin: '4px 0 15px 0' }} />
 
@@ -293,7 +277,6 @@ const RenderProduct = ({
                   {tag}
                 </span>
               ))}
-
               <div className="map-wrapper">
                 <div className="map"></div>
 
@@ -301,7 +284,6 @@ const RenderProduct = ({
                 <span>Location is approximate</span>
                 <Divider style={{ margin: '8px 0 0 0' }} />
               </div>
-
               <h3>Seller Information</h3>
               <div className="seller-info">
                 <Link
@@ -334,12 +316,12 @@ const RenderProduct = ({
               <div className="message-seller">
                 <MessageFilled
                   style={{
-                    color: '#2d88ff',
+                    color: '#2D88FF',
+
                     marginRight: '10px',
                     fontSize: '22px',
                   }}
                 />
-
                 <span>Send seller a message</span>
 
                 <div className="message-input">
@@ -361,5 +343,4 @@ const RenderProduct = ({
     </Wrapper>
   );
 };
-
 export default RenderProduct;
