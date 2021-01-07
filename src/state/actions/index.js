@@ -10,14 +10,12 @@ import { selectProduct } from './product';
 import { fetchCart } from './carts';
 import { removeFromCart } from './carts';
 import { addToCart } from './carts';
-import { searchByTitle } from './marketplaceSearch';
 import {
     fetchSellerInfo,
     selectSeller,
     fetchSellerInventory,
     fetchSellerReviews,
   } from './seller';
-  
 import { searchByTitle, updateValue } from './marketplaceSearch';
 
 import { fetchWishlist } from './wishlists';
@@ -37,4 +35,5 @@ export {
   fetchCart,
   removeFromCart,
   fetchWishlist,
+  fetchCart
 };

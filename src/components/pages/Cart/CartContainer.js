@@ -11,11 +11,8 @@ export default function CartContainer({ LoadingComponent }) {
   
   const {userInfo} = useSelector(state => state.userInfo);
   const {cart} = useSelector(state => state.carts );
-  console.log({userInfo})
-
-
+  
   useEffect(() => {
-
     !cart.length && dispatch(fetchCart(userInfo.sub, authState));
 
   }, [dispatch, authState, userInfo, cart.length]);
