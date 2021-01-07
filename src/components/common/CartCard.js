@@ -44,7 +44,7 @@ export default function CartCard({ product }) {
     >
       <Card>
         {/* <img src={product.img} alt="market product" /> */}
-        <img src="https://photos5.appleinsider.com/gallery/38960-74440-iPhone-12-Pro-Max-Back-xl.jpg" alt="iphone image"/>
+        <img src="https://photos5.appleinsider.com/gallery/38960-74440-iPhone-12-Pro-Max-Back-xl.jpg" alt="iphone"/>
         
         {/* {<img src={product.images[0].img_url} alt="market product" />} */}
         <div className="productDetails">
