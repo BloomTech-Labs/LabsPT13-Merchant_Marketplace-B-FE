@@ -110,6 +110,21 @@ const createProduct = async (product, authState) => {
   }
 };
 
+const getProfileOrders = async (authState, profile_id) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthGet(`${baseUrl}/orders/${profile_id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    });
+  }
+};
+Ȁ;
+
 const removeWishlistById = async (profile_id, product_id, authState) => {
   try {
     const headers = getAuthHeader(authState);
@@ -126,21 +141,15 @@ const removeWishlistById = async (profile_id, product_id, authState) => {
 };
 
 const addToWishlist = async (body, authState) => {
-  try {
-    const headers = getAuthHeader(authState);
-    return apiAuthPost(`${baseUrl}/wishlists`, body, headers).then(
-const getProfileOrders = async (authState, profile_id) => {
-  try {
-    const headers = getAuthHeader(authState);
-    return apiAuthGet(`${baseUrl}/orders/${profile_id}`, headers).then(
-      res => res.data
-    );
-  } catch (error) {
-    return new Promise(() => {
-      console.log(error);
-      return {};
+  const headers = getAuthHeader(authState);
+  return apiAuthPost(`${baseUrl}/wishlists`, body, headers)
+    .then(res => res.data)
+    .catch(error => {
+      return new Promise(() => {
+        console.log(error);
+        return {};
+      });
     });
-  }
 };
 
 const getWishListProducts = (profile_id, authState) => {
@@ -154,7 +163,7 @@ const getWishListProducts = (profile_id, authState) => {
       });
     });
 };
-    
+
 export {
   sleep,
   getProfileData,
