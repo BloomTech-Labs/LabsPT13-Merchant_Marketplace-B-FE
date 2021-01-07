@@ -10,6 +10,8 @@ import { selectProduct } from './product';
 import { fetchCart } from './carts';
 import { removeFromCart } from './carts';
 import { addToCart } from './carts';
+import { searchByTitle, updateValue } from './marketplaceSearch';
+
 import {
     fetchSellerInfo,
     selectSeller,
