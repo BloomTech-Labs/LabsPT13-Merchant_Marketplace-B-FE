@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import OktaSignIn from '@okta/okta-signin-widget';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
-
 import { config } from '../../../utils/oktaConfig';
 import './login.css';
 
 const LoginContainer = () => {
+  const dispatch = useDispatch();
+  // clear userInfo and selectedProduct from local storage
+  dispatch({ type: 'CLEAR' });
+
   useEffect(() => {
     const { pkce, issuer, clientId, redirectUri, scopes } = config;
     // destructure your config so that you can pass it into the required fields in your widget.

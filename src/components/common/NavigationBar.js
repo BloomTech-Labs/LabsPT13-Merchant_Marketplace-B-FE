@@ -1,135 +1,183 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { Input } from 'antd';
+import {
+  PlusCircleOutlined,
+  ShoppingCartOutlined,
+  AudioOutlined,
+} from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
-import FormInput from './FormInput';
-import { SearchOutlined } from '@ant-design/icons';
-import { UserInfoContext } from '../../state/contexts';
+import { searchByTitle, updateValue } from '../../state/actions';
 
 const Wrapper = styled.div`
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #cdd7d8;
-  overflow: hidden;
+  height: 180px;
 
-  .top {
-    display: flex;
-    align-items: center;
-    padding: 8px 15px;
-    flex-direction: row-reverse;
-    border-bottom: 1px solid #a1a1a1;
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #272d3d;
+    color: #fff;
 
-    .top-right {
+    .top {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      width: 50%;
+      flex-wrap: wrap;
+      padding: 8px 15px;
+      flex-direction: row-reverse;
+      border-bottom: 1px solid #494949;
 
-      .cart-icon {
+      .top-right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 50%;
+
+        .cart-icon {
+          transition-duration: 0.2s;
+          color: #fff;
+          font-size: 28px;
+
+          &:hover {
+            color: #0688f1;
+          }
+        }
+      }
+
+      .top-left {
+        display: flex;
+        width: 50%;
+
+        .user-profile {
+        }
+      }
+    }
+
+    .middle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      text-align: center;
+      padding: 15px 20px 0 20px;
+
+      .search-bar-wrapper {
+        width: 100%;
+      }
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border-top: 1px solid #494949;
+
+      a {
+        color: #fff;
+      }
+
+      .create-listing {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
         cursor: pointer;
-        color: #363636;
-        margin-left: 25px;
-        font-size: 28px;
-        transition-duration: 0.3s;
+        transition-duration: 0.2s;
 
         &:hover {
-          color: #008cff;
-        }
-
-        span {
-          font-weight: 500;
-          font-size: 16px;
+          a,
+          svg {
+            color: #0688f1;
+          }
         }
       }
-    }
-
-    .top-left {
-      display: flex;
-      width: 50%;
-
-      .user-profile {
-      }
-    }
-  }
-
-  .middle {
-    padding: 15px 20px 0 20px;
-    text-align: center;
-
-    .search-bar-wrapper {
-      border-bottom: 1px solid #a1a1a1;
-      padding-bottom: 15px;
-    }
-  }
-
-  .bottom {
-    height: 50px;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-evenly;
-
-    a {
-      color: #111;
-      text-decoration: underline;
     }
   }
 `;
 
-export default function Navigation() {
-  const [input, setInput] = useState('');
+export default function NavigationBar() {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { authService } = useOktaAuth();
-  const userInfo = useContext(UserInfoContext);
+  const { userInfo } = useSelector(state => state.userInfo);
+  const { value } = useSelector(state => state.marketplaceSearch);
+  const { Search } = Input;
 
   return (
     <Wrapper>
-      <div className="top">
-        <div className="top-right">
-          <DropdownMenu
-            title="My Market"
-            items={['Purchase History', 'Saved Items', 'Messages']}
-          />
+      <div className="navbar">
+        <div className="top">
+          <div className="top-right">
+            <DropdownMenu
+              title="My Market"
+              items={[
+                <Link to="/marketplace/buyer/history">Purchase History</Link>,
+                'Saved Items',
+                'Messages',
+              ]}
+            />
 
-          <Link to={{ pathname: '/cart', userInfo }}>
-            <ShoppingCartOutlined className="cart-icon" />
-          </Link>
+            <Link to="/marketplace/cart" style={{ marginLeft: '25px' }}>
+              <ShoppingCartOutlined className="cart-icon" />
+            </Link>
+          </div>
+
+          <div className="top-left">
+            <div className="user-profile">
+              <DropdownMenu
+                title={`Hi, ${userInfo.given_name}`}
+                items={[
+                  <span>Account Settings</span>,
+                  <span onClick={() => authService.logout()}>Sign Out</span>,
+                ]}
+              />
+            </div>
+          </div>
         </div>
 
-        <div className="top-left">
-          <div className="user-profile">
-            <DropdownMenu
-              title={'Hi, ' + userInfo.name.split(' ')[0]}
-              items={[
-                'Account Settings',
-                <span onClick={() => authService.logout()}>Sign Out</span>,
-              ]}
+        <div className="middle">
+          <div className="search-bar-wrapper">
+            <Search
+              placeholder="Search marketplace"
+              onChange={e => dispatch(updateValue(e.target.value))}
+              onSearch={val => {
+                dispatch(searchByTitle(val));
+                history.push('/');
+              }}
+              enterButton
+              style={{ maxWidth: '500px' }}
+              suffix={
+                <AudioOutlined
+                  style={{
+                    fontSize: 16,
+                    color: '#1890ff',
+                  }}
+                />
+              }
+              value={value}
             />
           </div>
         </div>
-      </div>
 
-      <div className="middle">
-        <div className="search-bar-wrapper">
-          <FormInput
-            name="search-bar"
-            type="text"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            placeholder="Search MarketPlace"
-            labelId=""
-            Icon={<SearchOutlined />}
-            styles={{ maxWidth: '500px' }}
-          />
+        <div className="bottom">
+          <Link to="/">Home</Link>
+          <Link to="/wishlist">Wishlist</Link>
+          <span>Products</span>
+          <span>Categories</span>
+
+          <section className="create-listing">
+            <Link to="/marketplace/create" style={{ marginRight: '8px' }}>
+              Create New Listing
+            </Link>
+            <PlusCircleOutlined />
+          </section>
         </div>
-      </div>
-
-      <div className="bottom">
-        <Link to="/">Home</Link>
-        <span>Wishlist</span>
-        <span>Products</span>
-        <span>Categories</span>
       </div>
     </Wrapper>
   );

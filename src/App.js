@@ -5,9 +5,12 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { HomePage } from './components/pages/Home';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
-import { LoadingComponent } from './components/common';
 import { CartPage } from './components/pages/Cart';
 import { ProductPage } from './components/pages/Product';
+import { CreateProduct } from './components/pages/CreateProduct';
+import { SellerPage } from './components/pages/Seller';
+import { WishlistPage } from './components/pages/Wishlist/index';
+import { PurchaseHistory } from './components/pages/PurchaseHistory';
 
 export default function App() {
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
@@ -27,13 +30,40 @@ export default function App() {
         <Route path="/implicit/callback" component={LoginCallback} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
 
+        <SecureRoute path="/" exact component={() => <HomePage />} />
+
         <SecureRoute
-          path="/"
+          path="/marketplace/cart"
           exact
-          component={() => <HomePage LoadingComponent={LoadingComponent} />}
+          component={() => <CartPage />}
         />
-        <SecureRoute path="/cart" exact component={() => <CartPage />} />
-        <SecureRoute path="/item/:id" exact component={() => <ProductPage />} />
+        <SecureRoute
+          path="/marketplace/item/:id"
+          exact
+          component={() => <ProductPage />}
+        />
+        <SecureRoute
+          path="/marketplace/create"
+          exact
+          component={() => <CreateProduct />}
+        />
+        <SecureRoute
+          path="/Wishlist"
+          exact
+          component={() => <WishlistPage />}
+        />
+
+        <SecureRoute
+          path="/marketplace/seller/:name"
+          exact
+          component={() => <SellerPage />}
+        />
+
+        <SecureRoute
+          path="/marketplace/buyer/history"
+          exact
+          component={() => <PurchaseHistory />}
+        />
 
         <Route path="404" component={NotFoundPage} />
       </Switch>

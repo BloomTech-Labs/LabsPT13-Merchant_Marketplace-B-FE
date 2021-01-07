@@ -31,7 +31,6 @@ const Card = styled.div`
 
 export default function CartCard({ product }) {
   const dispatch = useDispatch();
-
   function sendToWishlist() {
     console.log('send item to wishlist')
   }
