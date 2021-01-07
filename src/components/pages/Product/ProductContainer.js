@@ -8,8 +8,8 @@ export default function ProductContainer() {
   const { authState } = useOktaAuth();
   const [message, setMessage] = useState('Is this available?');
   const [saved, setSaved] = useState(false);
-  const { selectedProduct } = useSelector(state => state);
   const { sellerInfo } = useSelector(state => state.sellerInfo);
+  const { selectedProduct } = useSelector(state => state);
   const dispatch = useDispatch();
 
   useEffect(() => {

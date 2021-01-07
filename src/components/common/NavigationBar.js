@@ -144,7 +144,7 @@ export default function NavigationBar() {
         <div className="middle">
           <div className="search-bar-wrapper">
             <Search
-              placeholder="input search text"
+              placeholder="Search marketplace"
               onChange={e => dispatch(updateValue(e.target.value))}
               onSearch={val => {
                 dispatch(searchByTitle(val));

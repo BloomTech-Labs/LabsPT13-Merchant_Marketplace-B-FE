@@ -5,6 +5,7 @@ import { StarFilled } from '@ant-design/icons';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import TimeAgo from 'react-timeago';
+import { formatDate } from '../../../helpers';
 import { Feedback, ProductCard } from '../../common';
 
 const Wrapper = styled.div`
@@ -159,10 +160,6 @@ export default function RenderSeller({
   loadingInventory,
   loadingReviews,
 }) {
-  let joiningDate = new Date(selectedSeller.created_at)
-    .toDateString()
-    .split(' ');
-
   const avgRating = reviews
     ? reviews.reduce((acc, curr) => acc + curr.rate, 0)
     : 0;
@@ -209,7 +206,7 @@ export default function RenderSeller({
                   <section>
                     <h3>Member since:</h3>
                     <div style={{ display: 'flex' }}>
-                      {`${joiningDate[1]} ${joiningDate[2]}, ${joiningDate[3]}`}{' '}
+                      {formatDate(selectedSeller.created_at)}
                       |
                       <LocationOnIcon color="secondary" fontSize="small" />{' '}
                       California
