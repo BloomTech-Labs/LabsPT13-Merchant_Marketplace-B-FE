@@ -24,6 +24,7 @@ export default function PurchaseHistoryContainer() {
       orders={orders}
       loading={loading}
       handleAction={handleAction}
+      action={action}
     />
   );
 }
