@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ArrowLeftOutlined, PlusOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
-import ImagesUploader from '../../common/ImagesUploader';
-import FormSelect from '../../common/FomSelect';
+import { ImagesUploader, FormSelect } from '../../common';
 
 const Wrapper = styled.div`
   background-color: #f7f7f7;
@@ -153,6 +152,9 @@ const Wrapper = styled.div`
   }
 `;
 
+// !todo add more categories
+const categories = ['Electronics', 'Furniture', 'Books'];
+
 export default function RenderCreateProduct({
   userInfo,
   formInfo,
@@ -230,7 +232,7 @@ export default function RenderCreateProduct({
         <FormSelect
           title="Category"
           name="category"
-          values={['Electronics', 'Furniture', 'Books']}
+          values={categories}
           onChange={handleChange}
         />
 

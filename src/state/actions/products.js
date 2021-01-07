@@ -2,7 +2,6 @@ import { getMarketProducts } from '../../api';
 
 export const fetchProducts = authState => dispatch => {
   try {
-    console.log('FETCHING PRODUCTS');
     dispatch({ type: 'PRODUCTS_LOADING' });
     getMarketProducts(authState).then(products => {
       dispatch({ type: 'PRODUCTS_LOADED', payload: products });

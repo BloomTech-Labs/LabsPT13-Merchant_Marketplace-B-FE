@@ -1,12 +1,40 @@
-import React from 'react';
-import { NavigationBar, MarketplaceFeed } from '../../common';
+import React, { lazy, Suspense } from 'react';
+import {
+  MarketplaceFeed,
+  ProductCardSkeleton,
+  NavLoadingSkeleton,
+} from '../../common';
 
-function RenderHomePage() {
+const LazyNavigationBar = lazy(() => import('../../common/NavigationBar'));
+
+function RenderHomePage({ userInfo, products }) {
   return (
     <>
-      <NavigationBar />
+      {userInfo && products.length ? (
+        <>
+          <Suspense fallback={<NavLoadingSkeleton />}>
+            <LazyNavigationBar />
+          </Suspense>
 
-      <MarketplaceFeed />
+          <MarketplaceFeed />
+        </>
+      ) : (
+        <>
+          <NavLoadingSkeleton />
+
+          <section
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+            }}
+          >
+            {[1, 2, 3, 4, 5].map((p, i) => (
+              <ProductCardSkeleton key={i} />
+            ))}
+          </section>
+        </>
+      )}
     </>
   );
 }

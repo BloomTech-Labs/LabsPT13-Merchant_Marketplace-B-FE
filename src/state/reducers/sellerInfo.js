@@ -1,16 +1,16 @@
 const initialState = {
-  userInfo: null,
+  sellerInfo: null,
   loading: false,
   error: '',
 };
 
-const userInfo = (state = initialState, { type, payload }) => {
+const sellerInfo = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'LOADING_USER_INFO':
+    case 'LOADING_SELLER_INFO':
       return { ...state, loading: true, error: '' };
-    case 'LOADED_USER_INFO':
-      return { ...state, loading: false, userInfo: payload };
-    case 'ERROR_USER_INFO':
+    case 'LOADED_SELLER_INFO':
+      return { ...state, loading: false, sellerInfo: payload };
+    case 'ERROR_SELLER_INFO':
       return {
         ...state,
         loading: false,
@@ -23,4 +23,4 @@ const userInfo = (state = initialState, { type, payload }) => {
   }
 };
 
-export default userInfo;
+export default sellerInfo;

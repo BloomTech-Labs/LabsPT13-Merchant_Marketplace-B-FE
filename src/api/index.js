@@ -10,12 +10,6 @@ const sleep = time =>
     setTimeout(resolve, time);
   });
 
-const getExampleData = () => {
-  return axios
-    .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
-    .then(response => response.data);
-};
-
 const getAuthHeader = authState => {
   if (!authState.isAuthenticated) {
     throw new Error('Not authenticated');
@@ -44,15 +38,34 @@ const apiAuthPost = (url, data, authHeader) => {
   return axios.post(url, data, { headers: authHeader });
 };
 
+<<<<<<< HEAD
 const apiAuthDelete = (url, data, authHeader) => {
   return axios.delete(url, data, { headers: authHeader })
 };
 
 const getProfileData = authState => {
+=======
+const getProfileData = (authState, profile_id) => {
+>>>>>>> 67922161a607c37295f29a8f8a4d81264438d8b4
   try {
-    return apiAuthGet(`${baseUrl}/profile`, getAuthHeader(authState)).then(
-      response => response.data
-    );
+    return apiAuthGet(
+      `${baseUrl}/profile/${profile_id}`,
+      getAuthHeader(authState)
+    ).then(response => response.data);
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return [];
+    });
+  }
+};
+
+const getProfileInventory = (authState, profile_id) => {
+  try {
+    return apiAuthGet(
+      `${baseUrl}/profile/${profile_id}/inventory`,
+      getAuthHeader(authState)
+    ).then(response => response.data);
   } catch (error) {
     return new Promise(() => {
       console.log(error);
@@ -73,10 +86,10 @@ const getMarketProducts = async authState => {
   }
 };
 
-const getProductById = async (id, authState) => {
+const getSellerReviews = async (authState, seller_id) => {
   try {
     const headers = getAuthHeader(authState);
-    return apiAuthGet(`${baseUrl}/products/${id}`, headers).then(
+    return apiAuthGet(`${baseUrl}/reviews/${seller_id}`, headers).then(
       res => res.data
     );
   } catch (error) {
@@ -145,13 +158,16 @@ const addCartItem = async (profile_id, product_id, authState) => {
 
 export {
   sleep,
-  getExampleData,
   getProfileData,
+  getProfileInventory,
   getDSData,
   getMarketProducts,
-  getProductById,
   createProduct,
+<<<<<<< HEAD
   getCartItems,
   removeCartItem,
   addCartItem
+=======
+  getSellerReviews,
+>>>>>>> 67922161a607c37295f29a8f8a4d81264438d8b4
 };

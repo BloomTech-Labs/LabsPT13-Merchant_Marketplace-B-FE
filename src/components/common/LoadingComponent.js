@@ -1,14 +1,18 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import LoadingOverlay from 'react-loading-overlay';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
-function LoadingComponent(props) {
-  const { message } = props;
-
-  return <div>{message}</div>;
-}
+const LoadingComponent = ({ active, children, message }) => {
+  return (
+    <LoadingOverlay
+      active={active}
+      spinner={<ScaleLoader color="#36D7B7" />}
+      text={message}
+      fadeSpeed={300}
+    >
+      {children}
+    </LoadingOverlay>
+  );
+};
 
 export default LoadingComponent;
-
-LoadingComponent.propTypes = {
-  message: PropTypes.string.isRequired,
-};
