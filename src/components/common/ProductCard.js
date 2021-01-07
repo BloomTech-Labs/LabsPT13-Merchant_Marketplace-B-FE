@@ -56,7 +56,6 @@ export default function ProductCard({ product }) {
     >
       <Card>
         <img src={product.images[0].img_url} alt="market product" />
-
         <div className="details">
           <h4>${product.price}</h4>
           <h3>{product.title}</h3>

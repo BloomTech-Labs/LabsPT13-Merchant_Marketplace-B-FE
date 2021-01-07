@@ -122,7 +122,21 @@ const getProfileOrders = async (authState, profile_id) => {
       return {};
     });
   }
-};
+}
+
+const getCartItems = async (profile_id, authState) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthGet(`${baseUrl}/carts/${profile_id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    });
+  }
+}
 
 const removeWishlistById = async (profile_id, product_id, authState) => {
   try {
@@ -170,6 +184,7 @@ export {
   getDSData,
   getMarketProducts,
   createProduct,
+  getCartItems,
   getWishListProducts,
   removeWishlistById,
   addToWishlist,

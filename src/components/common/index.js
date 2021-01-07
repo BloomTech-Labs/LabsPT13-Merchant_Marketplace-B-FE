@@ -5,6 +5,13 @@ import ImagesGallery from './ImagesGallery';
 import ImagesUploader from './ImagesUploader';
 import MarketplaceFeed from './MarketplaceFeed';
 import ProductCard from './ProductCard';
+import CartCard from './CartCard';
+import Payments from './Payments';
+import OrderSummary from './OrderSummary';
+import ContactInfo from './ContactInfo';
+import ShippingInfo from './ShippingInfo';
+import PaymentMethod from './PaymentMethod';
+import BillingAddress from './BillingAddress';
 import NavLoadingSkeleton from './NavLoadingSkeleton';
 import ProductCardSkeleton from './ProductCardSkeleton';
 import FormSelect from './FomSelect';
@@ -20,6 +27,13 @@ export {
   ImagesUploader,
   MarketplaceFeed,
   ProductCard,
+  CartCard,
+  Payments,
+  OrderSummary,
+  ContactInfo,
+  ShippingInfo,
+  PaymentMethod,
+  BillingAddress,
   ProductCardSkeleton,
   NavLoadingSkeleton,
   FormSelect,
