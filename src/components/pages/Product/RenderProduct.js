@@ -1,15 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Divider, Tooltip } from 'antd';
 import {
   MessageFilled,
-  ArrowLeftOutlined,
   ShoppingCartOutlined,
   HeartOutlined,
   HeartFilled,
 } from '@ant-design/icons';
 import { ImagesGallery } from '../../common';
+import { selectSeller } from '../../../state/actions';
 
 const Wrapper = styled.div`
   display: flex;
@@ -236,113 +237,127 @@ const RenderProduct = ({
   unSaveProduct,
   sendMessage,
 }) => {
+  const dispatch = useDispatch();
+
   return (
     <Wrapper>
-      <Link to="/">
-        <ArrowLeftOutlined />
-      </Link>
+      {sellerInfo ? (
+        <>
+          <ImagesGallery images={product.images} />
 
-      <ImagesGallery images={product.images} />
+          <div className="details-wrapper">
+            <div className="nav-wrapper">
+              <div className="navbar">
+                <div className="button">
+                  <MessageFilled />
+                  <span>Message</span>
+                </div>
 
-      <div className="details-wrapper">
-        <div className="nav-wrapper">
-          <div className="navbar">
-            <div className="button">
-              <MessageFilled />
-              <span>Message</span>
-            </div>
+                <Tooltip placement="bottom" title="Save" color="#29577c">
+                  <div onClick={saved ? unSaveProduct : saveProduct}>
+                    {saved ? <HeartFilled /> : <HeartOutlined />}
+                  </div>
+                </Tooltip>
 
-            <Tooltip placement="bottom" title="Save" color="#29577c">
-              <div onClick={saved ? unSaveProduct : saveProduct}>
-                {saved ? <HeartFilled /> : <HeartOutlined />}
+                <Tooltip placement="bottom" title="Add to cart" color="#29577c">
+                  <ShoppingCartOutlined />
+                </Tooltip>
               </div>
-            </Tooltip>
+            </div>
 
-            <Tooltip placement="bottom" title="Add to cart" color="#29577c">
-              <ShoppingCartOutlined />
-            </Tooltip>
-          </div>
-        </div>
+            <div className="details">
+              <h2>4K ultra hd 55 LED Insigna Roku TV</h2>
+              <h3>${product.price}</h3>
+              <a href="google.com">{product.category}</a>
+              <div>
+                Listed 2 hours ago in <a href="google.com">Alameda, CA</a>
+              </div>
 
-        <div className="details">
-          <h2>4K ultra hd 55 LED Insigna Roku TV</h2>
-          <h3>${product.price}</h3>
-          <a href="google.com">{product.category}</a>
-          <div>
-            Listed 2 hours ago in <a href="google.com">Alameda, CA</a>
-          </div>
+              <h5>Details</h5>
+              <Divider style={{ margin: '4px 0 15px 0' }} />
 
-          <h5>Details</h5>
-          <Divider style={{ margin: '4px 0 15px 0' }} />
+              <section>
+                <h4>Condition</h4>
+                <span>{product.condition}</span>
+              </section>
+              <section>
+                <h4>Brand</h4>
+                <span>{product.brand}</span>
+              </section>
 
-          <section>
-            <h4>Condition</h4>
-            <span>{product.condition}</span>
-          </section>
-          <section>
-            <h4>Brand</h4>
-            <span>{product.brand}</span>
-          </section>
+              <p>{product.description}</p>
 
-          <p>{product.description}</p>
+              <h4>Tags</h4>
+              {product.tags.split(',').map((tag, i) => (
+                <span id="tag" key={i}>
+                  {tag}
+                </span>
+              ))}
 
-          <h4>Tags</h4>
-          {product.tags.split(',').map((tag, i) => (
-            <span id="tag" key={i}>
-              {tag}
-            </span>
-          ))}
+              <div className="map-wrapper">
+                <div className="map"></div>
 
-          <div className="map-wrapper">
-            <div className="map"></div>
+                <h4>Alameda, CA</h4>
+                <span>Location is approximate</span>
+                <Divider style={{ margin: '8px 0 0 0' }} />
+              </div>
 
-            <h4>Alameda, CA</h4>
-            <span>Location is approximate</span>
-            <Divider style={{ margin: '8px 0 0 0' }} />
-          </div>
+              <h3>Seller Information</h3>
+              <div className="seller-info">
+                <Link
+                  to={`/marketplace/seller/${sellerInfo.name
+                    .split(' ')
+                    .join('-')}`}
+                  onClick={() => dispatch(selectSeller(sellerInfo))}
+                >
+                  <img
+                    src="https://www.mercurynews.com/wp-content/uploads/2020/04/slowstreets417.jpg"
+                    alt="seller avatar"
+                  />
+                </Link>
 
-          <h3>Seller Information</h3>
-          <div className="seller-info">
-            <a href="google.com" alt="user avatar">
-              <img
-                src="https://www.mercurynews.com/wp-content/uploads/2020/04/slowstreets417.jpg"
-                alt="seller avatar"
-              />
-            </a>
+                <section className="info">
+                  <Link
+                    to={`/marketplace/seller/${sellerInfo.name
+                      .split(' ')
+                      .join('-')}`}
+                    onClick={() => dispatch(selectSeller(sellerInfo))}
+                  >
+                    {sellerInfo.name}
+                  </Link>
+                  <span style={{ color: 'gray' }}>Joined MMP in 2020</span>
+                </section>
+              </div>
+            </div>
 
-            <section className="info">
-              <a href="google.com" alt="user name">
-                {sellerInfo.name}
-              </a>
-              <span style={{ color: 'gray' }}>Joined MMP in 2020</span>
-            </section>
-          </div>
-        </div>
+            <div className="message-seller-wrapper">
+              <div className="message-seller">
+                <MessageFilled
+                  style={{
+                    color: '#2d88ff',
+                    marginRight: '10px',
+                    fontSize: '22px',
+                  }}
+                />
 
-        <div className="message-seller-wrapper">
-          <div className="message-seller">
-            <MessageFilled
-              style={{
-                color: '#2d88ff',
-                marginRight: '10px',
-                fontSize: '22px',
-              }}
-            />
+                <span>Send seller a message</span>
 
-            <span>Send seller a message</span>
-
-            <div className="message-input">
-              <input
-                type="text"
-                value={message}
-                onChange={saveMessage}
-                onFocus={e => e.target.select()}
-              />
-              <button onClick={sendMessage}>Send</button>
+                <div className="message-input">
+                  <input
+                    type="text"
+                    value={message}
+                    onChange={saveMessage}
+                    onFocus={e => e.target.select()}
+                  />
+                  <button onClick={sendMessage}>Send</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <span>Fetching sellerInfo...</span>
+      )}
     </Wrapper>
   );
 };

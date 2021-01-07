@@ -10,12 +10,6 @@ const sleep = time =>
     setTimeout(resolve, time);
   });
 
-const getExampleData = () => {
-  return axios
-    .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
-    .then(response => response.data);
-};
-
 const getAuthHeader = authState => {
   if (!authState.isAuthenticated) {
     throw new Error('Not authenticated');
@@ -44,11 +38,30 @@ const apiAuthPost = (url, data, authHeader) => {
   return axios.post(url, data, { headers: authHeader });
 };
 
-const getProfileData = authState => {
+const apiAuthDelete = (url, data, authHeader) => {
+  return axios.delete(url, data, authHeader);
+};
+
+const getProfileData = (authState, profile_id) => {
   try {
-    return apiAuthGet(`${baseUrl}/profile`, getAuthHeader(authState)).then(
-      response => response.data
-    );
+    return apiAuthGet(
+      `${baseUrl}/profile/${profile_id}`,
+      getAuthHeader(authState)
+    ).then(response => response.data);
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return [];
+    });
+  }
+};
+
+const getProfileInventory = (authState, profile_id) => {
+  try {
+    return apiAuthGet(
+      `${baseUrl}/profile/${profile_id}/inventory`,
+      getAuthHeader(authState)
+    ).then(response => response.data);
   } catch (error) {
     return new Promise(() => {
       console.log(error);
@@ -69,10 +82,10 @@ const getMarketProducts = async authState => {
   }
 };
 
-const getProductById = async (id, authState) => {
+const getSellerReviews = async (authState, seller_id) => {
   try {
     const headers = getAuthHeader(authState);
-    return apiAuthGet(`${baseUrl}/products/${id}`, headers).then(
+    return apiAuthGet(`${baseUrl}/reviews/${seller_id}`, headers).then(
       res => res.data
     );
   } catch (error) {
@@ -97,6 +110,20 @@ const createProduct = async (product, authState) => {
   }
 };
 
+const getProfileOrders = async (authState, profile_id) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthGet(`${baseUrl}/orders/${profile_id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    });
+  }
+}
+
 const getCartItems = async (profile_id, authState) => {
   try {
     const headers = getAuthHeader(authState);
@@ -107,18 +134,60 @@ const getCartItems = async (profile_id, authState) => {
     return new Promise(() => {
       console.log(error);
       return {};
-    })
+    });
   }
+}
 
+const removeWishlistById = async (profile_id, product_id, authState) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthDelete(
+      `${baseUrl}/wishlists/${profile_id}/${product_id}`,
+      headers
+    ).then(res => res.data);
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    });
+  }
+};
+
+const addToWishlist = async (body, authState) => {
+  const headers = getAuthHeader(authState);
+  return apiAuthPost(`${baseUrl}/wishlists`, body, headers)
+    .then(res => res.data)
+    .catch(error => {
+      return new Promise(() => {
+        console.log(error);
+        return {};
+      });
+    });
+};
+
+const getWishListProducts = (profile_id, authState) => {
+  const headers = getAuthHeader(authState);
+  return apiAuthGet(`${baseUrl}/wishlists/${profile_id}`, headers)
+    .then(res => res.data)
+    .catch(err => {
+      return new Promise(() => {
+        console.log(err);
+        return {};
+      });
+    });
 };
 
 export {
   sleep,
-  getExampleData,
   getProfileData,
+  getProfileInventory,
   getDSData,
   getMarketProducts,
-  getProductById,
   createProduct,
   getCartItems,
+  getWishListProducts,
+  removeWishlistById,
+  addToWishlist,
+  getSellerReviews,
+  getProfileOrders,
 };

@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { Input } from 'antd';
+import {
+  PlusCircleOutlined,
+  ShoppingCartOutlined,
+  AudioOutlined,
+} from '@ant-design/icons';
 import DropdownMenu from './DropdownMenu';
-import FormInput from './FormInput';
-import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { searchByTitle, updateValue } from '../../state/actions';
 
 const Wrapper = styled.div`
   height: 180px;
@@ -98,9 +102,12 @@ const Wrapper = styled.div`
 `;
 
 export default function NavigationBar() {
-  const [input, setInput] = useState('');
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { authService } = useOktaAuth();
-  const { userInfo } = useSelector(state => state);
+  const { userInfo } = useSelector(state => state.userInfo);
+  const { value } = useSelector(state => state.marketplaceSearch);
+  const { Search } = Input;
 
   return (
     <Wrapper>
@@ -109,7 +116,11 @@ export default function NavigationBar() {
           <div className="top-right">
             <DropdownMenu
               title="My Market"
-              items={['Purchase History', 'Saved Items', 'Messages']}
+              items={[
+                <Link to="/marketplace/buyer/history">Purchase History</Link>,
+                'Saved Items',
+                'Messages',
+              ]}
             />
 
             <Link to="/marketplace/cart" style={{ marginLeft: '25px' }}>
@@ -122,7 +133,7 @@ export default function NavigationBar() {
               <DropdownMenu
                 title={`Hi, ${userInfo.given_name}`}
                 items={[
-                  'Account Settings',
+                  <span>Account Settings</span>,
                   <span onClick={() => authService.logout()}>Sign Out</span>,
                 ]}
               />
@@ -132,22 +143,31 @@ export default function NavigationBar() {
 
         <div className="middle">
           <div className="search-bar-wrapper">
-            <FormInput
-              name="search-bar"
-              type="text"
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              placeholder="Search MarketPlace"
-              labelId=""
-              Icon={<SearchOutlined />}
-              styles={{ maxWidth: '500px' }}
+            <Search
+              placeholder="Search marketplace"
+              onChange={e => dispatch(updateValue(e.target.value))}
+              onSearch={val => {
+                dispatch(searchByTitle(val));
+                history.push('/');
+              }}
+              enterButton
+              style={{ maxWidth: '500px' }}
+              suffix={
+                <AudioOutlined
+                  style={{
+                    fontSize: 16,
+                    color: '#1890ff',
+                  }}
+                />
+              }
+              value={value}
             />
           </div>
         </div>
 
         <div className="bottom">
           <Link to="/">Home</Link>
-          <span>Wishlist</span>
+          <Link to="/wishlist">Wishlist</Link>
           <span>Products</span>
           <span>Categories</span>
 

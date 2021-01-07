@@ -45,16 +45,17 @@ const Card = styled.div`
     }
   }
 `;
+
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
 
   return (
     <Link
-      to={{ pathname: `/marketplace/item/${product.id}`, product }}
+      to={`/marketplace/item/${product.id}`}
       onClick={() => dispatch(selectProduct(product))}
     >
       <Card>
-        {<img src={product.images[0].img_url} alt="market product" />}
+        {/* {<img src={product.images[0].img_url} alt="market product" />} */}
 
         <div className="details">
           <h4>${product.price}</h4>

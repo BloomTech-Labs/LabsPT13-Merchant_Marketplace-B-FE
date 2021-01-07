@@ -1,17 +1,44 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useOktaAuth } from '@okta/okta-react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchSellerInfo } from '../../../state/actions';
 import RenderProduct from './RenderProduct';
+import { addToWishlist } from '../../../api';
 
 export default function ProductContainer() {
+  const { authState } = useOktaAuth();
   const [message, setMessage] = useState('Is this available?');
   const [saved, setSaved] = useState(false);
-  const { userInfo, selectedProduct } = useSelector(state => state);
+  const { sellerInfo } = useSelector(state => state.sellerInfo);
+  const { userInfo } = useSelector(state => state.userInfo);
+  const { selectedProduct } = useSelector(state => state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // only fetch for seller info if selected product belongs to different seller
+    if (sellerInfo) {
+      if (sellerInfo.id !== selectedProduct.profile_id) {
+        dispatch(fetchSellerInfo(authState, selectedProduct.profile_id));
+      }
+    } else {
+      dispatch(fetchSellerInfo(authState, selectedProduct.profile_id));
+    }
+  }, [dispatch, authState, sellerInfo, selectedProduct.profile_id]);
 
   const saveMessage = e => setMessage(e.target.value);
 
   const saveProduct = () => {
+    const profile_id = userInfo.sub;
+    const body = { profile_id, product_id: selectedProduct.id };
     setSaved(true);
-    console.log('ADD PRODUCT TO WISHLIST');
+
+    addToWishlist(body, authState)
+      .then(res => {
+        console.log({ res });
+      })
+      .catch(err => {
+        console.error(err);
+      });
   };
 
   const unSaveProduct = () => {
@@ -28,7 +55,7 @@ export default function ProductContainer() {
   return (
     <>
       <RenderProduct
-        sellerInfo={userInfo}
+        sellerInfo={sellerInfo}
         product={selectedProduct}
         message={message}
         saved={saved}

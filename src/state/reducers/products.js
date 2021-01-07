@@ -1,5 +1,5 @@
 const initialState = {
-  products: [],
+  products: null,
   error: '',
   loading: false,
 };
@@ -10,7 +10,7 @@ const products = (state = initialState, { type, payload }) => {
       return { ...state, loading: true, error: '' };
     case 'PRODUCTS_LOADED':
       return { ...state, loading: false, products: payload };
-    case 'PRODUCT_ERRORS':
+    case 'PRODUCTS_ERRORS':
       return {
         ...state,
         loading: false,
