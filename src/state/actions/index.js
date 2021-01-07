@@ -7,21 +7,17 @@
 import { fetchUserInfo } from './user';
 import { fetchProducts } from './products';
 import { selectProduct } from './product';
-<<<<<<< HEAD
 import { fetchCart } from './carts';
-import { removeFromCart } from './carts'
-import { addToCart } from './carts'
-
-export { fetchUserInfo, fetchProducts, selectProduct, fetchCart, removeFromCart, addToCart };
-=======
+import { removeFromCart } from './carts';
+import { addToCart } from './carts';
 import { searchByTitle } from './marketplaceSearch';
 import {
-  fetchSellerInfo,
-  selectSeller,
-  fetchSellerInventory,
-  fetchSellerReviews,
-} from './seller';
-
+    fetchSellerInfo,
+    selectSeller,
+    fetchSellerInventory,
+    fetchSellerReviews,
+  } from './seller';
+  
 export {
   fetchUserInfo,
   fetchProducts,
@@ -31,5 +27,7 @@ export {
   selectSeller,
   fetchSellerInventory,
   fetchSellerReviews,
+  addToCart,
+  fetchCart,
+  removeFromCart
 };
->>>>>>> 67922161a607c37295f29a8f8a4d81264438d8b4

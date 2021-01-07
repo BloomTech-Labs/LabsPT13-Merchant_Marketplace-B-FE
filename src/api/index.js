@@ -38,15 +38,12 @@ const apiAuthPost = (url, data, authHeader) => {
   return axios.post(url, data, { headers: authHeader });
 };
 
-<<<<<<< HEAD
 const apiAuthDelete = (url, data, authHeader) => {
   return axios.delete(url, data, { headers: authHeader })
 };
 
-const getProfileData = authState => {
-=======
+
 const getProfileData = (authState, profile_id) => {
->>>>>>> 67922161a607c37295f29a8f8a4d81264438d8b4
   try {
     return apiAuthGet(
       `${baseUrl}/profile/${profile_id}`,
@@ -142,10 +139,10 @@ const removeCartItem = async (profile_id, product_id, authState) => {
   }
 };
 
-const addCartItem = async (profile_id, product_id, authState) => {
+const addCartItem = async (body, authState) => {
   try {
     const headers = getAuthHeader(authState);
-    return apiAuthPost(`${baseUrl}/carts/${profile_id}/${product_id}`, headers).then(
+    return apiAuthPost(`${baseUrl}/carts`, body, headers).then(
       res => res.data
     );
   } catch (error) {
@@ -163,11 +160,8 @@ export {
   getDSData,
   getMarketProducts,
   createProduct,
-<<<<<<< HEAD
   getCartItems,
   removeCartItem,
-  addCartItem
-=======
+  addCartItem,
   getSellerReviews,
->>>>>>> 67922161a607c37295f29a8f8a4d81264438d8b4
 };

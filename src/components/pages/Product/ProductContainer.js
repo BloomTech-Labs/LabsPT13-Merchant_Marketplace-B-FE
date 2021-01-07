@@ -3,6 +3,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSellerInfo } from '../../../state/actions';
 import RenderProduct from './RenderProduct';
+import { addCartItem } from '../../../api';
 
 export default function ProductContainer() {
   const { authState } = useOktaAuth();
@@ -10,6 +11,7 @@ export default function ProductContainer() {
   const [saved, setSaved] = useState(false);
   const { selectedProduct } = useSelector(state => state);
   const { sellerInfo } = useSelector(state => state.sellerInfo);
+  const { userInfo } = useSelector(state => state.userInfo);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,6 +31,18 @@ export default function ProductContainer() {
     setSaved(true);
     console.log('ADD PRODUCT TO WISHLIST');
   };
+
+  const addItem = () => {
+    const profile_id = userInfo.sub;
+    const body = {profile_id, product_id: selectedProduct.id};
+
+    addCartItem(body, authState)
+      .then(res => {
+        console.log({ res });
+      }) .catch(err => {
+        console.error(err)
+      })
+  }
 
   const unSaveProduct = () => {
     setSaved(false);
@@ -52,6 +66,7 @@ export default function ProductContainer() {
         saveProduct={saveProduct}
         unSaveProduct={unSaveProduct}
         sendMessage={sendMessage}
+        addItem={addItem}
       />
     </>
   );
