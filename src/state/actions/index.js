@@ -21,7 +21,7 @@ export {
 import { fetchUserInfo, fetchUserOrders } from './user';
 import { fetchProducts } from './products';
 import { selectProduct } from './product';
-import { fetchCart } from './cartItems';
+import { fetchCart, removeFromCart, addToCart } from './carts'
 import { searchByTitle, updateValue } from './marketplaceSearch';
 import {
   fetchSellerInfo,
@@ -43,5 +43,7 @@ export {
   fetchSellerInventory,
   fetchSellerReviews,
   fetchWishlist,
-  fetchCart
+  fetchCart,
+  removeFromCart,
+  addToCart,
 };
