@@ -123,7 +123,6 @@ const getProfileOrders = async (authState, profile_id) => {
     });
   }
 };
-Ȁ;
 
 const removeWishlistById = async (profile_id, product_id, authState) => {
   try {
