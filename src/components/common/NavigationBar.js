@@ -167,7 +167,7 @@ export default function NavigationBar() {
 
         <div className="bottom">
           <Link to="/">Home</Link>
-          <span>Wishlist</span>
+          <Link to="/wishlist">Wishlist</Link>
           <span>Products</span>
           <span>Categories</span>
 
