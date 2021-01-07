@@ -1,4 +1,3 @@
-import { getCartItems } from '../../api';
 import { removeCartItem } from '../../api';
 import { addCartItem } from '../../api';
 
