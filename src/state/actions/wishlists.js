@@ -1,8 +1,4 @@
-import {
-  getWishListProducts,
-  removeWishlistById,
-  addToWishlist,
-} from '../../api';
+import { getWishListProducts, removeWishlistById } from '../../api';
 
 export const fetchWishlist = (authState, profile_id) => dispatch => {
   try {
@@ -33,21 +29,6 @@ export const removeFromWishlist = (
   } catch (err) {
     dispatch({
       type: 'REMOVE_WISHLIST_FAILED',
-      payload: 'Request Failed',
-    });
-  }
-};
-
-export const addWishlist = (authState, profile_id, product_id) => dispatch => {
-  try {
-    console.log('FETCHING WISHLIST');
-    dispatch({ type: 'WISHLIST_LOADING' });
-    addToWishlist(product_id, profile_id, authState).then(wishlist => {
-      dispatch({ type: 'ADD_TO_WISHLIST', payload: wishlist });
-    });
-  } catch (err) {
-    dispatch({
-      type: 'ADD_TO_WISHLIST_FAILED',
       payload: 'Request Failed',
     });
   }

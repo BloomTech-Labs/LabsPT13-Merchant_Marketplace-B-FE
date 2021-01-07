@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import WishlistCard from '../../common/wishlistCard.js';
 
-import { NavigationBar, ProductCard } from '../../common';
+import { NavigationBar } from '../../common';
 
 const Wrapper = styled.div`
   .Wishlist__ad {
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   .Wishlist__title {
     margin-right: 10px;
     padding: 10px;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 4px solid lightgray;
   }
 `;
 
@@ -32,7 +32,7 @@ const RenderWishlist = () => {
         alt=" "
       />
       <div>
-        <h1 className="Wishlist__title">Wishlist</h1>
+        <h1 className="Wishlist__title"> My Wishlist</h1>
       </div>
 
       {/* <WishlistCard /> */}

@@ -19,15 +19,8 @@ const wishlist = (state = initialState, { type, payload }) => {
     case 'REMOVE_FROM_WISHLIST':
       return {
         ...state,
-        wishlist: state.wishlist.filter(wishlist =>
-          wishlist.id === type.id ? { ...wishlist, selected: false } : wishlist
-        ),
-      };
-    case 'ADD_TO_WISHLIST':
-      return {
-        ...state,
-        wishlist: state.wishlist.filter(wishlist =>
-          wishlist.id === type.id ? { ...wishlist, selected: true } : wishlist
+        wishlist: wishlist.filter(
+          item => item.product_id !== payload.product_id
         ),
       };
     default:

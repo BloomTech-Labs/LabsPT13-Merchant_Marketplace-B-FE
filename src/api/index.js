@@ -114,7 +114,7 @@ const removeWishlistById = async (profile_id, product_id, authState) => {
   try {
     const headers = getAuthHeader(authState);
     return apiAuthDelete(
-      `${baseUrl}/wishlist/${profile_id}/${product_id}`,
+      `${baseUrl}/wishlists/${profile_id}/${product_id}`,
       headers
     ).then(res => res.data);
   } catch (error) {
@@ -125,13 +125,12 @@ const removeWishlistById = async (profile_id, product_id, authState) => {
   }
 };
 
-const addToWishlist = async (profile_id, product_id, authState) => {
+const addToWishlist = async (body, authState) => {
   try {
     const headers = getAuthHeader(authState);
-    return apiAuthPost(
-      `${baseUrl}/wishlist/${profile_id}/${product_id}`,
-      headers
-    ).then(res => res.data);
+    return apiAuthPost(`${baseUrl}/wishlists`, body, headers).then(
+      res => res.data
+    );
   } catch (error) {
     return new Promise(() => {
       console.log(error);

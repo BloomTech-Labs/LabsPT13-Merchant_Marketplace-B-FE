@@ -5,7 +5,9 @@ import { useDispatch } from 'react-redux';
 import { selectProduct } from '../../state/actions';
 
 const Card = styled.div`
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
   width: 260px;
   border-radius: 4px;
   overflow: hidden;
