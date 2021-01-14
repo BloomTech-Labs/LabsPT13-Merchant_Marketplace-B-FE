@@ -39,7 +39,7 @@ const apiAuthPost = (url, data, authHeader) => {
 };
 
 const apiAuthDelete = (url, data, authHeader) => {
-  return axios.delete(url, data, authHeader);
+  return axios.delete(url, data, { headers: authHeader })
 };
 
 const getProfileData = (authState, profile_id) => {
@@ -149,8 +149,38 @@ const removeWishlistById = async (profile_id, product_id, authState) => {
     return new Promise(() => {
       console.log(error);
       return {};
-    });
+    })
   }
+};
+
+
+const removeCartItem = async (profile_id, product_id, authState) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthDelete(`${baseUrl}/carts/${profile_id}/${product_id}`, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    })
+  }
+};
+
+const addCartItem = async (body, authState) => {
+  try {
+    const headers = getAuthHeader(authState);
+    return apiAuthPost(`${baseUrl}/carts`, body, headers).then(
+      res => res.data
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return {};
+    })
+  }
+    
 };
 
 const addToWishlist = async (body, authState) => {
@@ -185,6 +215,8 @@ export {
   getMarketProducts,
   createProduct,
   getCartItems,
+  removeCartItem,
+  addCartItem,
   getWishListProducts,
   removeWishlistById,
   addToWishlist,

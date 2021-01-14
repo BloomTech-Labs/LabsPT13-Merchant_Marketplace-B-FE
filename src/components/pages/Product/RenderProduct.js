@@ -11,12 +11,10 @@ import {
 } from '@ant-design/icons';
 import { ImagesGallery } from '../../common';
 import { selectSeller } from '../../../state/actions';
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
   .details-wrapper {
     width: 360px;
     align-self: flex-end;
@@ -34,7 +32,6 @@ const Wrapper = styled.div`
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-
         svg {
           font-size: 26px;
           color: #fff;
@@ -59,13 +56,11 @@ const Wrapper = styled.div`
         }
       }
     }
-
     .details {
       padding: 10px 15px;
       .navbar {
         margin: 8px 0 15px 0;
       }
-
       h2 {
         font-size: 24px;
         font-weight: 700;
@@ -77,7 +72,6 @@ const Wrapper = styled.div`
         font-weight: 500;
         letter-spacing: 0;
       }
-
       h4 {
         font-size: 15px;
       }
@@ -85,12 +79,10 @@ const Wrapper = styled.div`
         font-size: 20px;
         margin: 30px 0 0 0;
       }
-
       section {
         display: flex;
         justify-content: space-between;
       }
-
       a {
         color: inherit;
         cursor: pointer;
@@ -98,7 +90,6 @@ const Wrapper = styled.div`
           text-decoration: underline;
         }
       }
-
       p {
         margin: 15px 0 20px 0;
       }
@@ -109,7 +100,6 @@ const Wrapper = styled.div`
         padding: 1px 7px;
         border-radius: 3px;
         cursor: pointer;
-
         &:hover {
           background-color: #2A375A;
           color: #fff;
@@ -117,7 +107,6 @@ const Wrapper = styled.div`
       }
       .map-wrapper {
         margin: 15px 0;
-
         .map {
           border-radius: 10px;
           height: 150px;
@@ -125,35 +114,29 @@ const Wrapper = styled.div`
           background-size: cover;
           cursor: pointer;
         }
-
         h4 {
           margin: 3px 0 0 0;
         }
       }
-
       .seller-info {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         height: 70px;
         margin-bottom: 30px;
-
         img {
           height: 50px;
           width: 50px;
           border-radius: 50%;
           object-fit: cover;
-
           &:hover {
             opacity: 0.85;
           }
         }
-
         .info {
           display: flex;
           flex-direction: column;
           margin-left: 10px;
-
           a {
             font-size: 16px;
             margin: 0;
@@ -162,10 +145,8 @@ const Wrapper = styled.div`
         }
       }
     }
-
     .message-seller-wrapper {
       height: 140px;
-
       .message-seller {
         position: fixed;
         bottom: 0;
@@ -175,7 +156,6 @@ const Wrapper = styled.div`
         span {
           color: #fff;
         }
-
         .message-input {
           display: flex;
           flex-direction: column;
@@ -190,13 +170,11 @@ const Wrapper = styled.div`
               background-color: #2D88FF;
             }
           }
-
           button {
             margin-top: 15px;
             padding: 7px 0;
             border: none;
             background-color: #2D88FF;
-
             color: #fff;
             border-radius: 7px;
             font-weight: 600;
@@ -211,7 +189,6 @@ const Wrapper = styled.div`
     }
   }
 `;
-
 const RenderProduct = ({
   sellerInfo,
   product,
@@ -229,7 +206,6 @@ const RenderProduct = ({
       {sellerInfo ? (
         <>
           <ImagesGallery images={product.images} />
-
           <div className="details-wrapper">
             <div className="nav-wrapper">
               <div className="navbar">
@@ -238,7 +214,6 @@ const RenderProduct = ({
                   <span>Message</span>
                 </div>
                 <Tooltip placement="bottom" title="Save" color="#29577C">
-
                   <div onClick={saved ? unSaveProduct : saveProduct}>
                     {saved ? <HeartFilled /> : <HeartOutlined />}
                   </div>
@@ -259,7 +234,6 @@ const RenderProduct = ({
               </div>
               <h5>Details</h5>
               <Divider style={{ margin: '4px 0 15px 0' }} />
-
               <section>
                 <h4>Condition</h4>
                 <span>{product.condition}</span>
@@ -268,9 +242,7 @@ const RenderProduct = ({
                 <h4>Brand</h4>
                 <span>{product.brand}</span>
               </section>
-
               <p>{product.description}</p>
-
               <h4>Tags</h4>
               {product.tags.split(',').map((tag, i) => (
                 <span id="tag" key={i}>
@@ -279,7 +251,6 @@ const RenderProduct = ({
               ))}
               <div className="map-wrapper">
                 <div className="map"></div>
-
                 <h4>Alameda, CA</h4>
                 <span>Location is approximate</span>
                 <Divider style={{ margin: '8px 0 0 0' }} />
@@ -297,7 +268,6 @@ const RenderProduct = ({
                     alt="seller avatar"
                   />
                 </Link>
-
                 <section className="info">
                   <Link
                     to={`/marketplace/seller/${sellerInfo.name
@@ -311,7 +281,6 @@ const RenderProduct = ({
                 </section>
               </div>
             </div>
-
             <div className="message-seller-wrapper">
               <div className="message-seller">
                 <MessageFilled
@@ -323,7 +292,6 @@ const RenderProduct = ({
                   }}
                 />
                 <span>Send seller a message</span>
-
                 <div className="message-input">
                   <input
                     type="text"

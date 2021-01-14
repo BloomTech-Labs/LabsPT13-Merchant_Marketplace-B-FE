@@ -5,14 +5,20 @@
 import { fetchUserInfo, fetchUserOrders } from './user';
 import { fetchProducts } from './products';
 import { selectProduct } from './product';
-import { fetchCart, removeFromCart, addToCart } from './carts'
+import { fetchCart } from './carts';
+import { removeFromCart } from './carts';
+import { addToCart } from './carts';
+
 import { searchByTitle, updateValue } from './marketplaceSearch';
+
 import {
-  fetchSellerInfo,
-  selectSeller,
-  fetchSellerInventory,
-  fetchSellerReviews,
-} from './seller';
+    fetchSellerInfo,
+    selectSeller,
+    fetchSellerInventory,
+    fetchSellerReviews,
+  } from './seller';
+import { searchByTitle, updateValue } from './marketplaceSearch';
+
 import { fetchWishlist } from './wishlists';
 
 export {
@@ -26,6 +32,9 @@ export {
   selectSeller,
   fetchSellerInventory,
   fetchSellerReviews,
+  addToCart,
+  fetchCart,
+  removeFromCart,
   fetchWishlist,
   fetchCart,
   removeFromCart,
