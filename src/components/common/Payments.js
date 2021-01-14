@@ -1,5 +1,4 @@
 import React from 'react';
-//import { selectProduct } from '../../state/actions';
 import styled from 'styled-components';
 
 export default function Payments() {
