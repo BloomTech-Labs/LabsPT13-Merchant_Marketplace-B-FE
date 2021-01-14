@@ -2,6 +2,7 @@ import { getCartItems } from '../../api';
 import { removeCartItem } from '../../api';
 import { addCartItem } from '../../api';
 
+
 export const fetchCart = (profile_id,authState) => dispatch => {
   try {
     console.log('FETCHING ITEMS FROM THE CART');

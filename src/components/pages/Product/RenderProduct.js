@@ -286,6 +286,7 @@ const RenderProduct = ({
                 <MessageFilled
                   style={{
                     color: '#2D88FF',
+
                     marginRight: '10px',
                     fontSize: '22px',
                   }}
